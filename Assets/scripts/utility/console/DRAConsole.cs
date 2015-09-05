@@ -1,4 +1,3 @@
-using System.Text;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,12 +21,12 @@ namespace DRAConsole
 
 		public override string ToString()
 		{
-			StringBuilder buffer = new StringBuilder();
+			return this.ToString("");
+		}
 
-			buffer.Append(string.Format("[{0:0.00}] ", m_CreationTimeStamp));
-			buffer.Append(m_Contents);
-
-			return buffer.ToString();
+		public virtual string ToString(string prefix)
+		{
+			return string.Format("[{0:0.00}] {1}{2}", m_CreationTimeStamp, prefix, m_Contents);
 		}
 	}
 
