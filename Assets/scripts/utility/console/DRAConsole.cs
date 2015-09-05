@@ -1,4 +1,5 @@
 using System.Text;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 ﻿using UnityEngine;
@@ -6,12 +7,14 @@ using System.Collections.Generic;
 
 namespace DRAConsole
 {
-	public class Message
+	public class BaseMessage
 	{
+		public float CreationTimeStamp { get { return m_CreationTimeStamp; } }
+
 		protected float m_CreationTimeStamp;
 		protected string m_Contents;
 
-		public Message(string contents)
+		public BaseMessage(string contents)
 		{
 			m_CreationTimeStamp = Time.time;
 			m_Contents = contents;
@@ -21,37 +24,53 @@ namespace DRAConsole
 		{
 			StringBuilder buffer = new StringBuilder();
 
-			buffer.Append(string.Format("[{0:00.00}] ", m_CreationTimeStamp));
+			buffer.Append(string.Format("[{0:0.00}] ", m_CreationTimeStamp));
 			buffer.Append(m_Contents);
 
 			return buffer.ToString();
 		}
 	}
 
-	public class Manager
+	public class Console
 	{
-		public static Manager Singleton
+		public static Console Singleton
 		{
 			get {
 				if(singleton == null) {
-					singleton = new Manager();
+					singleton = new Console();
 				}
 
 				return singleton;
 			}
 		}
 
-		protected static Manager singleton;
+		protected static Console singleton;
 
-		protected List<Message> messages;
+		public float LastUpdated { get { return (m_Messages.Count > 0 ? m_Messages.Last().CreationTimeStamp : -1.0f); } }
 
-		private Manager()
+		protected List<BaseMessage> m_Messages;
+
+		private Console()
 		{
+			m_Messages = new List<BaseMessage>();
 		}
 
-		public void AddMessage(Message new_message)
+		public void AddMessage(BaseMessage new_message)
 		{
-			messages.Add(new_message);
+			m_Messages.Add(new_message);
+		}
+
+		public List<BaseMessage> GetMessages(float start_time, float end_time, bool start_inclusive = true, bool end_inclusive = true)
+		{
+			List<BaseMessage> message_collection = new List<BaseMessage>();
+
+			foreach(BaseMessage msg in m_Messages) {
+				if(msg.CreationTimeStamp > start_time && msg.CreationTimeStamp < end_time || (start_inclusive && msg.CreationTimeStamp == start_time) || (end_inclusive && msg.CreationTimeStamp == end_time)) {
+					message_collection.Add(msg);
+				}
+			}
+
+			return message_collection;
 		}
 	}
 }
