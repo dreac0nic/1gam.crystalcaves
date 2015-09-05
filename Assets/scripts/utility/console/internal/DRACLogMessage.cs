@@ -31,7 +31,7 @@ namespace DRAConsole
 				case LogLevel.ERROR: return "ERROR";
 				case LogLevel.WARNING: return "WARNING";
 				case LogLevel.INFO: return "INFO";
-				default: return "UNKNOWN";
+				default: return "U";
 			}
 		}
 	}
