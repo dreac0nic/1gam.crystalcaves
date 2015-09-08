@@ -609,8 +609,8 @@ RectTransform:
   - {fileID: 1963997541}
   m_Father: {fileID: 1403421707}
   m_RootOrder: 6
-  m_AnchorMin: {x: .55177021, y: .90200007}
-  m_AnchorMax: {x: .75, y: .949000061}
+  m_AnchorMin: {x: .54812485, y: .90200007}
+  m_AnchorMax: {x: .75, y: .957222164}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -663,9 +663,9 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: .764705896}
   m_FontData:
     m_Font: {fileID: 12800000, guid: dc85f5bd577f35c4a8f38486c42d90bd, type: 3}
-    m_FontSize: 300
+    m_FontSize: 134
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 300
     m_Alignment: 1
@@ -1118,7 +1118,7 @@ RectTransform:
   m_Father: {fileID: 1403421707}
   m_RootOrder: 5
   m_AnchorMin: {x: .25, y: .90200007}
-  m_AnchorMax: {x: .447479218, y: .949000061}
+  m_AnchorMax: {x: .452000022, y: .957222164}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -1301,7 +1301,7 @@ RectTransform:
   m_Father: {fileID: 1403421707}
   m_RootOrder: 4
   m_AnchorMin: {x: .25, y: .829999983}
-  m_AnchorMax: {x: .75, y: .959999979}
+  m_AnchorMax: {x: .75, y: .975000024}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -1493,7 +1493,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: .882352948}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: dc85f5bd577f35c4a8f38486c42d90bd, type: 3}
+    m_Font: {fileID: 12800000, guid: 580d63bb3129c2d4f83741dd2eba7d2d, type: 3}
     m_FontSize: 45
     m_FontStyle: 0
     m_BestFit: 0
@@ -1559,7 +1559,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: .882352948}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: dc85f5bd577f35c4a8f38486c42d90bd, type: 3}
+    m_Font: {fileID: 12800000, guid: 580d63bb3129c2d4f83741dd2eba7d2d, type: 3}
     m_FontSize: 45
     m_FontStyle: 0
     m_BestFit: 0
