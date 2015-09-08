@@ -389,6 +389,7 @@ GameObject:
   - 4: {fileID: 346196265}
   - 54: {fileID: 346196264}
   - 114: {fileID: 346196263}
+  - 114: {fileID: 346196266}
   m_Layer: 0
   m_Name: Weird Stacks
   m_TagString: Untagged
@@ -402,7 +403,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 346196262}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c158c856e834ddf47bbd709d9b47f9b9, type: 3}
   m_Name: 
@@ -420,10 +421,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!4 &346196265
 Transform:
   m_ObjectHideFlags: 0
@@ -450,6 +451,40 @@ Transform:
   - {fileID: 88093939}
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!114 &346196266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 346196262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222f492d0b704db4887b4a7debc38d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tag: 
+  DisplayDebugMessages: 1
+  DrawRaysOnCollisionEnter: 1
+  RayDepthTestOnCollisionEnter: 1
+  RayLifetimeOnCollisionEnter: 2.5
+  RayColorOnCollisionEnter: {r: 1, g: 0, b: 0, a: 1}
+  RayLengthOnCollisionEnter: 5
+  ChangeColorOnCollisionEnter: 1
+  MaterialColorOnCollisionEnter: {r: 1, g: 0, b: 0, a: 1}
+  DrawRaysOnCollisionStay: 1
+  RayDepthTestOnCollisionStay: 1
+  RayLifetimeOnCollisionStay: 2.5
+  RayColorOnCollisionStay: {r: 0, g: 1, b: 0, a: 1}
+  RayLengthOnCollisionStay: 5
+  ChangeColorOnCollisionStay: 1
+  MaterialColorOnCollisionStay: {r: 0, g: 1, b: 0, a: 1}
+  DrawRaysOnCollisionExit: 1
+  RayDepthTestOnCollisionExit: 1
+  RayLifetimeOnCollisionExit: 2.5
+  RayColorOnCollisionExit: {r: 0, g: 0, b: 1, a: 1}
+  RayLengthOnCollisionExit: 5
+  ChangeColorOnCollisionExit: 1
+  MaterialColorOnCollisionExit: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &395916492
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +935,7 @@ GameObject:
   - 23: {fileID: 1237929589}
   - 54: {fileID: 1237929588}
   - 114: {fileID: 1237929587}
+  - 114: {fileID: 1237929593}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -913,7 +949,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1237929586}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c158c856e834ddf47bbd709d9b47f9b9, type: 3}
   m_Name: 
@@ -931,10 +967,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!23 &1237929589
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -990,6 +1026,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &1237929593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1237929586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222f492d0b704db4887b4a7debc38d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tag: 
+  DisplayDebugMessages: 1
+  DrawRaysOnCollisionEnter: 1
+  RayDepthTestOnCollisionEnter: 1
+  RayLifetimeOnCollisionEnter: 2.5
+  RayColorOnCollisionEnter: {r: 1, g: 0, b: 0, a: 1}
+  RayLengthOnCollisionEnter: 5
+  ChangeColorOnCollisionEnter: 1
+  MaterialColorOnCollisionEnter: {r: 1, g: 0, b: 0, a: 1}
+  DrawRaysOnCollisionStay: 1
+  RayDepthTestOnCollisionStay: 1
+  RayLifetimeOnCollisionStay: 2.5
+  RayColorOnCollisionStay: {r: 0, g: 1, b: 0, a: 1}
+  RayLengthOnCollisionStay: 5
+  ChangeColorOnCollisionStay: 1
+  MaterialColorOnCollisionStay: {r: 0, g: 1, b: 0, a: 1}
+  DrawRaysOnCollisionExit: 1
+  RayDepthTestOnCollisionExit: 1
+  RayLifetimeOnCollisionExit: 2.5
+  RayColorOnCollisionExit: {r: 0, g: 0, b: 1, a: 1}
+  RayLengthOnCollisionExit: 5
+  ChangeColorOnCollisionExit: 1
+  MaterialColorOnCollisionExit: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &1334636087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,6 +1073,7 @@ GameObject:
   - 23: {fileID: 1334636090}
   - 54: {fileID: 1334636089}
   - 114: {fileID: 1334636088}
+  - 114: {fileID: 1334636094}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -1016,7 +1087,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1334636087}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c158c856e834ddf47bbd709d9b47f9b9, type: 3}
   m_Name: 
@@ -1034,10 +1105,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!23 &1334636090
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1094,6 +1165,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!114 &1334636094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1334636087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222f492d0b704db4887b4a7debc38d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tag: 
+  DisplayDebugMessages: 1
+  DrawRaysOnCollisionEnter: 1
+  RayDepthTestOnCollisionEnter: 1
+  RayLifetimeOnCollisionEnter: 2.5
+  RayColorOnCollisionEnter: {r: 1, g: 0, b: 0, a: 1}
+  RayLengthOnCollisionEnter: 5
+  ChangeColorOnCollisionEnter: 1
+  MaterialColorOnCollisionEnter: {r: 1, g: 0, b: 0, a: 1}
+  DrawRaysOnCollisionStay: 1
+  RayDepthTestOnCollisionStay: 1
+  RayLifetimeOnCollisionStay: 2.5
+  RayColorOnCollisionStay: {r: 0, g: 1, b: 0, a: 1}
+  RayLengthOnCollisionStay: 5
+  ChangeColorOnCollisionStay: 1
+  MaterialColorOnCollisionStay: {r: 0, g: 1, b: 0, a: 1}
+  DrawRaysOnCollisionExit: 1
+  RayDepthTestOnCollisionExit: 1
+  RayLifetimeOnCollisionExit: 2.5
+  RayColorOnCollisionExit: {r: 0, g: 0, b: 1, a: 1}
+  RayLengthOnCollisionExit: 5
+  ChangeColorOnCollisionExit: 1
+  MaterialColorOnCollisionExit: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &1528910862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,6 +1358,7 @@ GameObject:
   - 23: {fileID: 1610099770}
   - 54: {fileID: 1610099769}
   - 114: {fileID: 1610099768}
+  - 114: {fileID: 1610099774}
   m_Layer: 0
   m_Name: Scaled Capsule
   m_TagString: Untagged
@@ -1266,7 +1372,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1610099767}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c158c856e834ddf47bbd709d9b47f9b9, type: 3}
   m_Name: 
@@ -1284,10 +1390,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!23 &1610099770
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1344,6 +1450,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!114 &1610099774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1610099767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222f492d0b704db4887b4a7debc38d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tag: 
+  DisplayDebugMessages: 1
+  DrawRaysOnCollisionEnter: 1
+  RayDepthTestOnCollisionEnter: 1
+  RayLifetimeOnCollisionEnter: 2.5
+  RayColorOnCollisionEnter: {r: 1, g: 0, b: 0, a: 1}
+  RayLengthOnCollisionEnter: 5
+  ChangeColorOnCollisionEnter: 1
+  MaterialColorOnCollisionEnter: {r: 1, g: 0, b: 0, a: 1}
+  DrawRaysOnCollisionStay: 1
+  RayDepthTestOnCollisionStay: 1
+  RayLifetimeOnCollisionStay: 2.5
+  RayColorOnCollisionStay: {r: 0, g: 1, b: 0, a: 1}
+  RayLengthOnCollisionStay: 5
+  ChangeColorOnCollisionStay: 1
+  MaterialColorOnCollisionStay: {r: 0, g: 1, b: 0, a: 1}
+  DrawRaysOnCollisionExit: 1
+  RayDepthTestOnCollisionExit: 1
+  RayLifetimeOnCollisionExit: 2.5
+  RayColorOnCollisionExit: {r: 0, g: 0, b: 1, a: 1}
+  RayLengthOnCollisionExit: 5
+  ChangeColorOnCollisionExit: 1
+  MaterialColorOnCollisionExit: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &1611939046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,6 +1570,7 @@ GameObject:
   - 23: {fileID: 1807890466}
   - 54: {fileID: 1807890465}
   - 114: {fileID: 1807890464}
+  - 114: {fileID: 1807890470}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1443,7 +1584,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1807890463}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c158c856e834ddf47bbd709d9b47f9b9, type: 3}
   m_Name: 
@@ -1461,10 +1602,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!23 &1807890466
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1520,6 +1661,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1807890470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1807890463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222f492d0b704db4887b4a7debc38d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tag: 
+  DisplayDebugMessages: 1
+  DrawRaysOnCollisionEnter: 1
+  RayDepthTestOnCollisionEnter: 1
+  RayLifetimeOnCollisionEnter: 2.5
+  RayColorOnCollisionEnter: {r: 1, g: 0, b: 0, a: 1}
+  RayLengthOnCollisionEnter: 5
+  ChangeColorOnCollisionEnter: 1
+  MaterialColorOnCollisionEnter: {r: 1, g: 0, b: 0, a: 1}
+  DrawRaysOnCollisionStay: 1
+  RayDepthTestOnCollisionStay: 1
+  RayLifetimeOnCollisionStay: 2.5
+  RayColorOnCollisionStay: {r: 0, g: 1, b: 0, a: 1}
+  RayLengthOnCollisionStay: 5
+  ChangeColorOnCollisionStay: 1
+  MaterialColorOnCollisionStay: {r: 0, g: 1, b: 0, a: 1}
+  DrawRaysOnCollisionExit: 1
+  RayDepthTestOnCollisionExit: 1
+  RayLifetimeOnCollisionExit: 2.5
+  RayColorOnCollisionExit: {r: 0, g: 0, b: 1, a: 1}
+  RayLengthOnCollisionExit: 5
+  ChangeColorOnCollisionExit: 1
+  MaterialColorOnCollisionExit: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &1890328298
 GameObject:
   m_ObjectHideFlags: 0
