@@ -4,10 +4,12 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public class RigidbodyPositionManager : MonoBehaviour
 {
-	public Vector3 Velocity = -9.81f*Vector3.up;
+	public Vector3 StartVelocity = Vector3.zero;
+	public Vector3 StartAcceleration = -9.81f*Vector3.up;
 
 	protected Rigidbody m_Rigidbody;
-	protected Vector3 m_Position;
+	protected Vector3 m_Velocity;
+	protected Vector3 m_Acceleration;
 
 	public void Awake()
 	{
@@ -16,16 +18,13 @@ public class RigidbodyPositionManager : MonoBehaviour
 
 	public void Start()
 	{
-		m_Position = this.transform.position;
-	}
-
-	public void Update()
-	{
-		m_Position = this.transform.position + Velocity*Time.deltaTime;
+		m_Velocity = StartVelocity;
+		m_Acceleration = StartAcceleration;
 	}
 
 	public void FixedUpdate()
 	{
-		m_Rigidbody.MovePosition(m_Position);
+		m_Velocity += m_Acceleration*Time.deltaTime;
+		m_Rigidbody.MovePosition(this.transform.position + m_Velocity*Time.deltaTime);
 	}
 }
