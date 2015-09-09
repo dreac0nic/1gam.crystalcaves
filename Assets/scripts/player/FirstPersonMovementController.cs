@@ -24,6 +24,7 @@ public class FirstPersonMovementController : MonoBehaviour
 
 	[Header("Air Control")]
 	public bool AerialMovement = false;
+	public bool ModifyDragDuringFreefall = false;
 	public float FreefallDrag = 0.0f;
 
 	[Header("Ground Check")]
@@ -137,7 +138,10 @@ public class FirstPersonMovementController : MonoBehaviour
 			m_IsGrounded = false;
 			m_GroundNormal = Vector3.up;
 			m_GroundDrag = m_Rigidbody.drag;
-			m_Rigidbody.drag = FreefallDrag;
+
+			if(ModifyDragDuringFreefall) {
+				m_Rigidbody.drag = FreefallDrag;
+			}
 		}
 
 		// Calculate movement
@@ -152,7 +156,10 @@ public class FirstPersonMovementController : MonoBehaviour
 		if(m_IsGrounded && m_JumpInput) {
 			m_IsGrounded = false;
 			m_GroundDrag = m_Rigidbody.drag;
-			m_Rigidbody.drag = FreefallDrag;
+
+			if(ModifyDragDuringFreefall) {
+				m_Rigidbody.drag = FreefallDrag;
+			}
 
 			m_Rigidbody.AddForce(Vector3.up*JumpForce, ForceMode.Impulse);
 		}
