@@ -15,7 +15,27 @@ public class Interactable : MonoBehaviour
 		m_DebugMessage = new StringBuilder();
 	}
 
-	protected void fireTargets(GameObject offender, FireTargetBase.TriggerType type = FireTargetBase.TriggerType.GENERAL)
+	protected void processInteraction(GameObject offender, FireTargetBase.TriggerType type = FireTargetBase.TriggerType.GENERAL)
+	{
+		if(InteractionTargets.Count == 0)
+			return;
+
+		if(Debug.isDebugBuild) {
+			m_DebugMessage.Append("Interactable: [INFO] <");
+			m_DebugMessage.Append(this.gameObject.transform.name);
+			m_DebugMessage.Append("> was interacted with. Triggering listeners ... \n");
+		}
+
+		this.fireTargets(offender, type);
+
+		if(Debug.isDebugBuild) {
+			Debug.Log(m_DebugMessage.ToString());
+
+			m_DebugMessage.Length = 0; // .NET 4.0 anytime, Unity :)
+		}
+	}
+
+	private void fireTargets(GameObject offender, FireTargetBase.TriggerType type = FireTargetBase.TriggerType.GENERAL)
 	{
 		foreach(FireTargetBase target in InteractionTargets) {
 			if(!target) {
