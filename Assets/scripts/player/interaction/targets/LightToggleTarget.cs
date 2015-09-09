@@ -10,7 +10,7 @@ public class LightToggleTarget : FireTargetBase
 		m_TargetLight = GetComponent<Light>();
 	}
 
-	public override void Fire(GameObject offender, TriggerType type = TriggerType.NONE)
+	public override void Fire(GameObject offender, TriggerType type = TriggerType.GENERAL)
 	{
 		m_TargetLight.enabled = !m_TargetLight.enabled;
 	}

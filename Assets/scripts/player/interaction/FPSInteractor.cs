@@ -42,12 +42,6 @@ public class FPSInteractor : MonoBehaviour {
 			Interactable interactee = hitInfo.collider.GetComponent<Interactable>();
 
 			if(interactee) {
-				// Interaction cue.
-				if(interactee.InteractionCue && !m_CurrentInteractionOverlay) {
-					m_CurrentInteractionOverlay = Instantiate(InteractionOverlayPrefab);
-					m_CurrentInteractionOverlay.transform.SetParent(interactee.InteractionCueAnchor, false);
-				}
-
 				// Interact with object if interact button is pushed.
 				if(Input.GetButtonDown("Interact"))
 					interactee.Trigger(this.gameObject);

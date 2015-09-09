@@ -11,7 +11,7 @@ public class PickupWeaponTarget : FireTargetBase
 		// m_Weapon = GetComponent<Shootable>();
 	}
 
-	public override void Fire(GameObject offender, TriggerType type = TriggerType.NONE)
+	public override void Fire(GameObject offender, TriggerType type = TriggerType.GENERAL)
 	{
 		/*
 		WeaponInventory offenderInventory = offender.GetComponent<WeaponInventory>();
