@@ -13,9 +13,9 @@ public class FirstPersonMovementController : MonoBehaviour
 	public float AccelerationAmount = 1.0f;
 	public bool LookSmoothing = false;
 	public float SmoothingDuration = 10.0f;
-	public bool ClampVerticalRotation = true;
-	public float MinimumVerticalRotation = -89.0f;
-	public float MaximumVerticalRotation = 89.0f;
+	public bool ClampVerticalAngle = true;
+	public float MinimumVerticalAngle = -89.0f;
+	public float MaximumVerticalAngle = 89.0f;
 
 	[Header("Movement")]
 	public float MoveAcceleration = 150.0f;
@@ -103,8 +103,8 @@ public class FirstPersonMovementController : MonoBehaviour
 				m_TargetCharacterRotation *= Quaternion.Euler(0.0f, rotationalInput.x, 0.0f);
 			}
 
-			if(ClampVerticalRotation) {
-				m_TargetCamRotation = ClampRotationAroundXAxis(m_TargetCamRotation, MinimumVerticalRotation, MaximumVerticalRotation);
+			if(ClampVerticalAngle) {
+				m_TargetCamRotation = clampRotationAroundXAxis(m_TargetCamRotation, MinimumVerticalAngle, MaximumVerticalAngle);
 			}
 
 			if(LookSmoothing) {
@@ -166,7 +166,7 @@ public class FirstPersonMovementController : MonoBehaviour
 	}
 
 	// NOTE: Concepts taken form the Unity samples and modified for flexiblity. Thanks guys!
-	private Quaternion ClampRotationAroundXAxis(Quaternion rotation, float min, float max)
+	private Quaternion clampRotationAroundXAxis(Quaternion rotation, float min, float max)
 	{
 		float angle;
 
