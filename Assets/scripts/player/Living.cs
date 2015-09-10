@@ -19,10 +19,10 @@ public class Living : MonoBehaviour
 		get { return m_Health <= 0.0f; }
 	}
 
-	[System.Serialized]
+	[SerializeField]
 	protected float m_Health = 100.0f;
 
-	[System.Serialized]
+	[SerializeField]
 	protected float m_MaxHealth = 100.0f;
 
 	public virtual void TakeDamage(float damage)
@@ -30,8 +30,12 @@ public class Living : MonoBehaviour
 		m_Health -= damage;
 	}
 
-	public virtual void Resurrect(float health = m_MaxHealth)
+	public virtual void Resurrect(float health = float.NegativeInfinity)
 	{
-		m_Health = health;
+		if(health == float.NegativeInfinity) {
+			m_Health = m_MaxHealth;
+		} else {
+			m_Health = health;
+		}
 	}
 }
