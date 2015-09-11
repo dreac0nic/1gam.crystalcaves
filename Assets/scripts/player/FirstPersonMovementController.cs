@@ -59,11 +59,14 @@ public class FirstPersonMovementController : MonoBehaviour
 	private float m_GroundDrag;
 	private Vector3 m_GroundNormal = Vector3.up;
 
-	public void Start()
+	public void Awake()
 	{
 		m_Rigidbody = this.GetComponent<Rigidbody>();
 		m_Collider = this.GetComponent<CapsuleCollider>();
+	}
 
+	public void Start()
+	{
 		if(!GroundCheckStart) {
 			GroundCheckStart = this.transform;
 		}
