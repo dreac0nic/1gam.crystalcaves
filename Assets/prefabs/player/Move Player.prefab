@@ -152,9 +152,9 @@ MonoBehaviour:
   AccelerationAmount: 1
   LookSmoothing: 0
   SmoothingDuration: 10
-  ClampVerticalRotation: 1
-  MinimumVerticalRotation: -89
-  MaximumVerticalRotation: 89
+  ClampVerticalAngle: 1
+  MinimumVerticalAngle: -89
+  MaximumVerticalAngle: 89
   MoveAcceleration: 150
   JumpForce: 10
   LandingRestPeriod: .100000001
@@ -162,8 +162,8 @@ MonoBehaviour:
   ModifyDragDuringFreefall: 0
   FreefallDrag: 0
   GroundCheckStart: {fileID: 0}
-  GroundCheckDistance: .00999999978
-  GroundCheckRadius: .5
+  GroundCheckDistance: .400000006
+  GroundCheckRadius: .125
   GroundCheckDirection: {x: 0, y: -1, z: 0}
   MovementAxis: Vertical
   StrafingAxis: Horizontal
@@ -195,6 +195,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: GroundCheckRadius
+      value: .125
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: GroundCheckDistance
+      value: .400000006
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
