@@ -12,7 +12,6 @@ public class SimpleRBMovement : MonoBehaviour
 	public string VerticalInput = "Vertical";
 
 	protected Rigidbody m_Rigidbody;
-	protected Vector3 m_Velocity;
 	protected Vector2 m_MovementInput;
 
 	public void Awake()
@@ -27,20 +26,15 @@ public class SimpleRBMovement : MonoBehaviour
 
 	public void FixedUpdate()
 	{
-		if(m_Velocity.magnitude > float.Epsilon) {
-			m_Velocity -= Friction*m_Velocity.normalized*Time.deltaTime;
-		} else {
-			m_Velocity = Vector3.zero;
-		}
+		if(m_MovementInput.magnitude > float.Epsilon) {
+			Vector3 target_velocity = MaxSpeed*this.transform.TransformDirection(new Vector3(m_MovementInput.x, 0.0f, m_MovementInput.y));
+			Vector3 velocity_delta = target_velocity - m_Rigidbody.velocity;
 
-		if(m_MovementInput.magnitude > float.Epsilon && m_Rigidbody.velocity.magnitude < MaxSpeed) {
-			m_Velocity += Acceleration*(new Vector3(m_MovementInput.x, 0.0f, m_MovementInput.y))*Time.deltaTime;
+			velocity_delta.x = Mathf.Clamp(velocity_delta.x, -Acceleration*Time.deltaTime, Acceleration*Time.deltaTime);
+			velocity_delta.z = Mathf.Clamp(velocity_delta.z, -Acceleration*Time.deltaTime, Acceleration*Time.deltaTime);
+			velocity_delta.y = 0.0f;
 
-			if(m_Velocity.magnitude > MaxSpeed) {
-				m_Velocity = m_Velocity.normalized*MaxSpeed;
-			}
-
-			m_Rigidbody.AddForce(m_Velocity, ForceMode.VelocityChange);
+			m_Rigidbody.AddForce(velocity_delta, ForceMode.VelocityChange);
 		}
 	}
 }
