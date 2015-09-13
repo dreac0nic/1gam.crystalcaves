@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
-public class VFirstPersonMovementController : MonoBehaviour
+public class FirstPersonMovementController : MonoBehaviour
 {
 	[Header("Camera Control")]
 	public Transform CameraAnchor;
