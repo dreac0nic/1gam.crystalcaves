@@ -8,12 +8,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 451554}
-  - 136: {fileID: 13695452}
   - 54: {fileID: 5493316}
-  - 114: {fileID: 11490700}
+  - 136: {fileID: 13695452}
+  - 114: {fileID: 11406710}
   m_Layer: 0
   m_Name: Move Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,35 +33,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &163000
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 413626}
-  - 33: {fileID: 3321524}
-  - 23: {fileID: 2390344}
-  m_Layer: 0
-  m_Name: Capsule
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &413626
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 163000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 451554}
-  m_RootOrder: 1
 --- !u!4 &451554
 Transform:
   m_ObjectHideFlags: 1
@@ -73,7 +44,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 485344}
-  - {fileID: 413626}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &485344
@@ -83,42 +53,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 127188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .5, z: 0}
+  m_LocalPosition: {x: 0, y: .600000024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 451554}
   m_RootOrder: 0
---- !u!23 &2390344
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 163000}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!33 &3321524
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 163000}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &5493316
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -126,15 +65,15 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118504}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: .800000012
+  m_Mass: 5
+  m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &11490700
+--- !u!114 &11406710
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -142,7 +81,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 118504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9fd1008222a34841b169925916b3f7b, type: 3}
+  m_Script: {fileID: 11500000, guid: ad3cea08a903f044da7afe096e286996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CameraAnchor: {fileID: 485344}
@@ -151,26 +90,26 @@ MonoBehaviour:
   MouseAcceleration: 0
   AccelerationAmount: 1
   LookSmoothing: 0
-  SmoothingDuration: 10
+  SmoothingDuration: 8.5
   ClampVerticalAngle: 1
   MinimumVerticalAngle: -89
   MaximumVerticalAngle: 89
-  MoveAcceleration: 150
-  JumpForce: 10
-  LandingRestPeriod: .100000001
-  AerialMovement: 1
-  ModifyDragDuringFreefall: 0
-  FreefallDrag: 0
+  MaximumVelocity: 12
+  Acceleration: 45
+  JumpForce: 50
+  JumpLandingCooldown: .180000007
+  EnableGhosting: 1
+  GhostingDuration: .150000006
   GroundCheckStart: {fileID: 0}
-  GroundCheckDistance: .400000006
-  GroundCheckRadius: .125
+  GroundCheckDistance: .0500000007
+  GroundCheckRadius: .25
   GroundCheckDirection: {x: 0, y: -1, z: 0}
   MovementAxis: Vertical
   StrafingAxis: Horizontal
   MouseXAxis: Mouse X
   MouseYAxis: Mouse Y
-  LookHorizontalAxis: Look Horizontal
-  LookVerticalAxis: Look Vertical
+  ControllerLookX: Look Horizontal
+  ControllerLookY: Look Vertical
   Jump: Jump
 --- !u!136 &13695452
 CapsuleCollider:
@@ -203,6 +142,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: GroundCheckDistance
       value: .400000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: MaximumVelocity
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
