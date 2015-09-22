@@ -12,6 +12,9 @@ GameObject:
   - 23: {fileID: 2351604}
   - 54: {fileID: 5439702}
   - 64: {fileID: 6465480}
+  - 114: {fileID: 11461856}
+  - 114: {fileID: 11403070}
+  - 114: {fileID: 11403816}
   m_Layer: 0
   m_Name: Pill Bottle
   m_TagString: Untagged
@@ -89,13 +92,69 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 1
   m_Mesh: {fileID: 4300002, guid: 4b64b744f863d8d4690728ee965cb041, type: 3}
+--- !u!114 &11403070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7503fd38573b934e8c3e1f7c3bc3702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11403816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69513cb990b366f4980c9c7db04c8398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Owner: {fileID: 0}
+  Name: Pills
+  Description: PILLS HERE
+  type: General
+--- !u!114 &11461856
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bc3a7993d3eb6544b4566a1172ff87f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractionTargets:
+  - {fileID: 11403070}
+  AllowAnonymouseTriggering: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: InteractionTargets.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Name
+      value: Pills
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Description
+      value: PILLS HERE
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: AllowAnonymouseTriggering
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 150818}
