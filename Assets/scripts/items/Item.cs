@@ -5,17 +5,13 @@ public class Item : MonoBehaviour
 {
 	public bool IsOwned {
 		get {
-			return (Owner && Owner.HasItem(this));
+			return Owner != null;
 		}
 	}
 
 	public Inventory Owner {
 		get { return m_Owner; }
 		set {
-			if(m_Owner && (m_Owner.CanBeStolenFrom && m_CanBeStolen)) {
-				m_Owner.Drop(this);
-			}
-
 			m_Owner = value;
 		}
 	}
