@@ -782,12 +782,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 467138, guid: f9c0488d3087ebf48ae1603d2a1255ff, type: 2}
   m_PrefabInternal: {fileID: 243000896}
---- !u!114 &813301109 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11403816, guid: f9c0488d3087ebf48ae1603d2a1255ff,
-    type: 2}
-  m_PrefabInternal: {fileID: 165289981}
-  m_Script: {fileID: 11500000, guid: 69513cb990b366f4980c9c7db04c8398, type: 3}
 --- !u!1 &838119614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,12 +1148,6 @@ Transform:
   - {fileID: 1835256292}
   m_Father: {fileID: 1956796302}
   m_RootOrder: 1
---- !u!114 &1241376238 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11403816, guid: f9c0488d3087ebf48ae1603d2a1255ff,
-    type: 2}
-  m_PrefabInternal: {fileID: 656133332}
-  m_Script: {fileID: 11500000, guid: 69513cb990b366f4980c9c7db04c8398, type: 3}
 --- !u!1 &1310138108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,11 +1868,8 @@ MonoBehaviour:
   - test: Test
     LimitItemCount: 0
     MaximumItems: 33
-    MountingAnchors:
-    - {fileID: 1956651375}
-    m_Items:
-    - {fileID: 813301109}
-    - {fileID: 1241376238}
+    MountingAnchors: []
+    m_Items: []
   - test: ASD
     LimitItemCount: 0
     MaximumItems: 10
