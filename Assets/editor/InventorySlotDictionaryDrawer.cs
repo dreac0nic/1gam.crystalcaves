@@ -19,7 +19,6 @@ public class InventorySlotDictionaryDrawer : PropertyDrawer
 		Rect foldout_position = position;
 		foldout_position.width -= (m_Foldout ? 2*(BUTTON_WIDTH) + 2.0f: 0.0f);
 		m_Foldout = EditorGUI.Foldout(position, m_Foldout, label, false);
-		//GUI.Button(foldout_position, "REF");
 
 		if(m_Foldout) {
 			Rect button_position = position;
@@ -62,7 +61,6 @@ public class InventorySlotDictionaryDrawer : PropertyDrawer
 					string slot_name = entry.Key;
 					Inventory.InventorySlot slot = entry.Value;
 					slot_rect.y += 18.0f;
-					
 					EditorGUI.BeginChangeCheck();
 					string new_slot_name = EditorGUI.TextField(slot_rect, GUIContent.none, slot_name);
 					if(EditorGUI.EndChangeCheck()) {
