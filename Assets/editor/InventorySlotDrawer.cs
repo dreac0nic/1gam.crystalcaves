@@ -2,7 +2,7 @@ using System.Collections;
 ﻿using UnityEngine;
 ﻿using UnityEditor;
 
-[CustomPropertyDrawer(typeof(Inventory.InventorySlot))]
+
 public class InventorySlotDrawer : PropertyDrawer
 {
 	public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)

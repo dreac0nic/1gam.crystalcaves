@@ -15,8 +15,7 @@ public class InventoryPickupTarget : FireTargetBase
 		Inventory possible_owner = offender.GetComponent<Inventory>();
 
 		if(possible_owner) {
-			Debug.LogWarning("LEL No pickup, yo!");
-			//possible_owner.Pickup(m_Item);
+			possible_owner.Pickup(m_Item);
 		}
 	}
 }

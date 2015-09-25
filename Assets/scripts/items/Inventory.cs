@@ -4,20 +4,21 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
+	[System.Serializable] public class SlotDictionary : SerializableDictionary<string, InventorySlot> {}
+
 	[System.Serializable]
 	public class InventorySlot
 	{
-		public List<Item> Items { get { return m_Items; } }
-
 		public string test = "NOPE";
 		public bool LimitItemCount = false;
 		public uint MaximumItems = 2;
 		public List<Transform> MountingAnchors;
-		[SerializeField] protected List<Item> m_Items;
+		public List<Item> Items;
 
 		public InventorySlot()
 		{
-			m_Items = new List<Item>();
+			Items = new List<Item>();
+			MountingAnchors = new List<Transform>();
 		}
 
 		public Transform GetFreeMountingAnchor()
@@ -37,6 +38,32 @@ public class Inventory : MonoBehaviour
 	[SerializeField] protected bool m_CanBeStolenFrom = true;
 	public Item CurrentEquippedItem;
 	public InventorySlot TestSlot;
-	public Dictionary<string, InventorySlot> Slots;
+	public SlotDictionary Slots;
 	public List<InventorySlot> TestSlots;
+
+	public bool Pickup(Item new_item)
+	{
+		if(Slots.ContainsKey(new_item.Slot) && !Slots[new_item.Slot].Items.Contains(new_item)) {
+			Slots[new_item.Slot].Items.Add(new_item);
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public bool Drop(Item drop_item)
+	{
+		if(Slots.ContainsKey(drop_item.Slot) && Slots[drop_item.Slot].Items.Contains(drop_item)) {
+			Slots[drop_item.Slot].Items.Remove(drop_item);
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public void Update()
+	{
+	}
 }
