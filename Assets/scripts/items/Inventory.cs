@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
-	[System.Serializable] public class SlotDictionary : SerializableDictionary<string, InventorySlot> {}
-
 	[System.Serializable]
 	public class InventorySlot
 	{
@@ -23,12 +21,6 @@ public class Inventory : MonoBehaviour
 
 		public Transform GetFreeMountingAnchor()
 		{
-			foreach(Transform anchor in MountingAnchors) {
-				if(anchor.GetComponentsInChildren<Item>().Length <= 0) {
-					return anchor;
-				}
-			}
-
 			return null;
 		}
 	}
@@ -37,14 +29,13 @@ public class Inventory : MonoBehaviour
 
 	[SerializeField] protected bool m_CanBeStolenFrom = true;
 	public Item CurrentEquippedItem;
-	public InventorySlot TestSlot;
-	public SlotDictionary Slots;
-	public List<InventorySlot> TestSlots;
+	public List<InventorySlot> Slots;
 
 	public bool Pickup(Item new_item)
 	{
-		if(Slots.ContainsKey(new_item.Slot) && !Slots[new_item.Slot].Items.Contains(new_item)) {
-			Slots[new_item.Slot].Items.Add(new_item);
+		InventorySlot slot;
+		if(this.retrieveSlot(new_item.Slot, out slot) && !slot.Items.Contains(new_item)) {
+			slot.Items.Add(new_item);
 
 			return true;
 		}
@@ -54,8 +45,9 @@ public class Inventory : MonoBehaviour
 
 	public bool Drop(Item drop_item)
 	{
-		if(Slots.ContainsKey(drop_item.Slot) && Slots[drop_item.Slot].Items.Contains(drop_item)) {
-			Slots[drop_item.Slot].Items.Remove(drop_item);
+		InventorySlot slot;
+		if(this.retrieveSlot(drop_item.Slot, out slot) && slot.Items.Contains(drop_item)) {
+			slot.Items.Remove(drop_item);
 
 			return true;
 		}
@@ -63,7 +55,34 @@ public class Inventory : MonoBehaviour
 		return false;
 	}
 
-	public void Update()
+	private bool hasSlot(string name)
 	{
+		foreach(InventorySlot slot in Slots) {
+			if(slot.Name == name) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private bool retrieveSlot(string name)
+	{
+		return this.hasSlot(name);
+	}
+
+	private bool retrieveSlot(string name, out InventorySlot ret_slot)
+	{
+		ret_slot = null;
+
+		foreach(InventorySlot slot in Slots) {
+			if(slot.Name == name) {
+				ret_slot = slot;
+
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

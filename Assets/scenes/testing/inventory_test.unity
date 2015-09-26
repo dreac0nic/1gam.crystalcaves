@@ -282,82 +282,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9c0488d3087ebf48ae1603d2a1255ff, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &282294865
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 282294867}
-  - 114: {fileID: 282294866}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &282294866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 282294865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc26d5b978b142d4d8a38851ce5477dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CanBeStolenFrom: 1
-  CurrentEquippedItem: {fileID: 0}
-  TestSlot:
-    test: NOPE
-    LimitItemCount: 0
-    MaximumItems: 2
-    MountingAnchors: []
-    Items: []
-  Slots:
-    _Buckets: ffffffffffffffffffffffff
-    _HashCodes: 000000000000000000000000
-    _Next: 000000000000000000000000
-    _Count: 0
-    _Version: 0
-    _FreeList: -1
-    _FreeCount: 0
-    _Keys:
-    - 
-    - 
-    - 
-    _Values:
-    - test: NOPE
-      LimitItemCount: 0
-      MaximumItems: 2
-      MountingAnchors: []
-      Items: []
-    - test: NOPE
-      LimitItemCount: 0
-      MaximumItems: 2
-      MountingAnchors: []
-      Items: []
-    - test: NOPE
-      LimitItemCount: 0
-      MaximumItems: 2
-      MountingAnchors: []
-      Items: []
-  TestSlots: []
---- !u!4 &282294867
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 282294865}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.48191738, y: .990161955, z: -.00651609898}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
 --- !u!1 &351199260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,73 +1754,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CanBeStolenFrom: 1
   CurrentEquippedItem: {fileID: 0}
-  TestSlot:
-    test: NOPE
+  Slots:
+  - Name: general
     LimitItemCount: 0
     MaximumItems: 0
-    MountingAnchors: []
-    Items: []
-  Slots:
-    _Buckets: ffffffffffffffff00000000ffffffff03000000ffffffff04000000
-    _HashCodes: 020e3d6d7471444fe808397bbe0c6c52dea50a700000000000000000
-    _Next: ffffffffffffffffffffffff02000000010000000000000000000000
-    _Count: 5
-    _Version: 285
-    _FreeList: -1
-    _FreeCount: 0
-    _Keys:
-    - primary
-    - secondary
-    - general
-    - New Slot
-    - New Slot (1)
-    - 
-    - 
-    _Values:
-    - test: NOPE
-      LimitItemCount: 1
-      MaximumItems: 1
-      MountingAnchors:
-      - {fileID: 0}
-      Items: []
-    - test: NOPE
-      LimitItemCount: 1
-      MaximumItems: 6
-      MountingAnchors:
-      - {fileID: 0}
-      Items: []
-    - test: NOPE
-      LimitItemCount: 0
-      MaximumItems: 2
-      MountingAnchors:
-      - {fileID: 0}
-      - {fileID: 0}
-      Items: []
-    - test: NOPE
-      LimitItemCount: 0
-      MaximumItems: 2
-      MountingAnchors: []
-      Items: []
-    - test: NOPE
-      LimitItemCount: 0
-      MaximumItems: 2
-      MountingAnchors: []
-      Items: []
-    - test: NOPE
-      LimitItemCount: 0
-      MaximumItems: 2
-      MountingAnchors: []
-      Items: []
-    - test: NOPE
-      LimitItemCount: 0
-      MaximumItems: 2
-      MountingAnchors: []
-      Items: []
-  TestSlots:
-  - test: NOPE
-    LimitItemCount: 0
-    MaximumItems: 33
-    MountingAnchors: []
+    MountingAnchors:
+    - {fileID: 1956651375}
+    - {fileID: 1835256292}
     Items: []
 --- !u!114 &1956796307
 MonoBehaviour:
