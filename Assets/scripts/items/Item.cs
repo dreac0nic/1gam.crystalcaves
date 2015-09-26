@@ -25,8 +25,7 @@ public class Item : MonoBehaviour
 	public bool isVisible {
 		get { return m_isVisible; }
 		set {
-			if(m_isVisible != value) {
-				Debug.Log("Changing visibility to: " + value);
+			if(m_isVisible != value || true) {
 				foreach(Renderer rend in m_Renderers) {
 					rend.enabled = value;
 				}
@@ -40,7 +39,6 @@ public class Item : MonoBehaviour
 		get { return m_isPhysical; }
 		set {
 			if(m_isPhysical != value) {
-				Debug.Log("Changing physicality to: " + value);
 				if(m_Body) {
 					m_Body.isKinematic = !value;
 				}
@@ -73,7 +71,5 @@ public class Item : MonoBehaviour
 		m_Body = GetComponent<Rigidbody>();
 		m_Renderers = new List<Renderer>(GetComponentsInChildren<Renderer>());
 		m_Colliders = new List<Collider>(GetComponentsInChildren<Collider>());
-
-		Debug.Log(m_Body);
 	}
 }

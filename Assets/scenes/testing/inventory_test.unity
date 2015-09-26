@@ -1756,8 +1756,8 @@ MonoBehaviour:
   CurrentEquippedItem: {fileID: 0}
   Slots:
   - Name: general
-    LimitItemCount: 0
-    MaximumItems: 0
+    LimitItemCount: 1
+    MaximumItems: 2
     MountingAnchors: []
     Items: []
 --- !u!114 &1956796307
