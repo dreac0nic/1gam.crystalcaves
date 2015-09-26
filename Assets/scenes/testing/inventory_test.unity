@@ -1758,9 +1758,7 @@ MonoBehaviour:
   - Name: general
     LimitItemCount: 0
     MaximumItems: 0
-    MountingAnchors:
-    - {fileID: 1956651375}
-    - {fileID: 1835256292}
+    MountingAnchors: []
     Items: []
 --- !u!114 &1956796307
 MonoBehaviour:
