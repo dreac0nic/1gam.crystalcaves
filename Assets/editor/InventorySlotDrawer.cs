@@ -1,74 +1,98 @@
 using System.Collections;
+using System.Collections.Generic;
 ﻿using UnityEngine;
 ﻿using UnityEditor;
 
-
+[CustomPropertyDrawer(typeof(Inventory.InventorySlot))]
 public class InventorySlotDrawer : PropertyDrawer
 {
+	private class SlotEditorState
+	{
+		public bool ShowAnchors = false;
+	}
+
+	private class StateDictionary : Dictionary<string, SlotEditorState> {}
+
+	private const float SLOT_PADDING = 18.0f;
+	private const float CONTAINER_PADDING = 4.0f;
+	private const float LIST_PADDING = 18.0f;
+	private const float TOGGLE_BUTTON_WIDTH = 64.0f;
+
+	private static StateDictionary m_PropertyStates = new StateDictionary();
+
 	public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 	{
+		bool old_gui_state;
+		Rect carrot = position;
+		SerializedProperty p_Name = property.FindPropertyRelative("Name");
+		SerializedProperty p_FocusedList = property.FindPropertyRelative("MountingAnchors");
 		SerializedProperty p_LimitItemCount = property.FindPropertyRelative("LimitItemCount");
-		SerializedProperty p_MountingAnchors = property.FindPropertyRelative("MountingAnchors");
-		SerializedProperty p_Items = property.FindPropertyRelative("m_Items");
 
+		// Setup standard states
+		carrot.height = 16.0f;
+		if(!m_PropertyStates.ContainsKey(property.propertyPath)) {
+			m_PropertyStates[property.propertyPath] = new SlotEditorState();
+		}
+
+		// Draw header label
 		label = EditorGUI.BeginProperty(position, label, property);
-		EditorGUI.LabelField(position, label);
-		position.height = 16.0f;
+		EditorGUI.LabelField(carrot, label);
 		EditorGUI.indentLevel++;
-		position = EditorGUI.IndentedRect(position);
 
-		EditorGUI.indentLevel = 0;
-		position.y += 18.0f;
-		EditorGUI.PropertyField(position, p_LimitItemCount);
+		carrot.y += 18.0f;
+		EditorGUI.PropertyField(carrot, p_Name, GUIContent.none);
+
+		carrot.y += 18.0f;
+		Rect item_count_rect = carrot;
+		item_count_rect.width = (p_LimitItemCount.boolValue ? 0.5f*item_count_rect.width : item_count_rect.width);
+		p_LimitItemCount.boolValue = EditorGUI.ToggleLeft(item_count_rect, "Limit Items", p_LimitItemCount.boolValue);
 		if(p_LimitItemCount.boolValue) {
-			position.y += 18.0f;
-			EditorGUI.PropertyField(position, property.FindPropertyRelative("MaximumItems"));
+			item_count_rect.x += item_count_rect.width;
+			EditorGUI.PropertyField(item_count_rect, property.FindPropertyRelative("MaximumItems"), GUIContent.none);
 		}
 
-		position.y += 18.0f;
-		EditorGUI.PropertyField(position, p_MountingAnchors);
-		if(EditorGUI.GetPropertyHeight(p_MountingAnchors) > 16.0f) {
-			SerializedProperty size_property = p_MountingAnchors.Copy();
-			EditorGUI.indentLevel++;
+		// Draw controls for toggling between lists
+		old_gui_state = GUI.enabled;
 
-			size_property.Next(true);
-			size_property.Next(true);
-			position.y += 18.0f;
-			EditorGUI.PropertyField(position, size_property);
-
-			foreach(SerializedProperty item in p_MountingAnchors) {
-				position.y += 18.0f;
-				EditorGUI.PropertyField(position, item);
-			}
-			EditorGUI.indentLevel--;
+		carrot.y += 18.0f;
+		Rect toggle_buttons_rect = carrot;
+		toggle_buttons_rect.x += 0.5f*carrot.width - TOGGLE_BUTTON_WIDTH;
+		toggle_buttons_rect.width = TOGGLE_BUTTON_WIDTH;
+		GUI.enabled = !m_PropertyStates[property.propertyPath].ShowAnchors;
+		if(GUI.Button(toggle_buttons_rect, "Mounts", EditorStyles.miniButtonLeft)) {
+			m_PropertyStates[property.propertyPath].ShowAnchors = true;
 		}
 
-		position.y += 18.0f;
-		EditorGUI.PropertyField(position, p_Items);
-		if(EditorGUI.GetPropertyHeight(p_Items) > 16.0f) {
-			SerializedProperty size_property = p_Items.Copy();
-			EditorGUI.indentLevel++;
-
-			size_property.Next(true);
-			size_property.Next(true);
-			position.y += 18.0f;
-			EditorGUI.PropertyField(position, size_property);
-
-			foreach(SerializedProperty item in p_Items) {
-				position.y += 18.0f;
-				EditorGUI.PropertyField(position, item);
-			}
-			EditorGUI.indentLevel--;
+		toggle_buttons_rect.x += TOGGLE_BUTTON_WIDTH;
+		GUI.enabled = m_PropertyStates[property.propertyPath].ShowAnchors;
+		if(GUI.Button(toggle_buttons_rect, "Items", EditorStyles.miniButtonRight)) {
+			m_PropertyStates[property.propertyPath].ShowAnchors = false;
 		}
 
+		GUI.enabled = old_gui_state;
+
+		// Draw focused list
+		if(!m_PropertyStates[property.propertyPath].ShowAnchors) {
+			p_FocusedList = property.FindPropertyRelative("Items");
+		}
+
+		carrot.y += 18.0f;
+		Rect list_rect = carrot;
+		GUIContent list_label = label;
+		list_label.text = ObjectNames.NicifyVariableName(p_FocusedList.name);
+		list_rect.x += LIST_PADDING;
+		list_rect.width -= 2*LIST_PADDING;
+		list_rect.height = EditorGUI.GetPropertyHeight(p_FocusedList);
+		EditorGUI.PropertyField(list_rect, p_FocusedList, list_label, true);
+
+		EditorGUI.indentLevel--;
 		EditorGUI.EndProperty();
 	}
 
 	public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
 	{
-		float mounting_anchor_height = EditorGUI.GetPropertyHeight(property.FindPropertyRelative("MountingAnchors"));
-		float items_anchor_height = EditorGUI.GetPropertyHeight(property.FindPropertyRelative("m_Items"));
+		float current_list_height = EditorGUI.GetPropertyHeight(property.FindPropertyRelative((m_PropertyStates.ContainsKey(property.propertyPath) && m_PropertyStates[property.propertyPath].ShowAnchors) ? "MountingAnchors" : "Items"));
 
-		return 16.0f + 18.0f + (property.FindPropertyRelative("LimitItemCount").boolValue ? 18.0f : 0.0f) + mounting_anchor_height + items_anchor_height;
+		return 16.0f + 3*18.0f + current_list_height;
 	}
 }

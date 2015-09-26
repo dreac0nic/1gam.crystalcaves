@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
 	[System.Serializable]
 	public class InventorySlot
 	{
-		public string test = "NOPE";
+		public string Name = "New Slot";
 		public bool LimitItemCount = false;
 		public uint MaximumItems = 2;
 		public List<Transform> MountingAnchors;
