@@ -1112,7 +1112,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6b90d39d7fcc834408662e98141385da, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1754,10 +1754,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CanBeStolenFrom: 1
   CurrentEquippedItem: {fileID: 0}
+  DropLocation: {fileID: 0}
   Slots:
   - Name: general
     LimitItemCount: 1
-    MaximumItems: 2
+    MaximumItems: 3
+    MountingAnchors: []
+    Items: []
+  - Name: primary_weapon
+    LimitItemCount: 1
+    MaximumItems: 1
     MountingAnchors: []
     Items: []
 --- !u!114 &1956796307

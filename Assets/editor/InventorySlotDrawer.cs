@@ -25,7 +25,7 @@ public class InventorySlotDrawer : PropertyDrawer
 		bool old_gui_state;
 		Rect carrot = position;
 		SerializedProperty p_Name = property.FindPropertyRelative("Name");
-		SerializedProperty p_FocusedList = property.FindPropertyRelative("m_MountingAnchors");
+		SerializedProperty p_FocusedList = property.FindPropertyRelative("MountingAnchors");
 		SerializedProperty p_LimitItemCount = property.FindPropertyRelative("LimitItemCount");
 
 		// Setup standard states
@@ -73,7 +73,7 @@ public class InventorySlotDrawer : PropertyDrawer
 
 		// Draw focused list
 		if(!m_PropertyStates[property.propertyPath].ShowAnchors) {
-			p_FocusedList = property.FindPropertyRelative("m_Items");
+			p_FocusedList = property.FindPropertyRelative("Items");
 		}
 
 		carrot.y += 18.0f;
@@ -91,7 +91,7 @@ public class InventorySlotDrawer : PropertyDrawer
 
 	public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
 	{
-		float current_list_height = EditorGUI.GetPropertyHeight(property.FindPropertyRelative((m_PropertyStates.ContainsKey(property.propertyPath) && m_PropertyStates[property.propertyPath].ShowAnchors) ? "m_MountingAnchors" : "m_Items"));
+		float current_list_height = EditorGUI.GetPropertyHeight(property.FindPropertyRelative((m_PropertyStates.ContainsKey(property.propertyPath) && m_PropertyStates[property.propertyPath].ShowAnchors) ? "MountingAnchors" : "Items"));
 
 		return 16.0f + 3*18.0f + current_list_height;
 	}
