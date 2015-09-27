@@ -13,7 +13,7 @@ public class FirstPersonUser : MonoBehaviour
 			UserCamera = Camera.main;
 
 			if(Debug.isDebugBuild) {
-				Debug.Log("FPSUser: [INFO] No Camera assigned, assigning to main camera: " + Camera.main.gameObject.name);
+				Debug.LogWarning("FPSUser: No Camera assigned, assigning to main camera: " + Camera.main.gameObject.name);
 			}
 		}
 	}
