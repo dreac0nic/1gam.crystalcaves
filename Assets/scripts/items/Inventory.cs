@@ -46,13 +46,15 @@ public class Inventory : MonoBehaviour
 			return null;
 		}
 
-		public Item GetUnanchoredItem()
+		public List<Item> GetUnanchoredItems()
 		{
-			foreach(Item held_item in Items) {
-				if(!AnchorRelations.Values.Contains(held_item)) {
-					return held_item;
-				}
+			List<Item> unanchored_items = new List<Item>(Items);
+
+			foreach(Item anchored_item in AnchorRelations.Values) {
+				unanchored_items.Remove(anchored_item);
 			}
+
+			return unanchored_items;
 		}
 	}
 
@@ -128,10 +130,10 @@ public class Inventory : MonoBehaviour
 
 					Transform anchor = slot.GetFreeAnchor();
 					if(anchor) {
-						Item next_anchored_item = GetUnanchoredItem();
+						List<Item> available_items = slot.GetUnanchoredItems();
 
-						if(next_anchored_item) {
-							slot.AnchorRelations[anchor] = next_anchored_item;
+						if(available_items.Count > 0) {
+							slot.AnchorRelations[anchor] = available_items[0];
 						} else {
 							slot.AnchorRelations.Remove(anchor);
 						}
