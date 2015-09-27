@@ -23,6 +23,37 @@ public class Inventory : MonoBehaviour
 			MountingAnchors = new List<Transform>();
 			AnchorRelations = new Dictionary<Transform, Item>();
 		}
+
+		public Transform GetFreeAnchor()
+		{
+			foreach(Transform anchor in MountingAnchors) {
+				if(!AnchorRelations.ContainsKey(anchor)) {
+					return anchor;
+				}
+			}
+
+			return null;
+		}
+
+		public Transform GetAnchorFromItem(Item anchored_item)
+		{
+			foreach(KeyValuePair<Transform, Item> relation in AnchorRelations) {
+				if(relation.Value == anchored_item) {
+					return relation.Key;
+				}
+			}
+
+			return null;
+		}
+
+		public Item GetUnanchoredItem()
+		{
+			foreach(Item held_item in Items) {
+				if(!AnchorRelations.Values.Contains(held_item)) {
+					return held_item;
+				}
+			}
+		}
 	}
 
 	public bool CanBeStolenFrom { get { return m_CanBeStolenFrom; } }
@@ -39,9 +70,22 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
+	public void Start()
+	{
+		foreach(InventorySlot slot in Slots) {
+			foreach(Item item in slot.Items) {
+				Pickup(item);
+			}
+		}
+	}
+
 	public void Update()
 	{
 		foreach(InventorySlot slot in Slots) {
+			foreach(KeyValuePair<Transform, Item> relation in slot.AnchorRelations) {
+				relation.Value.transform.position = Vector3.Lerp(relation.Value.transform.position, relation.Key.position, 25.0f*Time.time);
+				relation.Value.transform.rotation = Quaternion.Slerp(relation.Value.transform.rotation, relation.Key.rotation, 35.0f*Time.time);
+			}
 		}
 	}
 
@@ -53,13 +97,17 @@ public class Inventory : MonoBehaviour
 				if(!slot.LimitItemCount || slot.Items.Count < slot.MaximumItems) {
 					if(!slot.Items.Contains(new_item)) {
 						slot.Items.Add(new_item);
+					}
 
-						// TODO: ATTACH ITEMS TO MOUNT ANCHORS
+					new_item.Owner = this;
+					new_item.transform.SetParent(this.transform, false);
+					new_item.transform.localPosition = Vector3.zero;
+					new_item.transform.localRotation = Quaternion.identity;
 
-						new_item.Owner = this;
-						new_item.transform.SetParent(this.transform, false);
-						new_item.transform.localPosition = Vector3.zero;
-						new_item.transform.localRotation = Quaternion.identity;
+					Transform anchor = slot.GetFreeAnchor();
+					if(anchor) {
+						slot.AnchorRelations[anchor] = new_item;
+						new_item.isVisible = true;
 					}
 				}
 
@@ -78,10 +126,19 @@ public class Inventory : MonoBehaviour
 				if(slot.Items.Contains(drop_item)) {
 					slot.Items.Remove(drop_item);
 
-					// TODO: REMOVE ITEMS FROM MOUNT ANCHORS
+					Transform anchor = slot.GetFreeAnchor();
+					if(anchor) {
+						Item next_anchored_item = GetUnanchoredItem();
 
+						if(next_anchored_item) {
+							slot.AnchorRelations[anchor] = next_anchored_item;
+						} else {
+							slot.AnchorRelations.Remove(anchor);
+						}
+					}
+
+					drop_item.transform.SetParent(null, true);
 					drop_item.Owner = null;
-					drop_item.transform.SetParent(null);
 
 					if(DropLocation) {
 						drop_item.transform.position = DropLocation.position;
