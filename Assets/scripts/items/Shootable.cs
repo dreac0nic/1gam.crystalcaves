@@ -95,7 +95,7 @@ public class Shootable : MonoBehaviour
 
 			for(int projectile_i = 0; projectile_i < ProjectilesPerShot; ++projectile_i) {
 				float offset_spin = 360.0f*Random.value;
-				float offset_tilt = SpreadAngle; //;SpreadAngle*(Random.value + Random.value) - 1.0f; // Result is a simplied average of two spreads (2*Spread*rand - 1.0f)
+				float offset_tilt = SpreadAngle*(Random.value*Random.value*Random.value);
 				Quaternion rotation_offset = fire_point.rotation*Quaternion.Inverse(Quaternion.Euler(new Vector3(0.0f, offset_tilt, offset_spin))); // FIXME: Do this with quaternions. Converting is really childish.
 				Vector3 firing_direction = rotation_offset*Vector3.forward;
 
