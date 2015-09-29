@@ -356,7 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserCamera: {fileID: 0}
   InteractionDistance: 2.5
-  UseInput: Fire1
+  UseInput: Fire3
 --- !u!136 &13636956
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -389,7 +389,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 1.20000005
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 153796}
