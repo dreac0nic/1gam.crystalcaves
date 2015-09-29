@@ -112,6 +112,7 @@ public class Shootable : MonoBehaviour
 						if(RaycastImpactPrefab) {
 							GameObject impact = (GameObject)Instantiate(RaycastImpactPrefab, hit_info.point, Quaternion.FromToRotation(Vector3.up, hit_info.normal));
 							impact.transform.localRotation = impact.transform.localRotation*Quaternion.Euler(new Vector3(0.0f, 360.0f*Random.value, 0.0f));
+							impact.transform.SetParent(hit_info.collider.transform, true);
 
 							Destroy(impact, RaycastImpactDuration);
 						}
