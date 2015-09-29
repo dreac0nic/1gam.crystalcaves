@@ -94,12 +94,19 @@ public class Shootable : MonoBehaviour
 			}
 
 			for(int projectile_i = 0; projectile_i < ProjectilesPerShot; ++projectile_i) {
-				float offset_rotation = 360.0f*Random.value;
-				float offset_magnitude = SpreadAngle*(Random.value + Random.value) - 1.0f; // Result is a simplied average of two spreads (2*Spread*rand - 1.0f)
-				Quaternion rotation_offset = Quaternion.Euler(new Vector3(offset_rotation, 0.0f, offset_magnitude)); // FIXME: Do this with quaternions. Converting is really childish.
+				float offset_spin = 360.0f*Random.value;
+				float offset_tilt = SpreadAngle; //;SpreadAngle*(Random.value + Random.value) - 1.0f; // Result is a simplied average of two spreads (2*Spread*rand - 1.0f)
+				Quaternion rotation_offset = fire_point.rotation*Quaternion.Inverse(Quaternion.Euler(new Vector3(0.0f, offset_tilt, offset_spin))); // FIXME: Do this with quaternions. Converting is really childish.
+				Vector3 firing_direction = rotation_offset*Vector3.forward;
+
+				Debug.Log(rotation_offset.eulerAngles);
+
+				if(Debug.isDebugBuild) {
+					Debug.DrawRay(fire_point.position, 50.0f*(firing_direction), new Color(0.8f, 0.4f, 0.0f), 1.2f);
+				}
 
 				if(!ProjectilePrefab) {
-					if(Physics.Raycast(fire_point.position, rotation_offset*fire_point.forward, out hit_info)) {
+					if(Physics.Raycast(fire_point.position, firing_direction, out hit_info)) {
 						float distance_damage = (RaycastFalloffDamage ? Damage - Mathf.InverseLerp(RaycastFalloffCloseDistance, RaycastFalloffFarDistance, hit_info.distance)*(Damage - RaycastFalloffFarDamage) : Damage);
 
 						if(RaycastImpactPrefab) {
@@ -110,7 +117,7 @@ public class Shootable : MonoBehaviour
 						}
 					}
 				} else {
-					GameObject projectile = (GameObject)Instantiate(ProjectilePrefab, fire_point.position, Quaternion.LookRotation(rotation_offset*fire_point.forward));
+					GameObject projectile = (GameObject)Instantiate(ProjectilePrefab, fire_point.position, rotation_offset);
 					Rigidbody projectile_body = projectile.GetComponent<Rigidbody>();
 
 					if(projectile_body) {
