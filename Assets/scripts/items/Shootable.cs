@@ -89,17 +89,11 @@ public class Shootable : MonoBehaviour
 		}
 
 		if(m_State != WeaponState.FIRING && Ammo > 0) {
-			if(Debug.isDebugBuild) {
-				Debug.Log("Shootable: " + this.gameObject.name + " firing!");
-			}
-
 			for(int projectile_i = 0; projectile_i < ProjectilesPerShot; ++projectile_i) {
 				float offset_spin = 360.0f*Random.value;
 				float offset_tilt = SpreadAngle*(Random.value*Random.value*Random.value);
 				Quaternion rotation_offset = fire_point.rotation*Quaternion.Inverse(Quaternion.Euler(new Vector3(0.0f, offset_tilt, offset_spin))); // FIXME: Do this with quaternions. Converting is really childish.
 				Vector3 firing_direction = rotation_offset*Vector3.forward;
-
-				Debug.Log(rotation_offset.eulerAngles);
 
 				if(Debug.isDebugBuild) {
 					Debug.DrawRay(fire_point.position, 50.0f*(firing_direction), new Color(0.8f, 0.4f, 0.0f), 1.2f);
