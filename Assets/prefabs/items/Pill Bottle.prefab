@@ -114,10 +114,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69513cb990b366f4980c9c7db04c8398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Owner: {fileID: 0}
+  m_Owner: {fileID: 0}
+  m_CanBeStolen: 0
   Name: Pills
   Description: PILLS HERE
-  type: General
+  Slot: general
+  ViewmodelPrefab: {fileID: 175856, guid: 731e51695d77cd24db6c4c9b34d03fcb, type: 2}
 --- !u!114 &11461856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,6 +157,10 @@ Prefab:
       propertyPath: AllowAnonymouseTriggering
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ViewmodelPrefab
+      value: 
+      objectReference: {fileID: 175856, guid: 731e51695d77cd24db6c4c9b34d03fcb, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 150818}
