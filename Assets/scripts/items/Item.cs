@@ -59,6 +59,7 @@ public class Item : MonoBehaviour
 	public string Name = "Item";
 	public string Description = "You can hold it!";
 	public string Slot = "general";
+	public GameObject ViewmodelPrefab;
 
 	protected bool m_isVisible = true;
 	protected bool m_isPhysical = true;
