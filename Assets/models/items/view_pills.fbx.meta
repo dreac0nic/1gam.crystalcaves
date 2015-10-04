@@ -1,0 +1,976 @@
+fileFormatVersion: 2
+guid: 25eb7e1dacb83444b85c10bf6da02641
+timeCreated: 1443739404
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Forearm.L
+    100002: Forearm.R
+    100004: Fourth.Distal.L
+    100006: Fourth.Distal.L_end
+    100008: Fourth.Distal.R
+    100010: Fourth.Distal.R_end
+    100012: Fourth.IK_Target.L
+    100014: Fourth.IK_Target.L_end
+    100016: Fourth.IK_Target.R
+    100018: Fourth.IK_Target.R_end
+    100020: Fourth.IK_Target_Pole.L
+    100022: Fourth.IK_Target_Pole.L_end
+    100024: Fourth.IK_Target_Pole.R
+    100026: Fourth.IK_Target_Pole.R_end
+    100028: Fourth.Middle.L
+    100030: Fourth.Middle.R
+    100032: Fourth.Proximal.L
+    100034: Fourth.Proximal.R
+    100036: Index.Distal.L
+    100038: Index.Distal.L_end
+    100040: Index.Distal.R
+    100042: Index.Distal.R_end
+    100044: Index.IK_Target.L
+    100046: Index.IK_Target.L_end
+    100048: Index.IK_Target.R
+    100050: Index.IK_Target.R_end
+    100052: Index.IK_Target_Pole.L
+    100054: Index.IK_Target_Pole.L_end
+    100056: Index.IK_Target_Pole.R
+    100058: Index.IK_Target_Pole.R_end
+    100060: Index.Middle.L
+    100062: Index.Middle.R
+    100064: Index.Proximal.L
+    100066: Index.Proximal.R
+    100068: Metacarpal.L
+    100070: Metacarpal.R
+    100072: Palm.L
+    100074: Palm.R
+    100076: Second.Distal.L
+    100078: Second.Distal.L_end
+    100080: Second.Distal.R
+    100082: Second.Distal.R_end
+    100084: Second.IK_Target.L
+    100086: Second.IK_Target.L_end
+    100088: Second.IK_Target.R
+    100090: Second.IK_Target.R_end
+    100092: Second.IK_Target_Pole.L
+    100094: Second.IK_Target_Pole.L_end
+    100096: Second.IK_Target_Pole.R
+    100098: Second.IK_Target_Pole.R_end
+    100100: Second.Middle.L
+    100102: Second.Middle.R
+    100104: Second.Proximal.L
+    100106: Second.Proximal.R
+    100108: Third.Distal.L
+    100110: Third.Distal.L_end
+    100112: Third.Distal.R
+    100114: Third.Distal.R_end
+    100116: Third.IK_Target.L
+    100118: Third.IK_Target.L_end
+    100120: Third.IK_Target.R
+    100122: Third.IK_Target.R_end
+    100124: Third.IK_Target_Pole.L
+    100126: Third.IK_Target_Pole.L_end
+    100128: Third.IK_Target_Pole.R
+    100130: Third.IK_Target_Pole.R_end
+    100132: Third.Middle.L
+    100134: Third.Middle.R
+    100136: Third.Proximal.L
+    100138: Third.Proximal.R
+    100140: Thumb.Distal.L
+    100142: Thumb.Distal.L_end
+    100144: Thumb.Distal.R
+    100146: Thumb.Distal.R_end
+    100148: Thumb.IK_Target.L
+    100150: Thumb.IK_Target.L_end
+    100152: Thumb.IK_Target.R
+    100154: Thumb.IK_Target.R_end
+    100156: Thumb.IK_Target_Pole.L
+    100158: Thumb.IK_Target_Pole.L_end
+    100160: Thumb.IK_Target_Pole.R
+    100162: Thumb.IK_Target_Pole.R_end
+    100164: Thumb.Metacarpal.L
+    100166: Thumb.Metacarpal.R
+    100168: Thumb.Proximal.L
+    100170: Thumb.Proximal.R
+    100172: //RootNode
+    100174: Arm
+    100176: Arms_Armature
+    100178: pill_bottle
+    100180: Arm_HD
+    100182: Arm_HD_MeshPart0
+    100184: Arm_HD_MeshPart1
+    100186: Camera
+    100188: IK_Target_Fingers
+    100190: IK_Target_Fingers_Pole
+    100192: Lamp
+    100194: Lamp.001
+    100196: Lamp.002
+    100198: Lamp.003
+    100200: Forearm_L
+    100202: Forearm_R
+    100204: Fourth_Distal_L
+    100206: Fourth_Distal_R
+    100208: Fourth_IK_Target_L
+    100210: Fourth_IK_Target_Pole_L
+    100212: Fourth_IK_Target_Pole_R
+    100214: Fourth_IK_Target_R
+    100216: Fourth_Middle_L
+    100218: Fourth_Middle_R
+    100220: Fourth_Proximal_L
+    100222: Fourth_Proximal_R
+    100224: Index_Distal_L
+    100226: Index_Distal_R
+    100228: Index_IK_Target_L
+    100230: Index_IK_Target_Pole_L
+    100232: Index_IK_Target_Pole_R
+    100234: Index_IK_Target_R
+    100236: Index_Middle_L
+    100238: Index_Middle_R
+    100240: Index_Proximal_L
+    100242: Index_Proximal_R
+    100244: Metacarpal_L
+    100246: Metacarpal_R
+    100248: Palm_L
+    100250: Palm_R
+    100252: Second_Distal_L
+    100254: Second_Distal_R
+    100256: Second_IK_Target_L
+    100258: Second_IK_Target_Pole_L
+    100260: Second_IK_Target_Pole_R
+    100262: Second_IK_Target_R
+    100264: Second_Middle_L
+    100266: Second_Middle_R
+    100268: Second_Proximal_L
+    100270: Second_Proximal_R
+    100272: Third_Distal_L
+    100274: Third_Distal_R
+    100276: Third_IK_Target_L
+    100278: Third_IK_Target_Pole_L
+    100280: Third_IK_Target_Pole_R
+    100282: Third_IK_Target_R
+    100284: Third_Middle_L
+    100286: Third_Middle_R
+    100288: Third_Proximal_L
+    100290: Third_Proximal_R
+    100292: Thumb_Distal_L
+    100294: Thumb_Distal_R
+    100296: Thumb_IK_Target_L
+    100298: Thumb_IK_Target_Pole_L
+    100300: Thumb_IK_Target_Pole_R
+    100302: Thumb_IK_Target_R
+    100304: Thumb_Metacarpal_L
+    100306: Thumb_Metacarpal_R
+    100308: Thumb_Proximal_L
+    100310: Thumb_Proximal_R
+    400000: Forearm.L
+    400002: Forearm.R
+    400004: Fourth.Distal.L
+    400006: Fourth.Distal.L_end
+    400008: Fourth.Distal.R
+    400010: Fourth.Distal.R_end
+    400012: Fourth.IK_Target.L
+    400014: Fourth.IK_Target.L_end
+    400016: Fourth.IK_Target.R
+    400018: Fourth.IK_Target.R_end
+    400020: Fourth.IK_Target_Pole.L
+    400022: Fourth.IK_Target_Pole.L_end
+    400024: Fourth.IK_Target_Pole.R
+    400026: Fourth.IK_Target_Pole.R_end
+    400028: Fourth.Middle.L
+    400030: Fourth.Middle.R
+    400032: Fourth.Proximal.L
+    400034: Fourth.Proximal.R
+    400036: Index.Distal.L
+    400038: Index.Distal.L_end
+    400040: Index.Distal.R
+    400042: Index.Distal.R_end
+    400044: Index.IK_Target.L
+    400046: Index.IK_Target.L_end
+    400048: Index.IK_Target.R
+    400050: Index.IK_Target.R_end
+    400052: Index.IK_Target_Pole.L
+    400054: Index.IK_Target_Pole.L_end
+    400056: Index.IK_Target_Pole.R
+    400058: Index.IK_Target_Pole.R_end
+    400060: Index.Middle.L
+    400062: Index.Middle.R
+    400064: Index.Proximal.L
+    400066: Index.Proximal.R
+    400068: Metacarpal.L
+    400070: Metacarpal.R
+    400072: Palm.L
+    400074: Palm.R
+    400076: Second.Distal.L
+    400078: Second.Distal.L_end
+    400080: Second.Distal.R
+    400082: Second.Distal.R_end
+    400084: Second.IK_Target.L
+    400086: Second.IK_Target.L_end
+    400088: Second.IK_Target.R
+    400090: Second.IK_Target.R_end
+    400092: Second.IK_Target_Pole.L
+    400094: Second.IK_Target_Pole.L_end
+    400096: Second.IK_Target_Pole.R
+    400098: Second.IK_Target_Pole.R_end
+    400100: Second.Middle.L
+    400102: Second.Middle.R
+    400104: Second.Proximal.L
+    400106: Second.Proximal.R
+    400108: Third.Distal.L
+    400110: Third.Distal.L_end
+    400112: Third.Distal.R
+    400114: Third.Distal.R_end
+    400116: Third.IK_Target.L
+    400118: Third.IK_Target.L_end
+    400120: Third.IK_Target.R
+    400122: Third.IK_Target.R_end
+    400124: Third.IK_Target_Pole.L
+    400126: Third.IK_Target_Pole.L_end
+    400128: Third.IK_Target_Pole.R
+    400130: Third.IK_Target_Pole.R_end
+    400132: Third.Middle.L
+    400134: Third.Middle.R
+    400136: Third.Proximal.L
+    400138: Third.Proximal.R
+    400140: Thumb.Distal.L
+    400142: Thumb.Distal.L_end
+    400144: Thumb.Distal.R
+    400146: Thumb.Distal.R_end
+    400148: Thumb.IK_Target.L
+    400150: Thumb.IK_Target.L_end
+    400152: Thumb.IK_Target.R
+    400154: Thumb.IK_Target.R_end
+    400156: Thumb.IK_Target_Pole.L
+    400158: Thumb.IK_Target_Pole.L_end
+    400160: Thumb.IK_Target_Pole.R
+    400162: Thumb.IK_Target_Pole.R_end
+    400164: Thumb.Metacarpal.L
+    400166: Thumb.Metacarpal.R
+    400168: Thumb.Proximal.L
+    400170: Thumb.Proximal.R
+    400172: //RootNode
+    400174: Arm
+    400176: Arms_Armature
+    400178: pill_bottle
+    400180: Arm_HD
+    400182: Arm_HD_MeshPart0
+    400184: Arm_HD_MeshPart1
+    400186: Camera
+    400188: IK_Target_Fingers
+    400190: IK_Target_Fingers_Pole
+    400192: Lamp
+    400194: Lamp.001
+    400196: Lamp.002
+    400198: Lamp.003
+    400200: Forearm_L
+    400202: Forearm_R
+    400204: Fourth_Distal_L
+    400206: Fourth_Distal_R
+    400208: Fourth_IK_Target_L
+    400210: Fourth_IK_Target_Pole_L
+    400212: Fourth_IK_Target_Pole_R
+    400214: Fourth_IK_Target_R
+    400216: Fourth_Middle_L
+    400218: Fourth_Middle_R
+    400220: Fourth_Proximal_L
+    400222: Fourth_Proximal_R
+    400224: Index_Distal_L
+    400226: Index_Distal_R
+    400228: Index_IK_Target_L
+    400230: Index_IK_Target_Pole_L
+    400232: Index_IK_Target_Pole_R
+    400234: Index_IK_Target_R
+    400236: Index_Middle_L
+    400238: Index_Middle_R
+    400240: Index_Proximal_L
+    400242: Index_Proximal_R
+    400244: Metacarpal_L
+    400246: Metacarpal_R
+    400248: Palm_L
+    400250: Palm_R
+    400252: Second_Distal_L
+    400254: Second_Distal_R
+    400256: Second_IK_Target_L
+    400258: Second_IK_Target_Pole_L
+    400260: Second_IK_Target_Pole_R
+    400262: Second_IK_Target_R
+    400264: Second_Middle_L
+    400266: Second_Middle_R
+    400268: Second_Proximal_L
+    400270: Second_Proximal_R
+    400272: Third_Distal_L
+    400274: Third_Distal_R
+    400276: Third_IK_Target_L
+    400278: Third_IK_Target_Pole_L
+    400280: Third_IK_Target_Pole_R
+    400282: Third_IK_Target_R
+    400284: Third_Middle_L
+    400286: Third_Middle_R
+    400288: Third_Proximal_L
+    400290: Third_Proximal_R
+    400292: Thumb_Distal_L
+    400294: Thumb_Distal_R
+    400296: Thumb_IK_Target_L
+    400298: Thumb_IK_Target_Pole_L
+    400300: Thumb_IK_Target_Pole_R
+    400302: Thumb_IK_Target_R
+    400304: Thumb_Metacarpal_L
+    400306: Thumb_Metacarpal_R
+    400308: Thumb_Proximal_L
+    400310: Thumb_Proximal_R
+    2300000: Arm
+    2300002: pill_bottle
+    2300004: Arm_HD_MeshPart0
+    2300006: Arm_HD_MeshPart1
+    2300008: IK_Target_Fingers
+    2300010: IK_Target_Fingers_Pole
+    3300000: Arm
+    3300002: pill_bottle
+    3300004: Arm_HD_MeshPart0
+    3300006: Arm_HD_MeshPart1
+    3300008: IK_Target_Fingers
+    3300010: IK_Target_Fingers_Pole
+    4300000: pill_bottle
+    4300002: Arm
+    4300004: IK_Target_Fingers_Pole
+    4300006: IK_Target_Fingers
+    4300008: Arm_HD_MeshPart0
+    4300010: Arm_HD_MeshPart1
+    7400000: Default Take
+    7400002: Arms_Armature|Arms_ArmatureAction
+    7400004: Arms_Armature|Arms_ArmatureAction.001
+    7400006: Arm|Arms_ArmatureAction
+    7400008: pill_bottle|Arms_ArmatureAction
+    7400010: Arms_ArmatureAction.001
+    7400012: Arms_Armature|SHAKEDATBOOTY
+    7400014: Arm|SHAKEDATBOOTY
+    7400016: pill_bottle|SHAKEDATBOOTY
+    7400018: idle
+    7400020: INSPECTWTFISTHIS
+    7400022: Arms_Armature|INSPECTWTFISTHIS
+    7400024: draw
+    7400026: idle_1
+    9500000: //RootNode
+    13700000: Arm
+    13700002: pill_bottle
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 2
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: draw
+      takeName: Arms_Armature|draw
+      firstFrame: 0
+      lastFrame: 13
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm
+        weight: 1
+      - path: Arms_Armature
+        weight: 1
+      - path: Arms_Armature/Forearm.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.IK_Target.L/Fourth.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.IK_Target.L/Fourth.IK_Target_Pole.L/Fourth.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.Proximal.L/Fourth.Middle.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.Proximal.L/Fourth.Middle.L/Fourth.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.Proximal.L/Fourth.Middle.L/Fourth.Distal.L/Fourth.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.IK_Target.L/Index.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.IK_Target.L/Index.IK_Target_Pole.L/Index.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.Proximal.L/Index.Middle.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.Proximal.L/Index.Middle.L/Index.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.Proximal.L/Index.Middle.L/Index.Distal.L/Index.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.IK_Target.L/Second.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.IK_Target.L/Second.IK_Target_Pole.L/Second.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.Proximal.L/Second.Middle.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.Proximal.L/Second.Middle.L/Second.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.Proximal.L/Second.Middle.L/Second.Distal.L/Second.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.IK_Target.L/Third.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.IK_Target.L/Third.IK_Target_Pole.L/Third.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.Proximal.L/Third.Middle.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.Proximal.L/Third.Middle.L/Third.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.Proximal.L/Third.Middle.L/Third.Distal.L/Third.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.IK_Target.L/Thumb.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.IK_Target.L/Thumb.IK_Target_Pole.L/Thumb.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.Metacarpal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.Metacarpal.L/Thumb.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.Metacarpal.L/Thumb.Proximal.L/Thumb.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.Metacarpal.L/Thumb.Proximal.L/Thumb.Distal.L/Thumb.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.IK_Target.R/Fourth.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.IK_Target.R/Fourth.IK_Target_Pole.R/Fourth.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.Proximal.R/Fourth.Middle.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.Proximal.R/Fourth.Middle.R/Fourth.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.Proximal.R/Fourth.Middle.R/Fourth.Distal.R/Fourth.Distal.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.IK_Target.R/Index.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.IK_Target.R/Index.IK_Target_Pole.R/Index.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.Proximal.R/Index.Middle.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.Proximal.R/Index.Middle.R/Index.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.Proximal.R/Index.Middle.R/Index.Distal.R/Index.Distal.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.IK_Target.R/Second.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.IK_Target.R/Second.IK_Target_Pole.R/Second.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.Proximal.R/Second.Middle.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.Proximal.R/Second.Middle.R/Second.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.Proximal.R/Second.Middle.R/Second.Distal.R/Second.Distal.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.IK_Target.R/Third.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.IK_Target.R/Third.IK_Target_Pole.R/Third.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.Proximal.R/Third.Middle.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.Proximal.R/Third.Middle.R/Third.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.Proximal.R/Third.Middle.R/Third.Distal.R/Third.Distal.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.IK_Target.R/Thumb.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.IK_Target.R/Thumb.IK_Target_Pole.R/Thumb.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.Metacarpal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.Metacarpal.R/Thumb.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.Metacarpal.R/Thumb.Proximal.R/Thumb.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.Metacarpal.R/Thumb.Proximal.R/Thumb.Distal.R/Thumb.Distal.R_end
+        weight: 1
+      - path: pill_bottle
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: idle
+      takeName: Arms_Armature|idle
+      firstFrame: 0
+      lastFrame: 5
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm
+        weight: 1
+      - path: Arms_Armature
+        weight: 1
+      - path: Arms_Armature/Forearm.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.IK_Target.L/Fourth.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.IK_Target.L/Fourth.IK_Target_Pole.L/Fourth.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.Proximal.L/Fourth.Middle.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.Proximal.L/Fourth.Middle.L/Fourth.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.Proximal.L/Fourth.Middle.L/Fourth.Distal.L/Fourth.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.IK_Target.L/Index.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.IK_Target.L/Index.IK_Target_Pole.L/Index.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.Proximal.L/Index.Middle.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.Proximal.L/Index.Middle.L/Index.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.Proximal.L/Index.Middle.L/Index.Distal.L/Index.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.IK_Target.L/Second.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.IK_Target.L/Second.IK_Target_Pole.L/Second.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.Proximal.L/Second.Middle.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.Proximal.L/Second.Middle.L/Second.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.Proximal.L/Second.Middle.L/Second.Distal.L/Second.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.IK_Target.L/Third.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.IK_Target.L/Third.IK_Target_Pole.L/Third.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.Proximal.L/Third.Middle.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.Proximal.L/Third.Middle.L/Third.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.Proximal.L/Third.Middle.L/Third.Distal.L/Third.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.IK_Target.L/Thumb.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.IK_Target.L/Thumb.IK_Target_Pole.L/Thumb.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.Metacarpal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.Metacarpal.L/Thumb.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.Metacarpal.L/Thumb.Proximal.L/Thumb.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.Metacarpal.L/Thumb.Proximal.L/Thumb.Distal.L/Thumb.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.IK_Target.R/Fourth.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.IK_Target.R/Fourth.IK_Target_Pole.R/Fourth.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.Proximal.R/Fourth.Middle.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.Proximal.R/Fourth.Middle.R/Fourth.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.Proximal.R/Fourth.Middle.R/Fourth.Distal.R/Fourth.Distal.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.IK_Target.R/Index.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.IK_Target.R/Index.IK_Target_Pole.R/Index.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.Proximal.R/Index.Middle.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.Proximal.R/Index.Middle.R/Index.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.Proximal.R/Index.Middle.R/Index.Distal.R/Index.Distal.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.IK_Target.R/Second.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.IK_Target.R/Second.IK_Target_Pole.R/Second.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.Proximal.R/Second.Middle.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.Proximal.R/Second.Middle.R/Second.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.Proximal.R/Second.Middle.R/Second.Distal.R/Second.Distal.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.IK_Target.R/Third.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.IK_Target.R/Third.IK_Target_Pole.R/Third.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.Proximal.R/Third.Middle.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.Proximal.R/Third.Middle.R/Third.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.Proximal.R/Third.Middle.R/Third.Distal.R/Third.Distal.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.IK_Target.R/Thumb.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.IK_Target.R/Thumb.IK_Target_Pole.R/Thumb.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.Metacarpal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.Metacarpal.R/Thumb.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.Metacarpal.R/Thumb.Proximal.R/Thumb.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.Metacarpal.R/Thumb.Proximal.R/Thumb.Distal.R/Thumb.Distal.R_end
+        weight: 1
+      - path: pill_bottle
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: idle_1
+      takeName: Arms_Armature|idle_1
+      firstFrame: 0
+      lastFrame: 69
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm
+        weight: 1
+      - path: Arms_Armature
+        weight: 1
+      - path: Arms_Armature/Forearm.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.IK_Target.L/Fourth.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.IK_Target.L/Fourth.IK_Target_Pole.L/Fourth.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.Proximal.L/Fourth.Middle.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.Proximal.L/Fourth.Middle.L/Fourth.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Fourth.Proximal.L/Fourth.Middle.L/Fourth.Distal.L/Fourth.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.IK_Target.L/Index.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.IK_Target.L/Index.IK_Target_Pole.L/Index.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.Proximal.L/Index.Middle.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.Proximal.L/Index.Middle.L/Index.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Index.Proximal.L/Index.Middle.L/Index.Distal.L/Index.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.IK_Target.L/Second.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.IK_Target.L/Second.IK_Target_Pole.L/Second.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.Proximal.L/Second.Middle.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.Proximal.L/Second.Middle.L/Second.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Second.Proximal.L/Second.Middle.L/Second.Distal.L/Second.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.IK_Target.L/Third.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.IK_Target.L/Third.IK_Target_Pole.L/Third.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.Proximal.L/Third.Middle.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.Proximal.L/Third.Middle.L/Third.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Metacarpal.L/Third.Proximal.L/Third.Middle.L/Third.Distal.L/Third.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.IK_Target.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.IK_Target.L/Thumb.IK_Target_Pole.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.IK_Target.L/Thumb.IK_Target_Pole.L/Thumb.IK_Target_Pole.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.Metacarpal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.Metacarpal.L/Thumb.Proximal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.Metacarpal.L/Thumb.Proximal.L/Thumb.Distal.L
+        weight: 1
+      - path: Arms_Armature/Forearm.L/Palm.L/Thumb.Metacarpal.L/Thumb.Proximal.L/Thumb.Distal.L/Thumb.Distal.L_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.IK_Target.R/Fourth.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.IK_Target.R/Fourth.IK_Target_Pole.R/Fourth.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.Proximal.R/Fourth.Middle.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.Proximal.R/Fourth.Middle.R/Fourth.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Fourth.Proximal.R/Fourth.Middle.R/Fourth.Distal.R/Fourth.Distal.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.IK_Target.R/Index.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.IK_Target.R/Index.IK_Target_Pole.R/Index.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.Proximal.R/Index.Middle.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.Proximal.R/Index.Middle.R/Index.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Index.Proximal.R/Index.Middle.R/Index.Distal.R/Index.Distal.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.IK_Target.R/Second.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.IK_Target.R/Second.IK_Target_Pole.R/Second.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.Proximal.R/Second.Middle.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.Proximal.R/Second.Middle.R/Second.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Second.Proximal.R/Second.Middle.R/Second.Distal.R/Second.Distal.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.IK_Target.R/Third.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.IK_Target.R/Third.IK_Target_Pole.R/Third.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.Proximal.R/Third.Middle.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.Proximal.R/Third.Middle.R/Third.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Metacarpal.R/Third.Proximal.R/Third.Middle.R/Third.Distal.R/Third.Distal.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.IK_Target.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.IK_Target.R/Thumb.IK_Target_Pole.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.IK_Target.R/Thumb.IK_Target_Pole.R/Thumb.IK_Target_Pole.R_end
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.Metacarpal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.Metacarpal.R/Thumb.Proximal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.Metacarpal.R/Thumb.Proximal.R/Thumb.Distal.R
+        weight: 1
+      - path: Arms_Armature/Forearm.R/Palm.R/Thumb.Metacarpal.R/Thumb.Proximal.R/Thumb.Distal.R/Thumb.Distal.R_end
+        weight: 1
+      - path: pill_bottle
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .100000001
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: Arms_Armature
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
