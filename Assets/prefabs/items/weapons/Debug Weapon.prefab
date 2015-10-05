@@ -331,7 +331,7 @@ MonoBehaviour:
   Name: Debug Blaster
   Description: PEW PEW PEW!!
   Slot: primary_weapon
-  ViewmodelPrefab: {fileID: 0}
+  ViewmodelPrefab: {fileID: 150486, guid: a76ad935bd5dfa04fa1de1dd64d09d6c, type: 2}
 --- !u!136 &13645562
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -360,6 +360,10 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ViewmodelPrefab
+      value: 
+      objectReference: {fileID: 150486, guid: a76ad935bd5dfa04fa1de1dd64d09d6c, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 133416}
