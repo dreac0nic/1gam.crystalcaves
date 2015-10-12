@@ -2069,6 +2069,30 @@ Prefab:
       propertyPath: Interact
       value: Submit
       objectReference: {fileID: 0}
+    - target: {fileID: 11490468, guid: 6da61616ab0cd37459e9a7d16157285a, type: 2}
+      propertyPath: AttackInput
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 11490468, guid: 6da61616ab0cd37459e9a7d16157285a, type: 2}
+      propertyPath: AltAttackInput
+      value: Alternate Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 11490468, guid: 6da61616ab0cd37459e9a7d16157285a, type: 2}
+      propertyPath: ReloadInput
+      value: Reload
+      objectReference: {fileID: 0}
+    - target: {fileID: 11490468, guid: 6da61616ab0cd37459e9a7d16157285a, type: 2}
+      propertyPath: InteractInput
+      value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 11490468, guid: 6da61616ab0cd37459e9a7d16157285a, type: 2}
+      propertyPath: LastUsedEquipmentInput
+      value: Last Used Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 11490468, guid: 6da61616ab0cd37459e9a7d16157285a, type: 2}
+      propertyPath: DropCurrentEquipmentInput
+      value: Drop Held Item
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6da61616ab0cd37459e9a7d16157285a, type: 2}
   m_IsPrefabParent: 0
