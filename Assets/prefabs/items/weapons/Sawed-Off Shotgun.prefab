@@ -93,6 +93,7 @@ GameObject:
   - 114: {fileID: 11435794}
   - 114: {fileID: 11478354}
   - 114: {fileID: 11467662}
+  - 114: {fileID: 11417254}
   m_Layer: 0
   m_Name: Sawed-Off Shotgun
   m_TagString: Untagged
@@ -347,6 +348,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .0199999996, y: .0599999987, z: .174999997}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11417254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 143254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8f1b288e003d14886b7189d57a87bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponAnimator: {fileID: 0}
 --- !u!114 &11435794
 MonoBehaviour:
   m_ObjectHideFlags: 1

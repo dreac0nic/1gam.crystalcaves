@@ -27,23 +27,16 @@ public class PlayerImpulser : Impulser
 		FirstPersonMovementController movement_controller = GetComponent<FirstPersonMovementController>();
 		Inventory player_inventory = GetComponent<Inventory>();
 		Item held_item = (player_inventory ? player_inventory.CurrentEquippedItem : null);
-		Shootable weapon = (held_item ? held_item.GetComponent<Shootable>() : null);
-		Transform camera_anchor = (movement_controller ? movement_controller.CameraAnchor : null);
+		Impulser item_impulser = (held_item ? held_item.GetComponent<Impulser>() : null);
 
-		if(held_item && camera_anchor) {
+		if(held_item && item_impulser) {
 			switch(type) {
 				case ImpulseType.ATTACK:
-					if(weapon) {
-						weapon.Fire(camera_anchor);
-					}
-
+					item_impulser.Impulse(type);
 					break;
 
 				case ImpulseType.REFRESH:
-					if(weapon) {
-						weapon.Reload();
-					}
-
+					item_impulser.Impulse(type);
 					break;
 
 				default:

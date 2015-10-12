@@ -78,6 +78,7 @@ GameObject:
   - 114: {fileID: 11496228}
   - 114: {fileID: 11482544}
   - 114: {fileID: 11423290}
+  - 114: {fileID: 11409288}
   m_Layer: 0
   m_Name: Pill Cannon
   m_TagString: Untagged
@@ -260,6 +261,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .0399999991, y: .25, z: .100000001}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11409288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8f1b288e003d14886b7189d57a87bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponAnimator: {fileID: 0}
 --- !u!114 &11423290
 MonoBehaviour:
   m_ObjectHideFlags: 1
