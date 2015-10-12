@@ -85,7 +85,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &181916
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -137,7 +137,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: .600000024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 474144}
   m_Father: {fileID: 472352}
   m_RootOrder: 0
 --- !u!4 &414986
@@ -151,7 +152,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 472352}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &422884
 Transform:
   m_ObjectHideFlags: 1
@@ -175,7 +176,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 412788}
-  - {fileID: 474144}
   - {fileID: 414986}
   - {fileID: 495834}
   - {fileID: 474744}
@@ -188,11 +188,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .377000004, z: .819999993}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 472352}
-  m_RootOrder: 1
+  m_Father: {fileID: 412788}
+  m_RootOrder: 0
 --- !u!4 &474744
 Transform:
   m_ObjectHideFlags: 1
@@ -204,7 +204,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 472352}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &493320
 Transform:
   m_ObjectHideFlags: 1
@@ -230,7 +230,7 @@ Transform:
   - {fileID: 422884}
   - {fileID: 493320}
   m_Father: {fileID: 472352}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!23 &2356972
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -290,6 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CanBeStolenFrom: 1
   CurrentEquippedItem: {fileID: 0}
+  ViewmodelAnchor: {fileID: 0}
   DropLocation: {fileID: 474144}
   Slots:
   - Name: general
@@ -305,6 +306,9 @@ MonoBehaviour:
     MountingAnchors:
     - {fileID: 414986}
     Items: []
+  ItemCycleInput: Mouse ScrollWheel
+  LastItemInput: Debug Button
+  DropItemInput: Debug Button 2
 --- !u!114 &11461320
 MonoBehaviour:
   m_ObjectHideFlags: 1
