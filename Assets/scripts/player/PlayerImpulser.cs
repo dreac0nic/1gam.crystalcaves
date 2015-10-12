@@ -8,8 +8,8 @@ public class PlayerImpulser : Impulser
 	public string ReloadInput = "Fire3";
 	public string InteractInput = "Submit";
 	public string CycleEquipmentAxis = "Mouse ScrollWheel";
-	public string CylceEquipmentNextInput = "";
-	public string CylceEquipmentPrevInput = "";
+	public string CycleEquipmentNextInput = "";
+	public string CycleEquipmentPrevInput = "";
 	public string LastUsedEquipmentInput = "Jump";
 	public string DropCurrentEquipmentInput = "Cancel";
 
@@ -36,7 +36,7 @@ public class PlayerImpulser : Impulser
 		}
 
 		if(!string.IsNullOrEmpty(CycleEquipmentAxis) && Mathf.Abs(Input.GetAxis(CycleEquipmentAxis)) > float.Epsilon) {
-			this.Impulse(Input.GetAxis(CycleEquipmentInput) < 0.0f ? ImpulseType.CYCLE_NEXT_ITEM : ImpulseType.CYCLE_PREV_ITEM);
+			this.Impulse(Input.GetAxis(CycleEquipmentAxis) < 0.0f ? ImpulseType.CYCLE_NEXT_ITEM : ImpulseType.CYCLE_PREV_ITEM);
 		} else if(!string.IsNullOrEmpty(CycleEquipmentNextInput) && Input.GetButtonDown(CycleEquipmentNextInput)) {
 			this.Impulse(ImpulseType.CYCLE_NEXT_ITEM);
 		} else if(!string.IsNullOrEmpty(CycleEquipmentPrevInput) && Input.GetButtonDown(CycleEquipmentPrevInput)) {
