@@ -292,6 +292,7 @@ MonoBehaviour:
   CurrentEquippedItem: {fileID: 0}
   ViewmodelAnchor: {fileID: 0}
   DropLocation: {fileID: 474144}
+  DropPuntForce: 180
   Slots:
   - Name: general
     LimitItemCount: 1
