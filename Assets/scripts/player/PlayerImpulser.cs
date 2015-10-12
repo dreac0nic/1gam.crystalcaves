@@ -1,15 +1,24 @@
-﻿using UnityEngine;
 using System.Collections;
+﻿using UnityEngine;
 
-public class PlayerImpulser : MonoBehaviour {
+public class PlayerImpulser : Impulser
+{
+	public string AttackString = "Fire1";
+	public string AltAttackString = "Fire2";
+	public string ReloadString = "Fire3";
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public void Update()
+	{
+		if(Input.GetButton(AttackString)) {
+			this.Impulse(ImpulseType.ATTACK);
+		}
+
+		if(Input.GetButton(AltAttackString)) {
+			this.Impulse(ImpulseType.ALT_ATTACK);
+		}
+
+		if(Input.GetButtonDown(ReloadString)) {
+			this.Impulse(ImpulseType.REFRESH);
+		}
 	}
 }
