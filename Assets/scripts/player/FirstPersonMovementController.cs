@@ -60,14 +60,14 @@ public class FirstPersonMovementController : MonoBehaviour
 		m_Collider = GetComponent<CapsuleCollider>();
 
 		if(!CameraAnchor && Debug.isDebugBuild) {
-			Debug.LogWarning("VFirstPersonMovementController: Camera Anchor has not been assigned. Looking will be disabled until an anchor is assigned.");
+			Debug.LogWarning("FirstPersonMovementController: Camera Anchor has not been assigned. Looking will be disabled until an anchor is assigned.");
 		}
 
 		if(!GroundCheckStart) {
 			GroundCheckStart = this.transform;
 
 			if(Debug.isDebugBuild) {
-				Debug.LogWarning("VFirstPersonMovementController: Ground Check Start has not been assigned. Reassigning to object transform.");
+				Debug.LogWarning("FirstPersonMovementController: Ground Check Start has not been assigned. Reassigning to object transform.");
 			}
 		}
 	}
