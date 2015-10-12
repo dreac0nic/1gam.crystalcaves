@@ -65,7 +65,7 @@ public class Inventory : MonoBehaviour
 	public Item CurrentEquippedItem;
 	public Transform ViewmodelAnchor;
 	public Transform DropLocation;
-	public float DropPuntForce = 10.0f;
+	public float DropPuntForce = 150.0f;
 	[SerializeField] protected List<InventorySlot> Slots;
 
 	[Header("REMOVE THESE WHEN IMPULSER EXISTS")]
