@@ -179,12 +179,17 @@ public class Inventory : MonoBehaviour
 					drop_item.Owner = null;
 
 					if(DropLocation) {
+						Rigidbody player_body = GetComponent<Rigidbody>();
 						Rigidbody body = drop_item.GetComponent<Rigidbody>();
 
 						drop_item.transform.position = DropLocation.position;
 						drop_item.transform.localRotation = DropLocation.rotation;
 
 						if(body) {
+							if(player_body) {
+								body.AddForce(player_body.velocity, ForceMode.VelocityChange);
+							}
+
 							body.AddForce(DropPuntForce*drop_item.transform.forward);
 						}
 					}
