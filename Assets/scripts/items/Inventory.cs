@@ -65,6 +65,7 @@ public class Inventory : MonoBehaviour
 	public Item CurrentEquippedItem;
 	public Transform ViewmodelAnchor;
 	public Transform DropLocation;
+	public float DropPuntForce = 10.0f;
 	[SerializeField] protected List<InventorySlot> Slots;
 
 	[Header("REMOVE THESE WHEN IMPULSER EXISTS")]
@@ -178,8 +179,14 @@ public class Inventory : MonoBehaviour
 					drop_item.Owner = null;
 
 					if(DropLocation) {
+						Rigidbody body = drop_item.GetComponent<Rigidbody>();
+
 						drop_item.transform.position = DropLocation.position;
 						drop_item.transform.localRotation = DropLocation.rotation;
+
+						if(body) {
+							body.AddForce(DropPuntForce*drop_item.transform.forward);
+						}
 					}
 
 					return true;
