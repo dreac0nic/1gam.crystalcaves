@@ -68,16 +68,6 @@ public class Shootable : MonoBehaviour
 					break;
 			}
 		}
-
-		if(Input.GetButtonDown("Fire1") || Input.GetButton("Fire2")) {
-			Debug.LogWarning("DEBUG FIRE REMOVE PLEASE");
-
-			Fire();
-		} else if(Input.GetButtonDown("Jump")) {
-			Debug.LogWarning("DEBUG JUMP REMOVE PLEASE");
-
-			Reload();
-		}
 	}
 
 	public void Fire(Transform fire_point = null)
