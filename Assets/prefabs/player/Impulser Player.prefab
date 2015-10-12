@@ -373,9 +373,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb77b3b0d43af094197f42cd9fbd06a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackString: Fire1
-  AltAttackString: Fire2
-  ReloadString: Fire3
+  AttackInput: Attack
+  AltAttackInput: Alternate Attack
+  ReloadInput: Reload
+  InteractInput: Interact
+  CycleEquipmentAxis: Mouse ScrollWheel
+  CycleEquipmentNextInput: 
+  CycleEquipmentPrevInput: 
+  LastUsedEquipmentInput: Last Used Item
+  DropCurrentEquipmentInput: Drop Held Item
 --- !u!136 &13646418
 CapsuleCollider:
   m_ObjectHideFlags: 1
