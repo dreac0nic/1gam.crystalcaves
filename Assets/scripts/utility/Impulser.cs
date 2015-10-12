@@ -4,8 +4,9 @@ using System.Collections;
 public class Impulser : MonoBehaviour
 {
 	public enum ImpulseType {
+		INTERACT,
 		ATTACK, ALT_ATTACK, REFRESH,
-		PICKUP_ITEM, DROP_ITEM, CYCLE_NEXT_ITEM, CYCLE_PREV_ITEM, SWAP_LAST_USED_ITEM
+		DROP_ITEM, CYCLE_NEXT_ITEM, CYCLE_PREV_ITEM, SWAP_LAST_USED_ITEM
 	};
 
 	public virtual void Impulse(ImpulseType type)

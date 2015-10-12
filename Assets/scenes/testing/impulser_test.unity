@@ -2065,6 +2065,10 @@ Prefab:
       propertyPath: ViewmodelAnchor
       value: 
       objectReference: {fileID: 2003392991}
+    - target: {fileID: 11490468, guid: 6da61616ab0cd37459e9a7d16157285a, type: 2}
+      propertyPath: Interact
+      value: Submit
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6da61616ab0cd37459e9a7d16157285a, type: 2}
   m_IsPrefabParent: 0

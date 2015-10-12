@@ -99,22 +99,6 @@ public class Inventory : MonoBehaviour
 				relation.Value.transform.rotation = Quaternion.Slerp(relation.Value.transform.rotation, relation.Key.rotation, 35.0f*Time.time);
 			}
 		}
-
-		if(Input.GetButtonDown(LastItemInput)) {
-			Equip(m_LastEquippedItem);
-		} else if(Input.GetButtonDown(DropItemInput) && CurrentEquippedItem) {
-			Drop(CurrentEquippedItem);
-
-			if(!Equip(m_LastEquippedItem) && !CycleEquipment(-1)) {
-				CurrentEquippedItem = null;
-
-				if(m_CurrentViewmodel) {
-					Destroy(m_CurrentViewmodel);
-				}
-			}
-		} else if(Mathf.Abs(Input.GetAxis(ItemCycleInput)) > float.Epsilon) {
-			CycleEquipment(Input.GetAxis(ItemCycleInput) < 0.0f ? 1 : -1);
-		}
 	}
 
 	public bool Pickup(Item new_item)
@@ -190,6 +174,60 @@ public class Inventory : MonoBehaviour
 		return false;
 	}
 
+	public bool SwapToLastEquipment()
+	{
+		return Equip(m_LastEquippedItem);
+	}
+
+	public bool CycleEquipment(int offset = 1)
+	{
+		bool return_value = false;
+		int equipped_index = -1;
+		List<Item> held_items;
+
+		if(offset != 0) {
+			held_items = getAllItems();
+
+			if(held_items.Count > 1 || (held_items.Count == 1 && held_items[0] != CurrentEquippedItem)) {
+				for(equipped_index = 0; equipped_index < held_items.Count; ++equipped_index) {
+					if(held_items[equipped_index] == CurrentEquippedItem) {
+						break;
+					}
+				}
+
+				int cycle_item = equipped_index + offset;
+				if(cycle_item < 0) {
+					cycle_item = held_items.Count - (Mathf.Abs(cycle_item)%held_items.Count);
+				} else if(cycle_item >= held_items.Count) {
+					cycle_item = cycle_item%held_items.Count;
+				}
+
+				return_value = Equip(held_items[cycle_item]);
+			}
+		}
+
+		return return_value;
+	}
+
+	public bool DropCurrentEquipment()
+	{
+		if(CurrentEquippedItem) {
+			Drop(CurrentEquippedItem);
+
+			if(!Equip(m_LastEquippedItem) && !CycleEquipment(-1)) {
+				CurrentEquippedItem = null;
+
+				if(m_CurrentViewmodel) {
+					Destroy(m_CurrentViewmodel);
+				}
+			}
+		} else {
+			return false;
+		}
+
+		return true;
+	}
+
 	protected bool Equip(Item focus_item)
 	{
 		Transform anchor;
@@ -245,36 +283,6 @@ public class Inventory : MonoBehaviour
 		}
 
 		return true;
-	}
-
-	protected bool CycleEquipment(int offset = 1)
-	{
-		bool return_value = false;
-		int equipped_index = -1;
-		List<Item> held_items;
-
-		if(offset != 0) {
-			held_items = getAllItems();
-
-			if(held_items.Count > 1 || (held_items.Count == 1 && held_items[0] != CurrentEquippedItem)) {
-				for(equipped_index = 0; equipped_index < held_items.Count; ++equipped_index) {
-					if(held_items[equipped_index] == CurrentEquippedItem) {
-						break;
-					}
-				}
-
-				int cycle_item = equipped_index + offset;
-				if(cycle_item < 0) {
-					cycle_item = held_items.Count - (Mathf.Abs(cycle_item)%held_items.Count);
-				} else if(cycle_item >= held_items.Count) {
-					cycle_item = cycle_item%held_items.Count;
-				}
-
-				return_value = Equip(held_items[cycle_item]);
-			}
-		}
-
-		return return_value;
 	}
 
 	private bool hasSlot(string name)
