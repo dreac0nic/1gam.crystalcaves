@@ -7,37 +7,43 @@ public class PlayerImpulser : Impulser
 	public string AltAttackInput = "Fire2";
 	public string ReloadInput = "Fire3";
 	public string InteractInput = "Submit";
-	public string CycleEquipmentInput = "Mouse ScrollWheel";
+	public string CycleEquipmentAxis = "Mouse ScrollWheel";
+	public string CylceEquipmentNextInput = "";
+	public string CylceEquipmentPrevInput = "";
 	public string LastUsedEquipmentInput = "Jump";
 	public string DropCurrentEquipmentInput = "Cancel";
 
 	public void Update()
 	{
-		if(Input.GetButton(AttackInput)) {
+		if(!string.IsNullOrEmpty(AttackInput) && Input.GetButton(AttackInput)) {
 			this.Impulse(ImpulseType.ATTACK);
 		}
 
-		if(Input.GetButton(AltAttackInput)) {
+		if(!string.IsNullOrEmpty(AltAttackInput) && Input.GetButton(AltAttackInput)) {
 			this.Impulse(ImpulseType.ALT_ATTACK);
 		}
 
-		if(Input.GetButtonDown(ReloadInput)) {
+		if(!string.IsNullOrEmpty(ReloadInput) && Input.GetButtonDown(ReloadInput)) {
 			this.Impulse(ImpulseType.REFRESH);
 		}
 
-		if(Input.GetButtonDown(InteractInput)) {
+		if(!string.IsNullOrEmpty(InteractInput) && Input.GetButtonDown(InteractInput)) {
 			this.Impulse(ImpulseType.INTERACT);
 		}
 
-		if(Input.GetButtonDown(LastUsedEquipmentInput)) {
+		if(!string.IsNullOrEmpty(LastUsedEquipmentInput) && Input.GetButtonDown(LastUsedEquipmentInput)) {
 			this.Impulse(ImpulseType.SWAP_LAST_USED_ITEM);
 		}
 
-		if(Mathf.Abs(Input.GetAxis(CycleEquipmentInput)) > float.Epsilon) {
+		if(!string.IsNullOrEmpty(CycleEquipmentAxis) && Mathf.Abs(Input.GetAxis(CycleEquipmentAxis)) > float.Epsilon) {
 			this.Impulse(Input.GetAxis(CycleEquipmentInput) < 0.0f ? ImpulseType.CYCLE_NEXT_ITEM : ImpulseType.CYCLE_PREV_ITEM);
+		} else if(!string.IsNullOrEmpty(CycleEquipmentNextInput) && Input.GetButtonDown(CycleEquipmentNextInput)) {
+			this.Impulse(ImpulseType.CYCLE_NEXT_ITEM);
+		} else if(!string.IsNullOrEmpty(CycleEquipmentPrevInput) && Input.GetButtonDown(CycleEquipmentPrevInput)) {
+			this.Impulse(ImpulseType.CYCLE_PREV_ITEM);
 		}
 
-		if(Input.GetButtonDown(DropCurrentEquipmentInput)) {
+		if(!string.IsNullOrEmpty(DropCurrentEquipmentInput) && Input.GetButtonDown(DropCurrentEquipmentInput)) {
 			this.Impulse(ImpulseType.DROP_ITEM);
 		}
 	}
