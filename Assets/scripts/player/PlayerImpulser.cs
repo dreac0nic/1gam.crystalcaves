@@ -24,10 +24,32 @@ public class PlayerImpulser : Impulser
 
 	public override void Impulse(ImpulseType type)
 	{
-		switch(type) {
-			default:
-				base.Impulse(type);
-				break;
+		FirstPersonMovementController movement_controller = GetComponent<FirstPersonMovementController>();
+		Inventory player_inventory = GetComponent<Inventory>();
+		Item held_item = (player_inventory ? player_inventory.CurrentEquippedItem : null);
+		Shootable weapon = (held_item ? held_item.GetComponent<Shootable>() : null);
+		Transform camera_anchor = (movement_controller ? movement_controller.CameraAnchor : null);
+
+		if(held_item && camera_anchor) {
+			switch(type) {
+				case ImpulseType.ATTACK:
+					if(weapon) {
+						weapon.Fire(camera_anchor);
+					}
+
+					break;
+
+				case ImpulseType.REFRESH:
+					if(weapon) {
+						weapon.Reload();
+					}
+
+					break;
+
+				default:
+					base.Impulse(type);
+					break;
+			}
 		}
 	}
 }
