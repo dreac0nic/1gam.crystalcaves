@@ -21,4 +21,13 @@ public class PlayerImpulser : Impulser
 			this.Impulse(ImpulseType.REFRESH);
 		}
 	}
+
+	public override void Impulse(ImpulseType type)
+	{
+		switch(type) {
+			default:
+				base.Impulse(type);
+				break;
+		}
+	}
 }
