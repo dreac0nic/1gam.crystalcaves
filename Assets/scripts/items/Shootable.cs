@@ -15,6 +15,7 @@ public class Shootable : MonoBehaviour
 	[Header("Projectile")]
 	public GameObject ProjectilePrefab;
 	public float ProjectileForce = 25.0f;
+	public Vector3 ProjectileOffset = Vector3.forward;
 	public ForceMode ProjectileForceMode = ForceMode.Impulse;
 	public float Damage = 10.0f;
 	public BlendingMode DamageBlendStyle = BlendingMode.SET;
@@ -102,7 +103,7 @@ public class Shootable : MonoBehaviour
 						}
 					}
 				} else {
-					GameObject projectile = (GameObject)Instantiate(ProjectilePrefab, fire_point.position, rotation_offset);
+					GameObject projectile = (GameObject)Instantiate(ProjectilePrefab, fire_point.position + fire_point.TransformDirection(ProjectileOffset), rotation_offset);
 					Rigidbody projectile_body = projectile.GetComponent<Rigidbody>();
 
 					if(projectile_body) {
