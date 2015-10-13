@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 404876}
   - 65: {fileID: 6536058}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Handle Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 489812}
   - 65: {fileID: 6597774}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Foregrip Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - 114: {fileID: 11475012}
   - 114: {fileID: 11437024}
   - 114: {fileID: 11446030}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Debug Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 455058}
   - 136: {fileID: 13645562}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Barrel Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - 4: {fileID: 482306}
   - 65: {fileID: 6573404}
   - 114: {fileID: 11490704}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Interaction Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 499228}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Firing Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,6 +301,7 @@ MonoBehaviour:
   SpreadAngle: 1.79999995
   ProjectilePrefab: {fileID: 0}
   ProjectileForce: 25
+  ProjectileOffset: {x: 0, y: 0, z: 1}
   ProjectileForceMode: 1
   Damage: 10
   DamageBlendStyle: 1
@@ -377,6 +378,10 @@ Prefab:
       propertyPath: ViewmodelPrefab
       value: 
       objectReference: {fileID: 150486, guid: a76ad935bd5dfa04fa1de1dd64d09d6c, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 133416}

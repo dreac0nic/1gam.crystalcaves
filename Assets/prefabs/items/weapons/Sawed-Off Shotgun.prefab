@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 489506}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Firing Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 411160}
   - 136: {fileID: 13696708}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Barrel Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 431914}
   - 65: {fileID: 6527882}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 420462}
   - 136: {fileID: 13627714}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Foregrip Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 444506}
   - 136: {fileID: 13624824}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Grip Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - 114: {fileID: 11478354}
   - 114: {fileID: 11467662}
   - 114: {fileID: 11417254}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sawed-Off Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - 4: {fileID: 411994}
   - 65: {fileID: 6512468}
   - 114: {fileID: 11440326}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Interaction Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 458578}
   - 136: {fileID: 13615018}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Magazine Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 442628}
   - 65: {fileID: 6551556}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trigger Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,6 +419,7 @@ MonoBehaviour:
   SpreadAngle: 30
   ProjectilePrefab: {fileID: 0}
   ProjectileForce: 25
+  ProjectileOffset: {x: 0, y: 0, z: 1}
   ProjectileForceMode: 1
   Damage: 4
   DamageBlendStyle: 1
@@ -507,6 +508,10 @@ Prefab:
       propertyPath: ViewmodelPrefab
       value: 
       objectReference: {fileID: 185998, guid: 734f4b6d3e5839147ba2e0720df75aca, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 143254}
