@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 423260}
   - 136: {fileID: 13685488}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Barrel Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 429756}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Firing Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - 4: {fileID: 451788}
   - 65: {fileID: 6554514}
   - 114: {fileID: 11442428}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Interaction Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 480020}
   - 65: {fileID: 6542888}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Foregrip Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,8 @@ GameObject:
   - 114: {fileID: 11496228}
   - 114: {fileID: 11482544}
   - 114: {fileID: 11423290}
-  m_Layer: 0
+  - 114: {fileID: 11409288}
+  m_Layer: 10
   m_Name: Pill Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +95,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 485558}
   - 65: {fileID: 6572114}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Handle Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +121,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 132188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: .52700001}
+  m_LocalPosition: {x: 0, y: 0, z: .560000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 477812}
@@ -260,6 +261,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .0399999991, y: .25, z: .100000001}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11409288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8f1b288e003d14886b7189d57a87bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponAnimator: {fileID: 0}
 --- !u!114 &11423290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -302,6 +315,7 @@ MonoBehaviour:
   SpreadAngle: 1.79999995
   ProjectilePrefab: {fileID: 198692, guid: 1b611c69c95f4f1489d04e2cc050a0e2, type: 2}
   ProjectileForce: 25
+  ProjectileOffset: {x: 0, y: 0, z: 1}
   ProjectileForceMode: 1
   Damage: 10
   DamageBlendStyle: 1
@@ -355,6 +369,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: RaycastImpactPrefab
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.z
+      value: .560000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

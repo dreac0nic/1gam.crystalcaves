@@ -22,7 +22,7 @@ public class Interactable : MonoBehaviour
 
 		if(Debug.isDebugBuild) {
 			m_DebugMessage.Append("Interactable: [INFO] <");
-			m_DebugMessage.Append(this.gameObject.transform.name);
+			m_DebugMessage.Append(this.gameObject.name);
 			m_DebugMessage.Append("> was interacted with. Triggering listeners ... \n");
 		}
 

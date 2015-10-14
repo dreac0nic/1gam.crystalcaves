@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11461856}
   - 114: {fileID: 11403070}
   - 114: {fileID: 11403816}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pill Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,6 +161,10 @@ Prefab:
       propertyPath: ViewmodelPrefab
       value: 
       objectReference: {fileID: 175856, guid: 731e51695d77cd24db6c4c9b34d03fcb, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 150818}

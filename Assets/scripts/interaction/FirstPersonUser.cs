@@ -7,6 +7,8 @@ public class FirstPersonUser : MonoBehaviour
 	public float InteractionDistance = 2.5f;
 	public string UseInput = "Interact";
 
+	protected Vector3 mid_vector;
+
 	public void Awake()
 	{
 		if(!UserCamera) {
@@ -18,24 +20,29 @@ public class FirstPersonUser : MonoBehaviour
 		}
 	}
 
-	void Update()
+	public void Update()
 	{
-		Vector3 mid_vector = new Vector3(UserCamera.pixelWidth/2.0f, UserCamera.pixelHeight/2.0f, 0.0f);
-
 		if(UserCamera) {
-			RaycastHit hit_info;
+			mid_vector = new Vector3(UserCamera.pixelWidth/2.0f, UserCamera.pixelHeight/2.0f, 0.0f);
 
+			if(Debug.isDebugBuild) {
+				Debug.DrawRay(UserCamera.transform.position, InteractionDistance*UserCamera.ScreenPointToRay(mid_vector).direction, Color.red);
+			}
+		}
+	}
+
+	public void Interact()
+	{
+		RaycastHit hit_info;
+		
+		if(UserCamera) {
 			if(Physics.Raycast(UserCamera.ScreenPointToRay(mid_vector), out hit_info, InteractionDistance)) {
 				InteractableUsable interactee = hit_info.collider.GetComponent<InteractableUsable>();
 
-				if(interactee && Input.GetButtonDown(UseInput)) {
+				if(interactee) {
 					interactee.Trigger(this.gameObject);
 				}
 			}
-		}
-
-		if(Debug.isDebugBuild) {
-			Debug.DrawRay(UserCamera.transform.position, InteractionDistance*UserCamera.ScreenPointToRay(mid_vector).direction, Color.red);
 		}
 	}
 }
