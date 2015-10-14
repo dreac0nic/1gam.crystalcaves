@@ -605,6 +605,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 22
       objectReference: {fileID: 0}
+    - target: {fileID: 11478354, guid: 74ebb30e0225f944d9ec1f30c2e3c2bf, type: 2}
+      propertyPath: RaycastProjectileEnabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74ebb30e0225f944d9ec1f30c2e3c2bf, type: 2}
   m_IsPrefabParent: 0
