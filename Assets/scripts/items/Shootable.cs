@@ -13,16 +13,16 @@ public class Shootable : MonoBehaviour
 	public float SpreadAngle = 3.0f;
 
 	[Header("Projectile")]
+	public bool RaycastProjectileEnabled = true;
 	public GameObject ProjectilePrefab;
-	public float ProjectileForce = 25.0f;
 	public Vector3 ProjectileOffset = Vector3.forward;
+	public float ProjectileForce = 25.0f;
 	public ForceMode ProjectileForceMode = ForceMode.Impulse;
-	public float Damage = 10.0f;
-	public BlendingMode DamageBlendStyle = BlendingMode.SET;
+	public float RaycastDamage = 10.0f;
 	public bool RaycastFalloffDamage = false;
+	public float RaycastFalloffFarDamage = 2.0f;
 	public float RaycastFalloffCloseDistance = 25.0f;
 	public float RaycastFalloffFarDistance = 200.0f;
-	public float RaycastFalloffFarDamage = 2.0f;
 	public GameObject RaycastImpactPrefab;
 	public float RaycastImpactDuration = 30.0f;
 
@@ -90,9 +90,9 @@ public class Shootable : MonoBehaviour
 					Debug.DrawRay(fire_point.position, 50.0f*(firing_direction), new Color(0.8f, 0.4f, 0.0f), 1.2f);
 				}
 
-				if(!ProjectilePrefab) {
+				if(RaycastProjectileEnabled) {
 					if(Physics.Raycast(fire_point.position, firing_direction, out hit_info)) {
-						float distance_damage = (RaycastFalloffDamage ? Damage - Mathf.InverseLerp(RaycastFalloffCloseDistance, RaycastFalloffFarDistance, hit_info.distance)*(Damage - RaycastFalloffFarDamage) : Damage);
+						float distance_damage = (RaycastFalloffDamage ? RaycastDamage - Mathf.InverseLerp(RaycastFalloffCloseDistance, RaycastFalloffFarDistance, hit_info.distance)*(RaycastDamage - RaycastFalloffFarDamage) : RaycastDamage);
 
 						if(RaycastImpactPrefab) {
 							GameObject impact = (GameObject)Instantiate(RaycastImpactPrefab, hit_info.point, Quaternion.FromToRotation(Vector3.up, hit_info.normal));
@@ -102,7 +102,7 @@ public class Shootable : MonoBehaviour
 							Destroy(impact, RaycastImpactDuration);
 						}
 					}
-				} else {
+				} else if(ProjectilePrefab) {
 					GameObject projectile = (GameObject)Instantiate(ProjectilePrefab, fire_point.position + fire_point.TransformDirection(ProjectileOffset), rotation_offset);
 					Rigidbody projectile_body = projectile.GetComponent<Rigidbody>();
 
