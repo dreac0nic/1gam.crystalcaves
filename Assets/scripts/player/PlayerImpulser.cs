@@ -50,7 +50,6 @@ public class PlayerImpulser : Impulser
 
 	public override void Impulse(ImpulseType type)
 	{
-		FirstPersonMovementController movement_controller = GetComponent<FirstPersonMovementController>();
 		Inventory player_inventory = GetComponent<Inventory>();
 		Item held_item = (player_inventory ? player_inventory.CurrentEquippedItem : null);
 		Impulser item_impulser = (held_item ? held_item.GetComponent<Impulser>() : null);
