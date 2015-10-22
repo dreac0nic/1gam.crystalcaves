@@ -249,6 +249,8 @@ ModelImporter:
     100482: Cube.255
     100484: Cube.256
     100486: Cube.257
+    100488: Cube.258
+    100490: Cube.259
     400000: Cube
     400002: Cube.001
     400004: Cube.002
@@ -493,6 +495,8 @@ ModelImporter:
     400482: Cube.255
     400484: Cube.256
     400486: Cube.257
+    400488: Cube.258
+    400490: Cube.259
     2300000: Cube
     2300002: Cube.001
     2300004: Cube.002
@@ -735,6 +739,8 @@ ModelImporter:
     2300478: Cube.255
     2300480: Cube.256
     2300482: Cube.257
+    2300484: Cube.258
+    2300486: Cube.259
     3300000: Cube
     3300002: Cube.001
     3300004: Cube.002
@@ -977,6 +983,8 @@ ModelImporter:
     3300478: Cube.255
     3300480: Cube.256
     3300482: Cube.257
+    3300484: Cube.258
+    3300486: Cube.259
     4300000: Cube.006
     4300002: Cube.005
     4300004: Cube.004
@@ -1218,6 +1226,8 @@ ModelImporter:
     4300476: Cube.246
     4300478: Cube.245
     4300480: Cube.244
+    4300482: Cube.258
+    4300484: Cube.259
     6400000: Cube
     6400002: Cube.001
     6400004: Cube.002
@@ -1460,6 +1470,8 @@ ModelImporter:
     6400478: Cube.255
     6400480: Cube.256
     6400482: Cube.257
+    6400484: Cube.258
+    6400486: Cube.259
   materials:
     importMaterials: 1
     materialName: 0
