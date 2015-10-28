@@ -82,11 +82,21 @@ public class SimpleCaveVoxelGeneration : MonoBehaviour
 				for(int y = 0; y < ResolutionHeight; ++y) {
 					int neighbor_wallcount = countActiveNeighbors(x, y);
 
+					//*
 					if(neighbor_wallcount > 4) {
 						m_Map[x, y] = true;
 					} else if(neighbor_wallcount < 4) {
 						m_Map[x, y] = false;
 					}
+					//*/
+
+					/* Game of Life! :D
+					if(!m_Map[x, y] && neighbor_wallcount == 3) {
+						m_Map[x, y] = true;
+					} else if(neighbor_wallcount <= 1 || neighbor_wallcount >= 4) {
+						m_Map[x, y] = false;
+					}
+					//*/
 				}
 			}
 		}
