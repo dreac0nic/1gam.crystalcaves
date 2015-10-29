@@ -33,7 +33,7 @@ public class SimpleCaveVoxelGeneration : MonoBehaviour
 			for(int x = 0; x < m_Map.GetLength(0); ++x) {
 				for(int y = 0; y < m_Map.GetLength(1); ++y) {
 					Gizmos.color = (m_Map[x, y] ? Color.black : Color.white);
-					Vector3 position = new Vector3(-ResolutionWidth/2.0f + x, -ResolutionHeight/2.0f + y);
+					Vector3 position = new Vector3(-ResolutionWidth/2.0f + 0.5f + x, -ResolutionHeight/2.0f + 0.5f + y);
 					Gizmos.DrawCube(this.transform.position + position, Vector3.one);
 				}
 			}
