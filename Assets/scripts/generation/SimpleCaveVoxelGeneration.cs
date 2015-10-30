@@ -12,10 +12,19 @@ public class SimpleCaveVoxelGeneration : MonoBehaviour
 	public bool CustomSeed = false;
 	public string Seed;
 
+	[Header("DEBUG CONTROLS")]
+	public bool DrawGizmos = true;
+
+	protected SimpleMarchingSquares m_MeshGenerator;
 	protected System.Random m_RNG;
 	protected bool[,] m_Map;
 
 	public void Awake()
+	{
+		m_MeshGenerator = GetComponent<SimpleMarchingSquares>();
+	}
+
+	public void Start()
 	{
 		GenerateMap();
 	}
@@ -29,11 +38,11 @@ public class SimpleCaveVoxelGeneration : MonoBehaviour
 
 	public void OnDrawGizmos()
 	{
-		if(m_Map != null) {
+		if(m_Map != null && DrawGizmos) {
 			for(int x = 0; x < m_Map.GetLength(0); ++x) {
 				for(int y = 0; y < m_Map.GetLength(1); ++y) {
 					Gizmos.color = (m_Map[x, y] ? Color.black : Color.white);
-					Vector3 position = new Vector3(-ResolutionWidth/2.0f + 0.5f + x, -ResolutionHeight/2.0f + 0.5f + y);
+					Vector3 position = new Vector3(-ResolutionWidth/2.0f + 0.5f + x, 0.0f, -ResolutionHeight/2.0f + 0.5f + y);
 					Gizmos.DrawCube(this.transform.position + position, Vector3.one);
 				}
 			}
@@ -60,6 +69,10 @@ public class SimpleCaveVoxelGeneration : MonoBehaviour
 
 		seedMap();
 		smoothMap(SmoothingPasses);
+
+		if(m_MeshGenerator) {
+			m_MeshGenerator.GenerateMesh(m_Map, 1.0f);
+		}
 	}
 
 	protected void seedMap()

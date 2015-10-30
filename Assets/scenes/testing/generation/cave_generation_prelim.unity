@@ -94,6 +94,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 436092073}
   - 114: {fileID: 436092072}
+  - 114: {fileID: 436092074}
+  - 33: {fileID: 436092076}
+  - 23: {fileID: 436092075}
   m_Layer: 0
   m_Name: CaveGenerator
   m_TagString: Untagged
@@ -112,12 +115,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275133d13705dd34eabce4c999654f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResolutionWidth: 210
-  ResolutionHeight: 120
+  ResolutionWidth: 80
+  ResolutionHeight: 40
   InitialFillPercent: 45
   SmoothingPasses: 4
-  CustomSeed: 0
-  Seed: fart
+  CustomSeed: 1
+  Seed: -744346466
+  DrawGizmos: 0
 --- !u!4 &436092073
 Transform:
   m_ObjectHideFlags: 0
@@ -130,6 +134,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &436092074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 436092071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86cab6eb02b472e4f9db3b93fc082159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FConfig: 0
+  DrawGizmos: 0
+--- !u!23 &436092075
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 436092071}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 0de7bfd3527bcc04faf0304a7392b03f, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &436092076
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 436092071}
+  m_Mesh: {fileID: 0}
 --- !u!1 &860686571
 GameObject:
   m_ObjectHideFlags: 0
