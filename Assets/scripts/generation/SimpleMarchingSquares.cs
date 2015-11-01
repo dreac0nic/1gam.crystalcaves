@@ -30,7 +30,7 @@ public class SimpleMarchingSquares : MonoBehaviour
 	{
 		public Square[,] Squares;
 
-		public SquareGrid(bool[,] map, float SquareSize, int forced_config)
+		public SquareGrid(bool[,] map, float SquareSize)
 		{
 			int node_count_width = map.GetLength(0);
 			int node_count_height = map.GetLength(1);
@@ -50,8 +50,7 @@ public class SimpleMarchingSquares : MonoBehaviour
 
 			for(int x = 0; x < node_count_width - 1; ++x) {
 				for(int y = 0; y < node_count_height - 1; ++y) {
-					Squares[x, y] = new Square(control_nodes[x, y + 1], control_nodes[x + 1, y + 1], control_nodes[x + 1, y], control_nodes[x, y]);
-					Squares[x, y].Configuration = forced_config;
+					Squares[x, y] = new Square(control_nodes[x, y + 1], control_nodes[x + 1, y + 1], control_nodes[x, y], control_nodes[x + 1, y]);
 				}
 			}
 		}
@@ -81,7 +80,6 @@ public class SimpleMarchingSquares : MonoBehaviour
 		}
 	}
 
-	public int FConfig = 0;
 	public SquareGrid MapGrid;
 
 	protected List<int> m_Triangles;
@@ -125,7 +123,7 @@ public class SimpleMarchingSquares : MonoBehaviour
 
 	public void GenerateMesh(bool[,] map, float square_size)
 	{
-		MapGrid = new SquareGrid(map, square_size, FConfig);
+		MapGrid = new SquareGrid(map, square_size);
 		Mesh cave_mesh = new Mesh();
 		MeshFilter mesh_filter = GetComponent<MeshFilter>();
 		m_Vertices.Clear();
@@ -230,32 +228,5 @@ public class SimpleMarchingSquares : MonoBehaviour
 				m_Triangles.Add(nodes[current_node].VertexIndex);
 			}
 		}
-		//*/
-
-		/*
-		if(nodes.Length >= 3) {
-			m_Triangles.Add(nodes[0].VertexIndex);
-			m_Triangles.Add(nodes[1].VertexIndex);
-			m_Triangles.Add(nodes[2].VertexIndex);
-		}
-
-		if(nodes.Length >=4) {
-			m_Triangles.Add(nodes[0].VertexIndex);
-			m_Triangles.Add(nodes[2].VertexIndex);
-			m_Triangles.Add(nodes[3].VertexIndex);
-		}
-
-		if(nodes.Length >= 5) {
-			m_Triangles.Add(nodes[0].VertexIndex);
-			m_Triangles.Add(nodes[3].VertexIndex);
-			m_Triangles.Add(nodes[4].VertexIndex);
-		}
-
-		if(nodes.Length >= 6) {
-			m_Triangles.Add(nodes[0].VertexIndex);
-			m_Triangles.Add(nodes[4].VertexIndex);
-			m_Triangles.Add(nodes[5].VertexIndex);
-		}
-		//*/
 	}
 }
