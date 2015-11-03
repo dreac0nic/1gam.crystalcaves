@@ -56,7 +56,7 @@ public class SimpleMarchingCubes : MonoBehaviour
 					break;
 
 				case 1:
-					selected = DownForeLeft;
+					selected = DownBackRight;
 					break;
 
 				case 2:
@@ -64,7 +64,7 @@ public class SimpleMarchingCubes : MonoBehaviour
 					break;
 
 				case 3:
-					selected = DownBackRight;
+					selected = DownForeLeft;
 					break;
 
 				case 4:
@@ -72,7 +72,7 @@ public class SimpleMarchingCubes : MonoBehaviour
 					break;
 
 				case 5:
-					selected = UpForeLeft;
+					selected = UpBackRight;
 					break;
 
 				case 6:
@@ -80,7 +80,7 @@ public class SimpleMarchingCubes : MonoBehaviour
 					break;
 
 				case 7:
-					selected = UpBackRight;
+					selected = UpForeLeft;
 					break;
 
 				case 8:
@@ -185,12 +185,12 @@ public class SimpleMarchingCubes : MonoBehaviour
 		}
 	}
 
+	[Header("DEBUG CONTROLS")]
+	public bool DrawGizmos = true;
+
 	protected Cube[,,] m_CellGrid;
 	protected List<int> m_Triangles;
 	protected List<Vector3> m_Vertices;
-
-	[Header("DEBUG CONTROLS")]
-	public bool DrawGizmos = true;
 
 	public void Awake()
 	{
@@ -323,6 +323,15 @@ public class SimpleMarchingCubes : MonoBehaviour
 		switch(cell.Configuration) {
 			case 1:
 				appendMeshFromNodes(cell.CenterDownBack, cell.MidBackLeft, cell.CenterDownLeft);
+				break;
+
+			case 9:
+				appendMeshFromNodes(cell.MidBackLeft, cell.CenterDownLeft, cell.CenterDownRight, cell.MidBackRight);
+				break;
+
+			case 129:
+				appendMeshFromNodes(cell.CenterDownBack, cell.MidBackLeft, cell.CenterDownLeft);
+				appendMeshFromNodes(cell.CenterUpBack, cell.MidBackRight, cell.CenterUpRight);
 				break;
 		}
 	}

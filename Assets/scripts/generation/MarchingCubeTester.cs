@@ -4,7 +4,14 @@ using System.Collections;
 public class MarchingCubeTester : MonoBehaviour
 {
 	public int x, y, z;
-	public bool DownBackLeft, DownBackRight, DownForeLeft, DownForeRight, UpBackLeft, UpBackRight, UpForeLeft, UpForeRight;
+	public bool DownBackLeft;
+	public bool DownBackRight;
+	public bool DownForeRight;
+	public bool DownForeLeft;
+	public bool UpBackLeft;
+	public bool UpBackRight;
+	public bool UpForeRight;
+	public bool UpForeLeft;
 	public int Configuration;
 	public string BinaryConfiguration;
 
