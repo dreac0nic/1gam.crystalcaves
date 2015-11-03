@@ -34,6 +34,13 @@ public class SimpleMarchingCubes : MonoBehaviour
 			MidForeLeft = DownForeLeft.Above;
 			MidForeRight = DownForeRight.Above;
 
+			CalculateConfiguration();
+		}
+
+		public void CalculateConfiguration()
+		{
+			Configuration = 0;
+
 			for(int index = 0; index < 8; ++index) {
 				Configuration += (byte)(Mathf.Pow(2.0f, (float)index)*System.Convert.ToInt32(((ControlNode)IndexToNode(index)).IsActive));
 			}
@@ -129,6 +136,7 @@ public class SimpleMarchingCubes : MonoBehaviour
 		}
 	}
 
+	[System.Serializable]
 	public class Node
 	{
 		public Vector3 Position;
@@ -151,6 +159,7 @@ public class SimpleMarchingCubes : MonoBehaviour
 		}
 	}
 
+	[System.Serializable]
 	public class ControlNode : Node
 	{
 		public bool IsActive;
@@ -204,6 +213,24 @@ public class SimpleMarchingCubes : MonoBehaviour
 		}
 	}
 
+	public void Update()
+	{
+		if(Input.GetMouseButtonDown(1)) {
+			Remesh();
+		}
+	}
+
+	public Cube GetCell(int x, int y, int z)
+	{
+		Cube selected_cube = null;
+
+		if(m_CellGrid != null && x >= 0 && x < m_CellGrid.GetLength(0) && y >= 0 && y < m_CellGrid.GetLength(1) && z >= 0 && z < m_CellGrid.GetLength(2)) {
+			selected_cube = m_CellGrid[x, y, z];
+		}
+
+		return selected_cube;
+	}
+
 	public void GenerateMesh(bool[,,] map, float cell_size)
 	{
 		m_CellGrid = generateCellMap(map, cell_size);
@@ -215,7 +242,31 @@ public class SimpleMarchingCubes : MonoBehaviour
 		for(int x = 0; x < m_CellGrid.GetLength(0); ++x) {
 			for(int y = 0; y < m_CellGrid.GetLength(1); ++y) {
 				for(int z = 0; z < m_CellGrid.GetLength(2); ++z) {
-					// TODO: TRIANGULATE CELL
+					triangulateCellToLists(m_CellGrid[x, y, z]);
+				}
+			}
+		}
+
+		if(mesh_filter) {
+			mesh_filter.mesh = cave_mesh;
+		}
+
+		cave_mesh.vertices = m_Vertices.ToArray();
+		cave_mesh.triangles = m_Triangles.ToArray();
+		cave_mesh.RecalculateNormals();
+	}
+
+	public void Remesh()
+	{
+		Mesh cave_mesh = new Mesh();
+		MeshFilter mesh_filter = GetComponent<MeshFilter>();
+		m_Vertices.Clear();
+		m_Triangles.Clear();
+
+		for(int x = 0; x < m_CellGrid.GetLength(0); ++x) {
+			for(int y = 0; y < m_CellGrid.GetLength(1); ++y) {
+				for(int z = 0; z < m_CellGrid.GetLength(2); ++z) {
+					triangulateCellToLists(m_CellGrid[x, y, z]);
 				}
 			}
 		}
@@ -265,5 +316,34 @@ public class SimpleMarchingCubes : MonoBehaviour
 		}
 
 		return cells;
+	}
+
+	protected void triangulateCellToLists(Cube cell)
+	{
+		switch(cell.Configuration) {
+			case 1:
+				appendMeshFromNodes(cell.CenterDownBack, cell.MidBackLeft, cell.CenterDownLeft);
+				break;
+		}
+	}
+
+	protected void appendMeshFromNodes(params Node[] nodes)
+	{
+		if(nodes.Length < 3) return;
+
+		// Assign a vertex index to unassigned nodes
+		foreach(Node current in nodes) {
+			if(current.VertexIndex < 0) {
+				current.VertexIndex = m_Vertices.Count;
+				m_Vertices.Add(current.Position);
+			}
+		}
+
+		// Create a triangle by fanning nodes from first node.
+		for(int current_node = 2; current_node < nodes.Length; ++current_node) {
+			m_Triangles.Add(nodes[0].VertexIndex);
+			m_Triangles.Add(nodes[current_node - 1].VertexIndex);
+			m_Triangles.Add(nodes[current_node].VertexIndex);
+		}
 	}
 }
