@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 436092073}
   - 114: {fileID: 436092074}
+  - 114: {fileID: 436092072}
   m_Layer: 0
   m_Name: CaveGenerator
   m_TagString: Untagged
@@ -101,6 +102,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &436092072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 436092071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95cd27d6e1aab6b42901dbc0e19abc80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DrawGizmos: 1
 --- !u!4 &436092073
 Transform:
   m_ObjectHideFlags: 0
@@ -124,21 +137,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c2731aa66eb9a4c8977491af8ff4b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResolutionWidth: 100
-  ResolutionHeight: 10
-  ResolutionDepth: 100
-  InitialFillPercent: 47
+  ResolutionWidth: 20
+  ResolutionHeight: 12
+  ResolutionDepth: 20
+  InitialFillPercent: 22.3999996
   SmoothingPasses: 3
   CustomSeed: 0
   Seed: 
-  DrawMapGizmos: 1
+  DrawMapGizmos: 0
   DrawWireframeCubes: 0
   OnlyDrawActiveCubes: 1
   ColorCubesWithPosition: 1
   OnlyColorWithHeight: 0
-  OnlyDrawHighlightedLayer: 1
+  OnlyDrawHighlightedLayer: 0
   HighlightedLayer: 0
-  LayerDrawCap: 8
+  LayerDrawCap: 2
 --- !u!1 &860686571
 GameObject:
   m_ObjectHideFlags: 0

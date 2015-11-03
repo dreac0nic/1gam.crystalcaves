@@ -26,7 +26,14 @@ public class Simple3DCaveVoxelGeneration : MonoBehaviour
 	protected System.Random m_RNG;
 	protected bool[,,] m_Map;
 
+	protected SimpleMarchingCubes m_SimpleMarchingCubes;
+
 	public void Awake()
+	{
+		m_SimpleMarchingCubes = GetComponent<SimpleMarchingCubes>();
+	}
+
+	public void Start()
 	{
 		GenerateMap();
 	}
@@ -110,6 +117,10 @@ public class Simple3DCaveVoxelGeneration : MonoBehaviour
 
 		seedMap();
 		smoothMap(SmoothingPasses);
+
+		if(m_SimpleMarchingCubes) {
+			m_SimpleMarchingCubes.GenerateMesh(m_Map, 1.0f);
+		}
 	}
 
 	protected void seedMap()
