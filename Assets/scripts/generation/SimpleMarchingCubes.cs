@@ -192,6 +192,9 @@ public class SimpleMarchingCubes : MonoBehaviour
 	protected List<int> m_Triangles;
 	protected List<Vector3> m_Vertices;
 
+	protected readonly static List<int>[] CUBE_VERTEX_LOOKUP = {
+	};
+
 	public void Awake()
 	{
 		m_Triangles = new List<int>();
@@ -320,20 +323,16 @@ public class SimpleMarchingCubes : MonoBehaviour
 
 	protected void triangulateCellToLists(Cube cell)
 	{
-		switch(cell.Configuration) {
-			case 1:
-				appendMeshFromNodes(cell.CenterDownBack, cell.MidBackLeft, cell.CenterDownLeft);
-				break;
+		if(cell.Configuration >= CUBE_VERTEX_LOOKUP.GetLength(0)) return;
 
-			case 9:
-				appendMeshFromNodes(cell.MidBackLeft, cell.CenterDownLeft, cell.CenterDownRight, cell.MidBackRight);
-				break;
+		int index = 0;
+		Node[] nodes = new Node[CUBE_VERTEX_LOOKUP[cell.Configuration].Count];
 
-			case 129:
-				appendMeshFromNodes(cell.CenterDownBack, cell.MidBackLeft, cell.CenterDownLeft);
-				appendMeshFromNodes(cell.CenterUpBack, cell.MidBackRight, cell.CenterUpRight);
-				break;
+		foreach(int node_index in CUBE_VERTEX_LOOKUP[cell.Configuration]) {
+			nodes[index++] = cell.IndexToNode(node_index);
 		}
+
+		appendMeshFromNodes(nodes);
 	}
 
 	protected void appendMeshFromNodes(params Node[] nodes)
@@ -349,10 +348,14 @@ public class SimpleMarchingCubes : MonoBehaviour
 		}
 
 		// Create a triangle by fanning nodes from first node.
-		for(int current_node = 2; current_node < nodes.Length; ++current_node) {
-			m_Triangles.Add(nodes[0].VertexIndex);
-			m_Triangles.Add(nodes[current_node - 1].VertexIndex);
-			m_Triangles.Add(nodes[current_node].VertexIndex);
+		for(int current_node = 0; current_node < nodes.Length; ++current_node) {
+			if((current_node + 1)%3 == 0) {
+				m_Triangles.Add(nodes[current_node - 2].VertexIndex);
+				m_Triangles.Add(nodes[current_node - 1].VertexIndex);
+				m_Triangles.Add(nodes[current_node].VertexIndex);
+
+				Debug.Log("Creating triangle from: " + nodes[current_node - 2] + "[" + (current_node - 2) + "], " + nodes[current_node - 1] + "[" + (current_node - 1) + "], " + nodes[current_node] + "[" + current_node + "]");
+			}
 		}
 	}
 }
