@@ -353,8 +353,6 @@ public class SimpleMarchingCubes : MonoBehaviour
 				m_Triangles.Add(nodes[current_node - 2].VertexIndex);
 				m_Triangles.Add(nodes[current_node - 1].VertexIndex);
 				m_Triangles.Add(nodes[current_node].VertexIndex);
-
-				Debug.Log("Creating triangle from: " + nodes[current_node - 2].VertexIndex + " [" + (current_node - 2) + "], " + nodes[current_node - 1].VertexIndex + " [" + (current_node - 1) + "], " + nodes[current_node].VertexIndex + " [" + current_node + "]");
 			}
 		}
 	}
