@@ -185,13 +185,6 @@ public class SimpleMarchingCubes : MonoBehaviour
 		}
 	}
 
-	[Header("DEBUG CONTROLS")]
-	public bool DrawGizmos = true;
-
-	protected Cube[,,] m_CellGrid;
-	protected List<int> m_Triangles;
-	protected List<Vector3> m_Vertices;
-
 	// XXX: THIS IS A LOT OF MEMORY TO STORE IN LISTS, BEEEES CAREFUL! [PROFILE?]
 	protected readonly static List<int>[] CUBE_VERTEX_LOOKUP = {
 		new List<int>(),
@@ -450,6 +443,16 @@ public class SimpleMarchingCubes : MonoBehaviour
 		new List<int>() {12, 17, 15},
 		new List<int>() {12, 13, 16}
 	};
+
+	public float CellSize = 1.0f;
+
+	[Header("DEBUG CONTROLS")]
+	public bool DrawGizmos = true;
+	public bool OnlyDrawInactiveCells = false;
+
+	protected Cube[,,] m_CellGrid;
+	protected List<int> m_Triangles;
+	protected List<Vector3> m_Vertices;
 
 	public void Awake()
 	{
