@@ -499,41 +499,12 @@ public class SimpleMarchingCubes : MonoBehaviour
 	public void GenerateMesh(bool[,,] map, float cell_size)
 	{
 		m_CellGrid = generateCellMap(map, cell_size);
-		Mesh cave_mesh = new Mesh();
-		MeshFilter mesh_filter = GetComponent<MeshFilter>();
-		MeshCollider mesh_collider = GetComponent<MeshCollider>();
-		m_Vertices.Clear();
-		m_Triangles.Clear();
 
-		for(int x = 0; x < m_CellGrid.GetLength(0); ++x) {
-			for(int y = 0; y < m_CellGrid.GetLength(1); ++y) {
-				for(int z = 0; z < m_CellGrid.GetLength(2); ++z) {
-					triangulateCellToLists(m_CellGrid[x, y, z]);
-				}
-			}
-		}
-
-		if(mesh_filter) {
-			mesh_filter.mesh = cave_mesh;
-		}
-
-		cave_mesh.vertices = m_Vertices.ToArray();
-		cave_mesh.triangles = m_Triangles.ToArray();
-		cave_mesh.RecalculateNormals();
-
-		if(mesh_collider) {
-			mesh_collider.sharedMesh = cave_mesh;
-		}
+		meshCellGrid();
 	}
 
 	public void Remesh()
 	{
-		Mesh cave_mesh = new Mesh();
-		MeshFilter mesh_filter = GetComponent<MeshFilter>();
-		MeshCollider mesh_collider = GetComponent<MeshCollider>();
-		m_Vertices.Clear();
-		m_Triangles.Clear();
-
 		for(int x = 0; x < m_CellGrid.GetLength(0); ++x) {
 			for(int y = 0; y < m_CellGrid.GetLength(1); ++y) {
 				for(int z = 0; z < m_CellGrid.GetLength(2); ++z) {
@@ -544,26 +515,7 @@ public class SimpleMarchingCubes : MonoBehaviour
 			}
 		}
 
-		for(int x = 0; x < m_CellGrid.GetLength(0); ++x) {
-			for(int y = 0; y < m_CellGrid.GetLength(1); ++y) {
-				for(int z = 0; z < m_CellGrid.GetLength(2); ++z) {
-					triangulateCellToLists(m_CellGrid[x, y, z]);
-				}
-			}
-		}
-
-		if(mesh_filter) {
-			mesh_filter.mesh = cave_mesh;
-		}
-
-		cave_mesh.vertices = m_Vertices.ToArray();
-		cave_mesh.triangles = m_Triangles.ToArray();
-		cave_mesh.RecalculateNormals();
-
-		if(mesh_collider) {
-			Debug.Log("TEST");
-			mesh_collider.sharedMesh = cave_mesh;
-		}
+		meshCellGrid();
 	}
 
 	protected Cube[,,] generateCellMap(bool[,,] map, float cell_size = 1.0f)
@@ -602,6 +554,47 @@ public class SimpleMarchingCubes : MonoBehaviour
 		}
 
 		return cells;
+	}
+
+	protected void meshCellGrid()
+	{
+		int index = 0;
+		Vector2[] uvs;
+		Mesh cave_mesh = new Mesh();
+		MeshFilter mesh_filter = GetComponent<MeshFilter>();
+		MeshCollider mesh_collider = GetComponent<MeshCollider>();
+		m_Vertices.Clear();
+		m_Triangles.Clear();
+
+		// Generate vertices and triangles
+		for(int x = 0; x < m_CellGrid.GetLength(0); ++x) {
+			for(int y = 0; y < m_CellGrid.GetLength(1); ++y) {
+				for(int z = 0; z < m_CellGrid.GetLength(2); ++z) {
+					triangulateCellToLists(m_CellGrid[x, y, z]);
+				}
+			}
+		}
+
+		// Build prelim mesh
+		cave_mesh.vertices = m_Vertices.ToArray();
+		cave_mesh.triangles = m_Triangles.ToArray();
+		cave_mesh.RecalculateNormals();
+
+		// Use new mesh to build simple uvs.
+		uvs = new Vector2[m_Vertices.Count];
+		foreach(Vector3 vertex in m_Vertices) {
+			uvs[index++] = new Vector2(vertex.x, vertex.z);
+		}
+
+		cave_mesh.uv = uvs;
+
+		if(mesh_filter) {
+			mesh_filter.mesh = cave_mesh;
+		}
+
+		if(mesh_collider) {
+			mesh_collider.sharedMesh = cave_mesh;
+		}
 	}
 
 	protected void triangulateCellToLists(Cube cell)
