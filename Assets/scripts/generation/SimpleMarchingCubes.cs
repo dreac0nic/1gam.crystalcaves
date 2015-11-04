@@ -444,11 +444,12 @@ public class SimpleMarchingCubes : MonoBehaviour
 		new List<int>() {12, 13, 16}
 	};
 
-	public float CellSize = 1.0f;
-
 	[Header("DEBUG CONTROLS")]
 	public bool DrawGizmos = true;
-	public bool OnlyDrawInactiveCells = false;
+	public bool DrawWithinRange = false;
+	public int lower_x, upper_x;
+	public int lower_y, upper_y;
+	public int lower_z, upper_z;
 
 	protected Cube[,,] m_CellGrid;
 	protected List<int> m_Triangles;
@@ -466,8 +467,10 @@ public class SimpleMarchingCubes : MonoBehaviour
 			for(int x = 0; x < m_CellGrid.GetLength(0); ++x) {
 				for(int y = 0; y < m_CellGrid.GetLength(1); ++y) {
 					for(int z = 0; z < m_CellGrid.GetLength(2); ++z) {
-						for(int index = 0; index < 20; ++index) {
-							m_CellGrid[x, y, z].IndexToNode(index).DrawGizmos(this.transform.position);
+						if(!DrawWithinRange || (x >= lower_x && x <= upper_x && y >= lower_y && y <= upper_y && z >= lower_z && z <= upper_z)) {
+							for(int index = 0; index < 20; ++index) {
+								m_CellGrid[x, y, z].IndexToNode(index).DrawGizmos(this.transform.position);
+							}
 						}
 					}
 				}
