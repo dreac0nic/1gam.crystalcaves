@@ -239,14 +239,14 @@ public class SimpleMarchingCubes : MonoBehaviour
 		new List<int>() {8, 12, 11, 11, 12, 15, 13, 18, 14},
 		new List<int>() {8, 16, 11, 11, 16, 14, 11, 14, 15, 18, 14, 16},
 		new List<int>() {13, 18, 19, 19, 15, 13, 11, 8, 17},
-		new List<int>() {16, 18, 19, 12, 16, 19, 12, 19, 15, 11, 8, 17}, // XXX: unchecked?
+		new List<int>() {16, 18, 19, 12, 16, 19, 12, 19, 15, 11, 8, 17},
 		new List<int>() {8, 12, 13, 8, 13, 19, 18, 19, 13, 11, 8, 19},
 		new List<int>() {18, 19, 16, 11, 16, 19, 11, 8, 16},
 		new List<int>() {11, 9, 16, 11, 16, 17},
 		new List<int>() {11, 9, 13, 11, 13, 12, 11, 12, 17},
 		new List<int>() {11, 9, 15, 9, 16, 12, 9, 12, 15},
-		new List<int>() {11, 9, 13, 11, 9, 15},
-		new List<int>() {11, 9, 16, 11, 9, 17, 14, 19, 15},
+		new List<int>() {11, 9, 13, 11, 13, 15},
+		new List<int>() {16, 11, 9, 16, 17, 11, 14, 19, 15}, // 52
 		new List<int>() {14, 19, 15, 11, 9, 13, 11, 13, 12, 11, 12, 17},
 		new List<int>() {11, 9, 19, 9, 16, 12, 9, 12, 19, 12, 14, 19},
 		new List<int>() {9, 13, 11, 11, 13, 14, 11, 14, 19},
@@ -265,25 +265,25 @@ public class SimpleMarchingCubes : MonoBehaviour
 		new List<int>() {14, 10, 11, 14, 11, 15},
 		new List<int>() {14, 10, 11, 14, 11, 15, 16, 13, 12},
 		new List<int>() {12, 14, 10, 12, 10, 17, 10, 11, 17},
-		new List<int>() {16, 13, 14, 16, 14, 11, 11, 14, 10, 17, 16, 11},
+		new List<int>() {14, 10, 13, 13, 10, 17, 13, 17, 16, 10, 11, 17},
 		new List<int>() {10, 11, 19, 13, 18, 14},
-		new List<int>() {10, 11, 19, 12, 16, 19, 12, 18, 14},
+		new List<int>() {11, 19, 10, 16, 18, 12, 12, 18, 14},
 		new List<int>() {10, 11, 19, 13, 18, 14, 17, 12, 15},
 		new List<int>() {10, 11, 19, 16, 18, 17, 17, 18, 14, 17, 14, 15},
 		new List<int>() {15, 13, 11, 13, 18, 11, 11, 18, 10},
 		new List<int>() {16, 18, 12, 12, 18, 11, 18, 10, 11, 12, 11, 15}, // EZ PZ LEMON SQUEEZY
 		new List<int>() {10, 11, 17, 18, 10, 17, 12, 18, 17, 13, 18, 12},
 		new List<int>() {16, 18, 17, 18, 10, 17, 10, 11, 17},
-		new List<int>() {10, 11, 19, 19, 16, 8},
+		new List<int>() {10, 11, 19, 16, 8, 9}, // 80
 		new List<int>() {10, 11, 19, 8, 9, 13, 8, 13, 12},
-		new List<int>() {10, 11, 19, 9, 16, 9, 17, 12, 15},
+		new List<int>() {10, 11, 19, 16, 8, 9, 17, 12, 15},
 		new List<int>() {10, 11, 19, 9, 13, 15, 8, 9, 15, 8, 15, 17},
 		new List<int>() {14, 10, 11, 14, 11, 15, 9, 16, 8},
 		new List<int>() {14, 10, 11, 14, 11, 15, 8, 9, 13, 8, 13, 12},
-		new List<int>() {12, 14, 10, 12, 10, 17, 10, 11, 17},
+		new List<int>() {12, 14, 10, 12, 10, 17, 10, 11, 17, 16, 8, 9},
 		new List<int>() {9, 13, 10, 10, 13, 14, 8, 11, 17},
 		new List<int>() {10, 11, 19, 8, 9, 16, 13, 18, 14},
-		new List<int>() {10, 11, 19, 12, 8, 14, 8, 9, 18, 8, 18, 17},
+		new List<int>() {10, 11, 19, 12, 8, 14, 8, 9, 18, 8, 18, 14},
 		new List<int>() {10, 11, 19, 8, 9, 16, 13, 18, 14, 17, 12, 15},
 		new List<int>() {19, 14, 15, 8, 11, 17, 10, 9, 18},
 		new List<int>() {8, 9, 16, 11, 15, 13, 13, 18, 11, 18, 10, 11},
@@ -302,7 +302,7 @@ public class SimpleMarchingCubes : MonoBehaviour
 		new List<int>() {10, 8, 17, 10, 17, 19, 16, 18, 12, 12, 18, 14},
 		new List<int>() {13, 18, 14, 10, 8, 12, 19, 10, 12, 19, 12, 15},
 		new List<int>() {18, 8, 16, 18, 10, 8, 19, 14, 15},
-		new List<int>() {8, 15, 18, 10, 8, 18, 18, 15, 13, 8, 17, 15},
+		new List<int>() {18, 10, 8, 18, 8, 15, 18, 15, 13, 8, 17, 15},
 		new List<int>() {16, 18, 8, 18, 10, 8, 12, 17, 15},
 		new List<int>() {12, 10, 8, 13, 10, 12, 13, 18, 10},
 		new List<int>() {8, 16, 18, 8, 18, 10},
@@ -313,7 +313,7 @@ public class SimpleMarchingCubes : MonoBehaviour
 		new List<int>() {17, 14, 9, 16, 17, 9, 9, 14, 10, 17, 15, 14},
 		new List<int>() {13, 10, 9, 13, 14, 10, 12, 17, 15},
 		new List<int>() {9, 16, 12, 9, 12, 10, 12, 14, 10},
-		new List<int>() {9, 12, 10, 12, 14, 10},
+		new List<int>() {9, 13, 10, 10, 13, 14},
 		new List<int>() {9, 18, 10, 16, 17, 19, 16, 19, 13, 13, 19, 14},
 		new List<int>() {9, 18, 10, 12, 17, 19, 19, 14, 12},
 		new List<int>() {9, 18, 10, 16, 12, 13, 19, 14, 15},
@@ -328,7 +328,7 @@ public class SimpleMarchingCubes : MonoBehaviour
 		new List<int>() {9, 10, 18, 17, 16, 13, 17, 13, 15},
 		new List<int>() {9, 10, 18, 14, 19, 15},
 		new List<int>() {9, 10, 18, 14, 19, 15, 16, 13, 12},
-		new List<int>() {9, 10, 18, 12, 16, 19, 12, 19, 14},
+		new List<int>() {9, 10, 18, 12, 14, 19, 12, 19, 17},
 		new List<int>() {9, 10, 18, 16, 19, 17, 16, 14, 19, 16, 13, 14},
 		new List<int>() {13, 9, 10, 13, 10, 14},
 		new List<int>() {12, 10, 14, 16, 10, 12, 16, 9, 10},
@@ -342,7 +342,7 @@ public class SimpleMarchingCubes : MonoBehaviour
 		new List<int>() {12, 8, 10, 12, 10, 18, 12, 18, 13},
 		new List<int>() {8, 10, 16, 16, 10, 18, 12, 15, 17},
 		new List<int>() {8, 10, 17, 17, 10, 13, 17, 13, 15, 10, 18, 13},
-		new List<int>() {16, 8, 10, 6, 10, 18, 15, 14, 19},
+		new List<int>() {15, 14, 19, 16, 8, 10, 16, 10, 18},
 		new List<int>() {12, 8, 10, 12, 10, 18, 12, 18, 13, 15, 14, 19},
 		new List<int>() {16, 8, 10, 16, 10, 18, 12, 14, 19, 12, 19, 17},
 		new List<int>() {13, 14, 18, 17, 8, 10, 17, 10, 19},
@@ -352,7 +352,7 @@ public class SimpleMarchingCubes : MonoBehaviour
 		new List<int>() {8, 10, 14, 17, 8, 14, 17, 14, 15},
 		new List<int>() {15, 13, 19, 13, 8, 19, 13, 16, 8, 19, 8, 10},
 		new List<int>() {12, 8, 10, 12, 10, 15, 15, 10, 19},
-		new List<int>() {17, 8, 10, 17, 10, 19, 12, 13, 16},
+		new List<int>() {17, 8, 10, 17, 10, 19, 12, 13, 16}, // 148
 		new List<int>() {17, 8, 10, 17, 10, 19},
 		new List<int>() {9, 10, 18, 8, 17, 11},
 		new List<int>() {9, 10, 18, 8, 17, 11, 16, 13, 12},
@@ -361,13 +361,13 @@ public class SimpleMarchingCubes : MonoBehaviour
 		new List<int>() {9, 10, 18, 14, 19, 15, 8, 17, 11},
 		new List<int>() {9, 10, 18, 14, 19, 15, 8, 17, 11, 12, 16, 13},
 		new List<int>() {9, 10, 18, 8, 19, 11, 8, 14, 19, 12, 14, 8},
-		new List<int>() {9, 10, 18, 8, 16, 11, 16, 13, 11, 11, 13, 19, 13, 14, 19},
+		new List<int>() {11, 10, 19, 16, 9, 8, 13, 14, 18},
 		new List<int>() {13, 9, 10, 13, 10, 14, 8, 17, 11},
 		new List<int>() {12, 10, 14, 12, 16, 10, 16, 9, 10, 8, 17, 11},
 		new List<int>() {14, 13, 9, 14, 9, 10, 12, 15, 8, 15, 11, 8},
 		new List<int>() {16, 9, 8, 15, 11, 10, 15, 10, 14},
 		new List<int>() {8, 17, 11, 13, 9, 15, 9, 10, 19, 15, 9, 19},
-		new List<int>() {8, 17, 11, 16, 9, 10, 12, 16, 10, 12, 10, 19, 12, 19, 15},
+		new List<int>() {16, 9, 8, 11, 10, 19, 12, 17, 15},
 		new List<int>() {12, 9, 8, 12, 13, 9, 11, 10, 19},
 		new List<int>() {16, 9, 8, 11, 10, 19},
 		new List<int>() {16, 17, 18, 17, 10, 18, 17, 11, 10},
@@ -375,10 +375,10 @@ public class SimpleMarchingCubes : MonoBehaviour
 		new List<int>() {18, 16, 10, 10, 16, 15, 16, 12, 15, 10, 15, 11},
 		new List<int>() {15, 11, 13, 13, 11, 10, 13, 10, 18},
 		new List<int>() {15, 14, 19, 16, 17, 18, 17, 10, 18, 17, 11, 10},
-		new List<int>() {17, 11, 10, 12, 17, 10, 12, 10, 18, 12, 18, 13, 15, 14, 19},
+		new List<int>() {13, 14, 18, 12, 17, 15, 11, 10, 19},
 		new List<int>() {16, 12, 18, 18, 12, 14, 11, 10, 19},
 		new List<int>() {11, 10, 19, 13, 14, 18},
-		new List<int>() {10, 14, 11, 11, 14, 16, 11, 16, 17, 14, 13, 16},
+		new List<int>() {14, 11, 10, 11, 14, 16, 13, 16, 14, 16, 17, 11},
 		new List<int>() {12, 10, 14, 17, 10, 12, 17, 11, 10},
 		new List<int>() {12, 13, 16, 15, 11, 10, 15, 10, 14},
 		new List<int>() {15, 11, 10, 15, 10, 14},
@@ -392,10 +392,10 @@ public class SimpleMarchingCubes : MonoBehaviour
 		new List<int>() {18, 9, 11, 18, 11, 19, 16, 13, 17, 13, 15, 17},
 		new List<int>() {15, 9, 11, 14, 18, 9, 14, 9, 15},
 		new List<int>() {15, 9, 11, 14, 18, 9, 14, 9, 15, 16, 13, 12},
-		new List<int>() {18, 12, 14, 18, 11, 12, 9, 11, 18, 11, 17, 12},
+		new List<int>() {9, 11, 17, 9, 17, 14, 14, 18, 9, 12, 14, 17},
 		new List<int>() {13, 14, 18, 16, 9, 11, 16, 11, 17},
 		new List<int>() {13, 9, 11, 13, 11, 14, 14, 11, 19},
-		new List<int>() {16, 9, 11, 16, 11, 14, 11, 19, 14, 16, 14, 12},
+		new List<int>() {12, 19, 14, 12, 9, 19, 12, 16, 9, 19, 9, 11},
 		new List<int>() {13, 9, 11, 13, 11, 14, 14, 11, 19, 12, 15, 17},
 		new List<int>() {16, 9, 11, 16, 11, 17, 19, 14, 15},
 		new List<int>() {13, 9, 11, 13, 11, 15},
@@ -495,6 +495,7 @@ public class SimpleMarchingCubes : MonoBehaviour
 		m_CellGrid = generateCellMap(map, cell_size);
 		Mesh cave_mesh = new Mesh();
 		MeshFilter mesh_filter = GetComponent<MeshFilter>();
+		MeshCollider mesh_collider = GetComponent<MeshCollider>();
 		m_Vertices.Clear();
 		m_Triangles.Clear();
 
@@ -513,14 +514,29 @@ public class SimpleMarchingCubes : MonoBehaviour
 		cave_mesh.vertices = m_Vertices.ToArray();
 		cave_mesh.triangles = m_Triangles.ToArray();
 		cave_mesh.RecalculateNormals();
+
+		if(mesh_collider) {
+			mesh_collider.sharedMesh = cave_mesh;
+		}
 	}
 
 	public void Remesh()
 	{
 		Mesh cave_mesh = new Mesh();
 		MeshFilter mesh_filter = GetComponent<MeshFilter>();
+		MeshCollider mesh_collider = GetComponent<MeshCollider>();
 		m_Vertices.Clear();
 		m_Triangles.Clear();
+
+		for(int x = 0; x < m_CellGrid.GetLength(0); ++x) {
+			for(int y = 0; y < m_CellGrid.GetLength(1); ++y) {
+				for(int z = 0; z < m_CellGrid.GetLength(2); ++z) {
+					for(int index = 0; index < 20; ++index) {
+						m_CellGrid[x, y, z].IndexToNode(index).VertexIndex = -1;
+					}
+				}
+			}
+		}
 
 		for(int x = 0; x < m_CellGrid.GetLength(0); ++x) {
 			for(int y = 0; y < m_CellGrid.GetLength(1); ++y) {
@@ -537,6 +553,11 @@ public class SimpleMarchingCubes : MonoBehaviour
 		cave_mesh.vertices = m_Vertices.ToArray();
 		cave_mesh.triangles = m_Triangles.ToArray();
 		cave_mesh.RecalculateNormals();
+
+		if(mesh_collider) {
+			Debug.Log("TEST");
+			mesh_collider.sharedMesh = cave_mesh;
+		}
 	}
 
 	protected Cube[,,] generateCellMap(bool[,,] map, float cell_size = 1.0f)
