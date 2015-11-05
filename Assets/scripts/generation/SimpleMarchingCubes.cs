@@ -583,7 +583,10 @@ public class SimpleMarchingCubes : MonoBehaviour
 		// Use new mesh to build simple uvs.
 		uvs = new Vector2[m_Vertices.Count];
 		foreach(Vector3 vertex in m_Vertices) {
-			uvs[index++] = new Vector2(vertex.x, vertex.z);
+			Vector3 normal = cave_mesh.normals[index];
+			uvs[index] = new Vector2(vertex.x, vertex.z);
+
+			++index;
 		}
 
 		cave_mesh.uv = uvs;

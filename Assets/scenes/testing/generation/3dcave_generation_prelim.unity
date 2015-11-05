@@ -117,6 +117,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmos: 0
+  DrawWithinRange: 0
+  lower_x: 0
+  upper_x: 0
+  lower_y: 0
+  upper_y: 0
+  lower_z: 0
+  upper_z: 0
 --- !u!4 &436092073
 Transform:
   m_ObjectHideFlags: 0
@@ -140,13 +147,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c2731aa66eb9a4c8977491af8ff4b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResolutionWidth: 80
-  ResolutionHeight: 20
-  ResolutionDepth: 80
+  ResolutionWidth: 120
+  ResolutionHeight: 35
+  ResolutionDepth: 120
   InitialFillPercent: 51.5
   SmoothingPasses: 3
   CustomSeed: 0
   Seed: 
+  CellSize: .800000012
   DrawMapGizmos: 0
   DrawWireframeCubes: 0
   OnlyDrawActiveCubes: 1

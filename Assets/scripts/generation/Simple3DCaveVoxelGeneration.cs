@@ -13,6 +13,8 @@ public class Simple3DCaveVoxelGeneration : MonoBehaviour
 	public bool CustomSeed = false;
 	public string Seed;
 
+	public float CellSize = 1.0f;
+
 	[Header("DEBUG CONTROLS")]
 	public bool DrawMapGizmos = true;
 	public bool DrawWireframeCubes = false;
@@ -119,7 +121,7 @@ public class Simple3DCaveVoxelGeneration : MonoBehaviour
 		smoothMap(SmoothingPasses);
 
 		if(m_SimpleMarchingCubes) {
-			m_SimpleMarchingCubes.GenerateMesh(m_Map, 1.0f);
+			m_SimpleMarchingCubes.GenerateMesh(m_Map, CellSize);
 		}
 	}
 
