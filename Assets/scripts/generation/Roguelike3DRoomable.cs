@@ -124,8 +124,10 @@ public class Roguelike3DRoomable : MonoBehaviour
 		int[] current_cell = new int[2] {ResolutionWidth/2, ResolutionDepth/2};
 		Stack<int> breadcrumb = new Stack<int>();
 		List<HallwayDirection> valid_directions = new List<HallwayDirection>();
+		int weight = 0;
 
-		while(true) {
+		while(weight < 2500) {
+			weight++;
 			foreach(HallwayDirection possible_direction in System.Enum.GetValues(typeof(HallwayDirection))) {
 				bool valid = false;
 
@@ -138,7 +140,7 @@ public class Roguelike3DRoomable : MonoBehaviour
 						break;
 
 					case HallwayDirection.SOUTH:
-					valid = withinMap(current_cell[0], maze_height, current_cell[1] - 1) && m_Map[current_cell[0], maze_height, current_cell[1] - 1] &&
+						valid = withinMap(current_cell[0], maze_height, current_cell[1] - 1) && m_Map[current_cell[0], maze_height, current_cell[1] - 1] &&
 					        withinMap(current_cell[0] - 1, maze_height, current_cell[1] - 1) && m_Map[current_cell[0] - 1, maze_height, current_cell[1] - 1] &&
 					        withinMap(current_cell[0] + 1, maze_height, current_cell[1] - 1) && m_Map[current_cell[0] + 1, maze_height, current_cell[1] - 1] &&
 					        withinMap(current_cell[0], maze_height, current_cell[1] - 2) && m_Map[current_cell[0], maze_height, current_cell[1] - 2];
