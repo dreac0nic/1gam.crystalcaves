@@ -407,7 +407,7 @@ public class MinerCaveGeneration : MonoBehaviour
 	[Header("Reference Map")]
 	public int Width = 200;
 	public int Height = 275;
-	public float MinerSpawnRate = 0.15f;
+	[Range(0, 100)] public float MinerSpawnRate = 0.15f;
 	public int MinerTimeoutLimit = 400;
 	public int SmoothingPassCount = 2;
 	public int MaximumSafetyLimit = 50;
@@ -449,7 +449,7 @@ public class MinerCaveGeneration : MonoBehaviour
 	{
 		this.initializeRandomNumberGenerator();
 
-		m_ReferenceMap = new ReferenceMap(Seed, Width, Height, MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount, MaximumSafetyLimit);
+		m_ReferenceMap = new ReferenceMap(Seed, Width, Height, 0.01f*MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount, MaximumSafetyLimit);
 	}
 
 	protected void initializeRandomNumberGenerator()
