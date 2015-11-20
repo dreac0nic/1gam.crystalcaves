@@ -263,7 +263,7 @@ MonoBehaviour:
   MinerSpawnRate: .075000003
   MinerTimeoutLimit: 400
   SmoothingPassCount: 1
-  MaximumSafetyLimit: 50
+  MaximumSafetyLimit: 65
   GenerateSeed: 1
   Seed: 
 --- !u!4 &1322351644
