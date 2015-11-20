@@ -195,7 +195,7 @@ public class MinerCaveGeneration : MonoBehaviour
 			return safety_total/cell_count;
 		}
 
-		public void DrawGizmos(Vector3 anchor)
+		public void DrawGizmos(Vector3 anchor, bool draw_visibility, bool draw_safety)
 		{
 			if(m_Map != null) {
 				for(int x = 0; x < m_Width; ++x) {
@@ -208,10 +208,12 @@ public class MinerCaveGeneration : MonoBehaviour
 							case Cell.TileSpawn.NONE:
 								if(m_Map[x, y].IsSolid) {
 									Gizmos.color = Color.black;
-								} else if(m_Map[x, y].IsVisible) {
+								} else if(draw_visibility && m_Map[x, y].IsVisible) {
 									Gizmos.color = Color.yellow;
-								} else {
+								} else if(draw_safety) {
 									Gizmos.color = new Color((float)m_Map[x, y].SafetyNormalized, 0.0f, 1.0f - (float)m_Map[x, y].SafetyNormalized);
+								} else {
+									Gizmos.color = Color.white;
 								}
 								break;
 
@@ -224,7 +226,7 @@ public class MinerCaveGeneration : MonoBehaviour
 								break;
 
 							case Cell.TileSpawn.ENEMY:
-								Gizmos.color = new Color(1.0f, 0.325f, 0.0f, 0.0f);
+								Gizmos.color = new Color(1.0f, 0.675f, 0.15f, 1.0f);
 								break;
 
 							case Cell.TileSpawn.ITEM:
@@ -567,6 +569,12 @@ public class MinerCaveGeneration : MonoBehaviour
 	public bool GenerateSeed = true;
 	public string Seed;
 
+	[Header("Debug Controls")]
+	public bool DrawGizmos = false;
+	public bool DrawReference = true;
+	public bool ReferenceDrawVisibility = false;
+	public bool ReferenceDrawSafety = false;
+
 	protected System.Random m_RNG;
 	protected ReferenceMap m_ReferenceMap;
 
@@ -591,8 +599,10 @@ public class MinerCaveGeneration : MonoBehaviour
 
 	public void OnDrawGizmos()
 	{
-		if(m_ReferenceMap != null) {
-			m_ReferenceMap.DrawGizmos(this.transform.position);
+		if(DrawGizmos) {
+			if(DrawReference && m_ReferenceMap != null) {
+				m_ReferenceMap.DrawGizmos(this.transform.position, ReferenceDrawVisibility, ReferenceDrawSafety);
+			}
 		}
 	}
 

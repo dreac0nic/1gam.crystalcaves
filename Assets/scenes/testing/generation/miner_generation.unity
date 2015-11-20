@@ -273,6 +273,10 @@ MonoBehaviour:
   Materialability: 1.20000005
   GenerateSeed: 1
   Seed: 
+  DrawGizmos: 1
+  DrawReference: 1
+  ReferenceDrawVisibility: 0
+  ReferenceDrawSafety: 1
 --- !u!4 &1322351644
 Transform:
   m_ObjectHideFlags: 0
