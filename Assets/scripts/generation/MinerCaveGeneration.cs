@@ -252,7 +252,7 @@ public class MinerCaveGeneration : MonoBehaviour
 			smoothCaverns();
 
 			applySafetyZone(entrance[0], entrance[1], 3);
-			applyVisibility(entrance[0], entrance[1]);
+			applyVisibility(entrance[0], entrance[1], 0.25f);
 		}
 
 		protected void digCaverns(int start_x, int start_y)
@@ -344,9 +344,9 @@ public class MinerCaveGeneration : MonoBehaviour
 			}
 		}
 
-		protected void applyVisibility(int x, int y)
+		protected void applyVisibility(int x, int y, float step = 1.0f)
 		{
-			for(float angle = 0.0f; 360.0f - angle > float.Epsilon; angle += 1.0f) {
+			for(float angle = 0.0f; 360.0f - angle > float.Epsilon; angle += step) {
 				float delta_x = (float)Mathf.Cos(0.01745f*angle);
 				float delta_y = (float)Mathf.Sin(0.01745f*angle);
 				float position_x = 0.5f + x;
