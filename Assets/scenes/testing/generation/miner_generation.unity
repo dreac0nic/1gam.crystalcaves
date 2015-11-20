@@ -269,6 +269,8 @@ MonoBehaviour:
   EnemySpawnModifier: 60
   ItemSpawnRequiredSafety: .80000000000000004
   ItemSpawnEnemySearchRadius: 5
+  Profitability: .800000012
+  Materialability: 1.20000005
   GenerateSeed: 1
   Seed: 
 --- !u!4 &1322351644
