@@ -247,12 +247,17 @@ public class MinerCaveGeneration : MonoBehaviour
 		protected void generateMap()
 		{
 			int[] entrance = new int[2] { m_Width/2, m_Height/2 };
+			int[] exit;
 
 			digCaverns(entrance[0], entrance[1]);
 			smoothCaverns();
 
 			applySafetyZone(entrance[0], entrance[1], 3);
 			applyVisibility(entrance[0], entrance[1], 0.25f);
+
+			exit = findSuitableExit();
+			m_Map[exit[0], exit[1]].Type = Cell.TileSpawn.EXIT;
+			applySafetyZone(exit[0], exit[1], 2);
 		}
 
 		protected void digCaverns(int start_x, int start_y)
@@ -359,6 +364,43 @@ public class MinerCaveGeneration : MonoBehaviour
 					m_Map[(int)position_x, (int)position_y].IsVisible = true;
 				}
 			}
+		}
+
+		protected int[] findSuitableExit()
+		{
+			int[][] exits;
+			Queue<int[]> exit_set = new Queue<int[]>();
+
+			while(exit_set.Count < 20) {
+				Queue<int[]> new_exits = new Queue<int[]>();
+				new_exits.Enqueue(new int[2] { m_RNG.Next(m_Width/2), m_RNG.Next(m_Height/2) });
+				new_exits.Enqueue(new int[2] { m_Width/2 + m_RNG.Next(m_Width/2), m_RNG.Next(m_Height/2) });
+				new_exits.Enqueue(new int[2] { m_RNG.Next(m_Width/2), m_Height/2 + m_RNG.Next(m_Height/2) });
+				new_exits.Enqueue(new int[2] { m_Width/2 + m_RNG.Next(m_Width/2), m_Height/2 + m_RNG.Next(m_Height/2) });
+
+				while(new_exits.Count > 0) {
+					int[] exit = new_exits.Dequeue();
+
+					if(!m_Map[exit[0], exit[1]].IsSolid && m_Map[exit[0], exit[1]].Type == Cell.TileSpawn.NONE && m_Map[exit[0], exit[1]].Safety > 0) {
+						exit_set.Enqueue(exit);
+					}
+				}
+			}
+
+			exits = exit_set.ToArray();
+
+			// Sort exit array by their safety value.
+			for(int current = 0; current < exits.GetLength(0); ++current) {
+				for(int target = current + 1; target < exits.GetLength(0); ++target) {
+					if(m_Map[exits[target][0], exits[target][1]].Safety > m_Map[exits[current][0], exits[current][1]].Safety) {
+						int[] temp = exits[current];
+						exits[current] = exits[target];
+						exits[target] = temp;
+					}
+				}
+			}
+
+			return exits[(int)((double)exits.Length*m_RNG.NextDouble()*m_RNG.NextDouble())];
 		}
 	}
 
