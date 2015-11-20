@@ -48,8 +48,8 @@ public class MinerCaveGeneration : MonoBehaviour
 			public bool IsSolid = true;
 			public bool IsVisible = false;
 			public Cell.TileSpawn Type = Cell.TileSpawn.NONE;
-			public int Safety = -1;
-			public double SafetyNormalized = 0.0;
+			public int Safety = System.Int32.MaxValue;
+			public double SafetyNormalized = 1.0;
 		}
 
 		protected int m_Width = 100;
@@ -171,8 +171,8 @@ public class MinerCaveGeneration : MonoBehaviour
 						++cell_count;
 						safety_total = m_Map[x, y].SafetyNormalized;
 					} else {
-						m_Map[x, y].Safety = -1;
-						m_Map[x, y].SafetyNormalized = 0.0;
+						m_Map[x, y].Safety = System.Int32.MaxValue;
+						m_Map[x, y].SafetyNormalized = 1.0;
 					}
 				}
 			}
@@ -325,21 +325,15 @@ public class MinerCaveGeneration : MonoBehaviour
 			m_Map[x, y].Safety = 0;
 			cells.Enqueue(new int[2] { x, y });
 
-			int timeout = 2;
-			int current_passt = 0;
-
-			while(cells.Count > 0 && ++current_passt < timeout) {
+			while(cells.Count > 0) {
 				int[] current = cells.Dequeue();
-				int potential_safety = m_Map[current[0], current[1]].Safety + 1 - strength;
-
-				if(potential_safety < 0) {
-					potential_safety = 0;
-				}
+				int potential_safety = m_Map[current[0], current[1]].Safety + 1;
+				m_Map[current[0], current[1]].Safety = (m_Map[current[0], current[1]].Safety - strength < 0 ? 0 : m_Map[current[0], current[1]].Safety - strength);
+				m_Map[current[0], current[1]].SafetyNormalized = (double)m_Map[current[0], current[1]].Safety/m_MaximumSafetyLimit;
 
 				foreach(int[] neighbor in GetNeighbors(current[0], current[1])) {
-					if(m_Map[neighbor[0], neighbor[1]].Safety > potential_safety) {
+					if(!m_Map[neighbor[0], neighbor[1]].IsSolid && m_Map[neighbor[0], neighbor[1]].Safety > potential_safety) { // XXX: MAY NOT PASS FOR OVERLAYING SAFETIES, CHECK STRENGTH CODE
 						m_Map[neighbor[0], neighbor[1]].Safety = potential_safety;
-						m_Map[neighbor[0], neighbor[1]].SafetyNormalized = (double)potential_safety/m_MaximumSafetyLimit;
 
 						cells.Enqueue(neighbor);
 					}
