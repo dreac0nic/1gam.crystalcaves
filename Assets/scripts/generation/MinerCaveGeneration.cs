@@ -195,6 +195,8 @@ public class MinerCaveGeneration : MonoBehaviour
 							case Cell.TileSpawn.NONE:
 								if(m_Map[x, y].IsSolid) {
 									Gizmos.color = Color.black;
+								} else if(m_Map[x, y].IsVisible) {
+									Gizmos.color = Color.yellow;
 								} else {
 									Gizmos.color = new Color((float)m_Map[x, y].SafetyNormalized, 0.0f, 1.0f - (float)m_Map[x, y].SafetyNormalized);
 								}
