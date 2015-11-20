@@ -59,7 +59,54 @@ public class MinerCaveGeneration : MonoBehaviour
 		protected int m_SmoothingPassCount = 2;
 
 		protected System.Random m_RNG;
-		public Cell[,] m_Map;
+		protected Cell[,] m_Map;
+
+		public static List<int[]> GetNeighbors(Cell[,] map, int x, int y)
+		{
+			List<int[]> neighbors = new List<int[]>();
+
+			foreach(Direction move_direction in System.Enum.GetValues(typeof(Direction))) {
+				int new_x = x;
+				int new_y = y;
+
+				switch(move_direction) {
+					case Direction.UP:
+						new_y -= 1;
+						break;
+
+					case Direction.DOWN:
+						new_y += 1;
+						break;
+
+					case Direction.LEFT:
+						new_x -= 1;
+						break;
+
+					case Direction.RIGHT:
+						new_x += 1;
+						break;
+				}
+
+				if(new_x >= 0 && new_x < map.GetLength(0) && new_y >= 0 && new_y < map.GetLength(1)) {
+					neighbors.Add(new int[] {new_x, new_y});
+				}
+			}
+
+			return neighbors;
+		}
+
+		public static List<int[]> GetSolidNeighbors(Cell[,] map, int x, int y)
+		{
+			List<int[]> solid_neighbors = new List<int[]>();
+
+			foreach(int[] neighbor in ReferenceMap.GetNeighbors(map, x, y)) {
+				if(map[neighbor[0], neighbor[1]].IsSolid) {
+					solid_neighbors.Add(neighbor);
+				}
+			}
+
+			return solid_neighbors;
+		}
 
 		public ReferenceMap(string seed, int width, int height, float miner_spawn_rate, int miner_timeout_limit, int smoothing_pass_count)
 		{
@@ -73,6 +120,16 @@ public class MinerCaveGeneration : MonoBehaviour
 
 			this.initializeMap();
 			this.generateMap();
+		}
+
+		public List<int[]> GetNeighbors(int x, int y)
+		{
+			return ReferenceMap.GetNeighbors(m_Map, x, y);
+		}
+
+		public List<int[]> GetSolidNeighbors(int x, int y)
+		{
+			return ReferenceMap.GetSolidNeighbors(m_Map, x, y);
 		}
 
 		public void DrawGizmos(Vector3 anchor)
@@ -155,63 +212,6 @@ public class MinerCaveGeneration : MonoBehaviour
 
 				miners = miner_buffer;
 			}
-		}
-
-		public static List<int[]> GetNeighbors(Cell[,] map, int x, int y)
-		{
-			List<int[]> neighbors = new List<int[]>();
-
-			foreach(Direction move_direction in System.Enum.GetValues(typeof(Direction))) {
-				int new_x = x;
-				int new_y = y;
-
-				switch(move_direction) {
-					case Direction.UP:
-						new_y -= 1;
-						break;
-
-					case Direction.DOWN:
-						new_y += 1;
-						break;
-
-					case Direction.LEFT:
-						new_x -= 1;
-						break;
-
-					case Direction.RIGHT:
-						new_x += 1;
-						break;
-				}
-
-				if(new_x >= 0 && new_x < map.GetLength(0) && new_y >= 0 && new_y < map.GetLength(1)) {
-					neighbors.Add(new int[] {new_x, new_y});
-				}
-			}
-
-			return neighbors;
-		}
-
-		public List<int[]> GetNeighbors(int x, int y)
-		{
-			return ReferenceMap.GetNeighbors(m_Map, x, y);
-		}
-
-		public static List<int[]> GetSolidNeighbors(Cell[,] map, int x, int y)
-		{
-			List<int[]> solid_neighbors = new List<int[]>();
-
-			foreach(int[] neighbor in ReferenceMap.GetNeighbors(map, x, y)) {
-				if(map[neighbor[0], neighbor[1]].IsSolid) {
-					solid_neighbors.Add(neighbor);
-				}
-			}
-
-			return solid_neighbors;
-		}
-
-		public List<int[]> GetSolidNeighbors(int x, int y)
-		{
-			return ReferenceMap.GetSolidNeighbors(m_Map, x, y);
 		}
 	}
 
