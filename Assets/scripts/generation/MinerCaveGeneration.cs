@@ -340,6 +340,23 @@ public class MinerCaveGeneration : MonoBehaviour
 				}
 			}
 		}
+
+		protected void applyVisibility(int x, int y)
+		{
+			for(float angle = 0.0f; 360.0f - angle > float.Epsilon; angle += 1.0f) {
+				float delta_x = (float)Mathf.Cos(0.01745f*angle);
+				float delta_y = (float)Mathf.Sin(0.01745f*angle);
+				float position_x = 0.5f + x;
+				float position_y = 0.5f + y;
+
+				while(position_x > 0.0f && position_y > 0.0f && position_x < m_Width && position_y < m_Height && !m_Map[(int)position_x, (int)position_y].IsSolid) {
+					position_x += delta_x;
+					position_y += delta_y;
+
+					m_Map[(int)position_x, (int)position_y].IsVisible = true;
+				}
+			}
+		}
 	}
 
 	[Header("Reference Map")]
@@ -355,7 +372,6 @@ public class MinerCaveGeneration : MonoBehaviour
 	public string Seed;
 
 	protected System.Random m_RNG;
-
 	protected ReferenceMap m_ReferenceMap;
 
 	public void Awake()
@@ -372,6 +388,8 @@ public class MinerCaveGeneration : MonoBehaviour
 	{
 		if(Input.GetKeyDown("space")) {
 			GenerateMap();
+		} else if(Input.GetKeyDown("left ctrl") && m_ReferenceMap != null) {
+			m_ReferenceMap.RenormalizeSafety(MaximumSafetyLimit);
 		}
 	}
 
