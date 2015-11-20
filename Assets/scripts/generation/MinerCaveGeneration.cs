@@ -58,6 +58,10 @@ public class MinerCaveGeneration : MonoBehaviour
 		protected int m_MinerTimeoutLimit = 400;
 		protected int m_SmoothingPassCount = 2;
 		protected int m_MaximumSafetyLimit = 50;
+		protected int m_EnemyPopulation = 20;
+		protected float m_EnemySpawnModifier = 0.6f;
+		protected double m_ItemSpawnRequiredSafety = 0.8;
+		protected int m_ItemSpawnEnemySearchRadius = 3;
 
 		protected System.Random m_RNG;
 		protected Cell[,] m_Map;
@@ -128,7 +132,7 @@ public class MinerCaveGeneration : MonoBehaviour
 			return solid_neighbors;
 		}
 
-		public ReferenceMap(string seed, int width, int height, float miner_spawn_rate, int miner_timeout_limit, int smoothing_pass_count, int maximum_safety_limit)
+		public ReferenceMap(string seed, int width, int height, float miner_spawn_rate, int miner_timeout_limit, int smoothing_pass_count, int maximum_safety_limit, int enemy_population, float enemy_spawn_modifier, double item_spawn_required_safety, int item_spawn_enemy_search_radius)
 		{
 			m_Width = width;
 			m_Height = height;
@@ -136,6 +140,10 @@ public class MinerCaveGeneration : MonoBehaviour
 			m_MinerTimeoutLimit = miner_timeout_limit;
 			m_SmoothingPassCount = smoothing_pass_count;
 			m_MaximumSafetyLimit = maximum_safety_limit;
+			m_EnemyPopulation = enemy_population;
+			m_EnemySpawnModifier = enemy_spawn_modifier;
+			m_ItemSpawnRequiredSafety = item_spawn_required_safety;
+			m_ItemSpawnEnemySearchRadius = item_spawn_enemy_search_radius;
 
 			m_RNG = new System.Random(seed.GetHashCode());
 
@@ -215,7 +223,7 @@ public class MinerCaveGeneration : MonoBehaviour
 								break;
 
 							case Cell.TileSpawn.ITEM:
-								Gizmos.color = new Color((float)(Mathf.Sin(Time.time) + 1.0)/2.0f, 0.0f, (float)(Mathf.Cos(Time.time) + 1.0)/2.0f);
+								Gizmos.color = new Color(0.0f, (float)(Mathf.Sin(10*Time.time) + 1.0)/2.0f, (float)(Mathf.Cos(10*Time.time) + 1.0)/2.0f);
 								break;
 
 							case Cell.TileSpawn.GOLD:
@@ -249,15 +257,21 @@ public class MinerCaveGeneration : MonoBehaviour
 			int[] entrance = new int[2] { m_Width/2, m_Height/2 };
 			int[] exit;
 
+			// Create dungeon geometry
 			digCaverns(entrance[0], entrance[1]);
 			smoothCaverns();
 
+			// Place keypoints
 			applySafetyZone(entrance[0], entrance[1], 3);
 			applyVisibility(entrance[0], entrance[1], 0.25f);
 
 			exit = findSuitableExit();
 			m_Map[exit[0], exit[1]].Type = Cell.TileSpawn.EXIT;
 			applySafetyZone(exit[0], exit[1], 2);
+
+			// Populate
+			placeEnemyTiles();
+			placeDungeonItem();
 		}
 
 		protected void digCaverns(int start_x, int start_y)
@@ -402,6 +416,102 @@ public class MinerCaveGeneration : MonoBehaviour
 
 			return exits[(int)((double)exits.Length*m_RNG.NextDouble()*m_RNG.NextDouble())];
 		}
+
+		protected void placeEnemyTiles()
+		{
+			List<int[]> spawn_list = new List<int[]>();
+
+			for(int x = 1; x < m_Width - 1; ++x) {
+				for(int y = 1; y < m_Height - 1; ++y) {
+					if(!m_Map[x, y].IsSolid && !m_Map[x, y].IsVisible && m_Map[x, y].Type == Cell.TileSpawn.NONE && m_RNG.NextDouble() <= m_EnemySpawnModifier*m_Map[x, y].SafetyNormalized) {
+						spawn_list.Add(new int[2] {x, y});
+						m_Map[x, y].Type = Cell.TileSpawn.ENEMY;
+					}
+				}
+			}
+
+			while(spawn_list.Count > m_EnemyPopulation) {
+				int[] spawn = spawn_list[0];
+				spawn_list.RemoveAt(0);
+
+				if(m_RNG.NextDouble() > 0.3*m_Map[spawn[0], spawn[1]].SafetyNormalized) {
+					m_Map[spawn[0], spawn[1]].Type = Cell.TileSpawn.NONE;
+				} else {
+					spawn_list.Add(spawn);
+				}
+			}
+		}
+
+		protected int[] placeDungeonItem()
+		{
+			int enemy_spawn_cap = 10;
+			int[] spawn;
+			List<int> enemy_spawns_count = new List<int>();
+			List<int[]> enemy_spawns = new List<int[]>();
+			List<int[]> safe_spawns = new List<int[]>();
+
+			// Create an index of spawns.
+			for(int x = 1; x < m_Width - 1; ++x) {
+				for(int y = 1; y < m_Height - 1; ++y) {
+					if(!m_Map[x, y].IsSolid && m_Map[x, y].Type == Cell.TileSpawn.NONE && m_Map[x, y].SafetyNormalized >= m_ItemSpawnRequiredSafety) {
+						int depth = 0;
+						int enemy_count = 0;
+						Queue<int[]> cells = new Queue<int[]>();
+						Dictionary<int, bool> visited = new Dictionary<int, bool>();
+
+						// Breadth-First Expansion for Enemy Checking
+						cells.Enqueue(new int[2] {x, y});
+						visited[x*m_Width + y] = true;
+
+						while(cells.Count > 0 && depth++ < m_ItemSpawnEnemySearchRadius) {
+							int[] cell = cells.Dequeue();
+
+							foreach(int[] neighbor in GetNeighbors(cell[0], cell[1])) {
+								if(!m_Map[neighbor[0], neighbor[1]].IsSolid) {
+									if(!visited.ContainsKey(m_Width*neighbor[0] + neighbor[1]) || !visited[m_Width*neighbor[0] + neighbor[1]]) {
+										cells.Enqueue(neighbor);
+									}
+
+									if(m_Map[neighbor[0], neighbor[1]].Type == Cell.TileSpawn.ENEMY) {
+										++enemy_count;
+									}
+								}
+							}
+						}
+
+						// Add to appropriate places in lists
+						safe_spawns.Add(new int[2] {x, y});
+
+						if(enemy_count > 0) {
+							int index = 0;
+
+							while(index < enemy_spawns_count.Count && enemy_spawns_count[index] > enemy_count) {
+								++index;
+							}
+
+							if(enemy_spawns.Count < enemy_spawn_cap) {
+								enemy_spawns.Insert(index, new int[2] {x, y});
+								enemy_spawns_count.Insert(index, enemy_count);
+							} else {
+								enemy_spawns[index] = new int[2] {x, y};
+								enemy_spawns_count[index] = enemy_count;
+							}
+						}
+					}
+				}
+			}
+
+			// Pick a list based on whether enemy tiles were found or not.
+			if(enemy_spawns.Count > 0) {
+				spawn = enemy_spawns[0];
+			} else {
+				spawn = safe_spawns[m_RNG.Next(safe_spawns.Count)];
+			}
+
+			m_Map[spawn[0], spawn[1]].Type = Cell.TileSpawn.ITEM;
+
+			return spawn;
+		}
 	}
 
 	[Header("Reference Map")]
@@ -411,6 +521,11 @@ public class MinerCaveGeneration : MonoBehaviour
 	public int MinerTimeoutLimit = 400;
 	public int SmoothingPassCount = 2;
 	public int MaximumSafetyLimit = 50;
+	public int EnemyPopulation = 15;
+	public int EnemyPopulationVariance = 5;
+	[Range(0, 100)] public float EnemySpawnModifier = 60.0f;
+	[Range(0, 1)] public double ItemSpawnRequiredSafety = 0.8;
+	public int ItemSpawnEnemySearchRadius = 5;
 
 	[Header("Random Number Generator")]
 	public bool GenerateSeed = true;
@@ -449,7 +564,7 @@ public class MinerCaveGeneration : MonoBehaviour
 	{
 		this.initializeRandomNumberGenerator();
 
-		m_ReferenceMap = new ReferenceMap(Seed, Width, Height, 0.01f*MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount, MaximumSafetyLimit);
+		m_ReferenceMap = new ReferenceMap(Seed, Width, Height, 0.01f*MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount, MaximumSafetyLimit, EnemyPopulation + m_RNG.Next(EnemyPopulationVariance), 0.01f*EnemySpawnModifier, ItemSpawnRequiredSafety, ItemSpawnEnemySearchRadius);
 	}
 
 	protected void initializeRandomNumberGenerator()
