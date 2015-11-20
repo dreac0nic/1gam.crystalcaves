@@ -208,19 +208,22 @@ public class MinerCaveGeneration : MonoBehaviour
 
 		protected void generateMap()
 		{
-			digCaverns();
+			int[] entrance = new int[2] { m_Width/2, m_Height/2 };
+
+			digCaverns(entrance[0], entrance[1]);
 			smoothCaverns();
+
+			applySafetyZone(entrance[0], entrance[1], 3);
 		}
 
-		protected void digCaverns()
+		protected void digCaverns(int start_x, int start_y)
 		{
 			int miners_spawned = 1;
-			int[] entrance = new int[2] { m_Width/2, m_Height/2 };
 			List<Miner> miners = new List<Miner>();
-			miners.Add(new Miner(entrance[0], entrance[1]));
+			miners.Add(new Miner(start_x, start_y));
 
-			m_Map[entrance[0], entrance[1]].IsSolid = false;
-			m_Map[entrance[0], entrance[1]].Type = Cell.TileSpawn.START;
+			m_Map[start_x, start_y].IsSolid = false;
+			m_Map[start_x, start_y].Type = Cell.TileSpawn.START;
 
 			while(miners.Count > 0 && miners_spawned < m_MinerTimeoutLimit) {
 				List<Miner> miner_buffer = new List<Miner>();
@@ -286,7 +289,10 @@ public class MinerCaveGeneration : MonoBehaviour
 			m_Map[x, y].Safety = 0;
 			cells.Enqueue(new int[2] { x, y });
 
-			while(cells.Count > 0) {
+			int timeout = 2;
+			int current_passt = 0;
+
+			while(cells.Count > 0 && ++current_passt < timeout) {
 				int[] current = cells.Dequeue();
 				int potential_safety = m_Map[current[0], current[1]].Safety + 1 - strength;
 
@@ -295,7 +301,7 @@ public class MinerCaveGeneration : MonoBehaviour
 				}
 
 				foreach(int[] neighbor in GetNeighbors(current[0], current[1])) {
-					if(m_Map[neighbor[0], neighbor[1]].Safety > potential_safety && !cells.Contains(neighbor)) {
+					if(m_Map[neighbor[0], neighbor[1]].Safety > potential_safety) {
 						m_Map[neighbor[0], neighbor[1]].Safety = potential_safety;
 						m_Map[neighbor[0], neighbor[1]].SafetyNormalized = (double)potential_safety/m_MaximumSafetyLimit;
 
