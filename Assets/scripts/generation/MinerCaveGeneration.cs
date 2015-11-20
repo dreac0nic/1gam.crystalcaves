@@ -94,7 +94,7 @@ public class MinerCaveGeneration : MonoBehaviour
 						break;
 				}
 
-				if(new_x >= 0 && new_x < map.GetLength(0) && new_y >= 0 && new_y < map.GetLength(1)) {
+				if(new_x >= 1 && new_x < map.GetLength(0) - 1 && new_y >= 1 && new_y < map.GetLength(1) - 1) {
 					neighbors.Add(new int[] {new_x, new_y});
 				}
 			}
