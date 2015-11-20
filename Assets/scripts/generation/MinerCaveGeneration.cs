@@ -48,7 +48,7 @@ public class MinerCaveGeneration : MonoBehaviour
 			public bool IsSolid = true;
 			public bool IsVisible = false;
 			public Cell.TileSpawn Type = Cell.TileSpawn.NONE;
-			public int Safety = System.Int32.MaxValue;
+			public int Safety = -1;
 			public double SafetyNormalized = 0.0;
 		}
 
@@ -57,6 +57,7 @@ public class MinerCaveGeneration : MonoBehaviour
 		protected float m_MinerSpawnRate = 0.15f;
 		protected int m_MinerTimeoutLimit = 400;
 		protected int m_SmoothingPassCount = 2;
+		protected int m_MaximumSafetyLimit = 50;
 
 		protected System.Random m_RNG;
 		protected Cell[,] m_Map;
@@ -108,13 +109,33 @@ public class MinerCaveGeneration : MonoBehaviour
 			return solid_neighbors;
 		}
 
-		public ReferenceMap(string seed, int width, int height, float miner_spawn_rate, int miner_timeout_limit, int smoothing_pass_count)
+		public static int CountSolidAdjacents(Cell[,] map, int x, int y)
+		{
+			int solid_neighbors = 0;
+
+			for(int adjacent_x = x - 1; adjacent_x <= x + 1; ++adjacent_x) {
+				for(int adjacent_y = y - 1; adjacent_y <= y + 1; ++adjacent_y) {
+					if(adjacent_x == x && adjacent_y == y) {
+						continue;
+					}
+
+					if(adjacent_x < 0 || adjacent_x >= map.GetLength(0) || adjacent_y < 0 || adjacent_y >= map.GetLength(1) || map[adjacent_x, adjacent_y].IsSolid) {
+						solid_neighbors++;
+					}
+				}
+			}
+
+			return solid_neighbors;
+		}
+
+		public ReferenceMap(string seed, int width, int height, float miner_spawn_rate, int miner_timeout_limit, int smoothing_pass_count, int maximum_safety_limit)
 		{
 			m_Width = width;
 			m_Height = height;
 			m_MinerSpawnRate = miner_spawn_rate;
 			m_MinerTimeoutLimit = miner_timeout_limit;
 			m_SmoothingPassCount = smoothing_pass_count;
+			m_MaximumSafetyLimit = maximum_safety_limit;
 
 			m_RNG = new System.Random(seed.GetHashCode());
 
@@ -130,6 +151,35 @@ public class MinerCaveGeneration : MonoBehaviour
 		public List<int[]> GetSolidNeighbors(int x, int y)
 		{
 			return ReferenceMap.GetSolidNeighbors(m_Map, x, y);
+		}
+
+		public int CountSolidAdjacents(int x, int y)
+		{
+			return ReferenceMap.CountSolidAdjacents(m_Map, x, y);
+		}
+
+		public double RenormalizeSafety(int new_maximum)
+		{
+			int cell_count = 0;
+			double safety_total = 0.0;
+
+			for(int x = 0; x < m_Width; ++x) {
+				for(int y = 0; y < m_Height; ++y) {
+					if(!m_Map[x, y].IsSolid) {
+						m_Map[x, y].SafetyNormalized = (double)m_Map[x, y].Safety/new_maximum;
+
+						++cell_count;
+						safety_total = m_Map[x, y].SafetyNormalized;
+					} else {
+						m_Map[x, y].Safety = -1;
+						m_Map[x, y].SafetyNormalized = 0.0;
+					}
+				}
+			}
+
+			m_MaximumSafetyLimit = new_maximum;
+
+			return safety_total/cell_count;
 		}
 
 		public void DrawGizmos(Vector3 anchor)
@@ -159,6 +209,7 @@ public class MinerCaveGeneration : MonoBehaviour
 		protected void generateMap()
 		{
 			digCaverns();
+			smoothCaverns();
 		}
 
 		protected void digCaverns()
@@ -213,6 +264,46 @@ public class MinerCaveGeneration : MonoBehaviour
 				miners = miner_buffer;
 			}
 		}
+
+		// NOTE: Possibly improve smoothing to take advantage of extra passes or special shaping.
+		protected void smoothCaverns()
+		{
+			for(int pass = 0; pass < m_SmoothingPassCount; ++pass) {
+				for(int x = 0; x < m_Width; ++x) {
+					for(int y = 0; y < m_Height; ++y) {
+						if(m_Map[x, y].IsSolid && CountSolidAdjacents(x, y) <= 2) {
+							m_Map[x, y].IsSolid = false;
+						}
+					}
+				}
+			}
+		}
+
+		protected void applySafetyZone(int x, int y, int strength)
+		{
+			Queue<int[]> cells = new Queue<int[]>();
+
+			m_Map[x, y].Safety = 0;
+			cells.Enqueue(new int[2] { x, y });
+
+			while(cells.Count > 0) {
+				int[] current = cells.Dequeue();
+				int potential_safety = m_Map[current[0], current[1]].Safety + 1 - strength;
+
+				if(potential_safety < 0) {
+					potential_safety = 0;
+				}
+
+				foreach(int[] neighbor in GetNeighbors(current[0], current[1])) {
+					if(m_Map[neighbor[0], neighbor[1]].Safety > potential_safety && !cells.Contains(neighbor)) {
+						m_Map[neighbor[0], neighbor[1]].Safety = potential_safety;
+						m_Map[neighbor[0], neighbor[1]].SafetyNormalized = (double)potential_safety/m_MaximumSafetyLimit;
+
+						cells.Enqueue(neighbor);
+					}
+				}
+			}
+		}
 	}
 
 	[Header("Reference Map")]
@@ -221,6 +312,7 @@ public class MinerCaveGeneration : MonoBehaviour
 	public float MinerSpawnRate = 0.15f;
 	public int MinerTimeoutLimit = 400;
 	public int SmoothingPassCount = 2;
+	public int MaximumSafetyLimit = 50;
 
 	[Header("Random Number Generator")]
 	public bool GenerateSeed = true;
@@ -258,7 +350,7 @@ public class MinerCaveGeneration : MonoBehaviour
 	{
 		this.initializeRandomNumberGenerator();
 
-		m_ReferenceMap = new ReferenceMap(Seed, Width, Height, MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount);
+		m_ReferenceMap = new ReferenceMap(Seed, Width, Height, MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount, MaximumSafetyLimit);
 	}
 
 	protected void initializeRandomNumberGenerator()
