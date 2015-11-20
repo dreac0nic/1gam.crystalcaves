@@ -252,6 +252,7 @@ public class MinerCaveGeneration : MonoBehaviour
 			smoothCaverns();
 
 			applySafetyZone(entrance[0], entrance[1], 3);
+			applyVisibility(entrance[0], entrance[1]);
 		}
 
 		protected void digCaverns(int start_x, int start_y)
