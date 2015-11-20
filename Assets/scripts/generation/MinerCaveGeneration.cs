@@ -62,6 +62,8 @@ public class MinerCaveGeneration : MonoBehaviour
 		protected float m_EnemySpawnModifier = 0.6f;
 		protected double m_ItemSpawnRequiredSafety = 0.8;
 		protected int m_ItemSpawnEnemySearchRadius = 3;
+		protected float m_Profitability = 0.25f;
+		protected float m_Materialability = 0.5f;
 
 		protected System.Random m_RNG;
 		protected Cell[,] m_Map;
@@ -132,7 +134,7 @@ public class MinerCaveGeneration : MonoBehaviour
 			return solid_neighbors;
 		}
 
-		public ReferenceMap(string seed, int width, int height, float miner_spawn_rate, int miner_timeout_limit, int smoothing_pass_count, int maximum_safety_limit, int enemy_population, float enemy_spawn_modifier, double item_spawn_required_safety, int item_spawn_enemy_search_radius)
+		public ReferenceMap(string seed, int width, int height, float miner_spawn_rate, int miner_timeout_limit, int smoothing_pass_count, int maximum_safety_limit, int enemy_population, float enemy_spawn_modifier, double item_spawn_required_safety, int item_spawn_enemy_search_radius, float profitability, float materialability)
 		{
 			m_Width = width;
 			m_Height = height;
@@ -144,6 +146,9 @@ public class MinerCaveGeneration : MonoBehaviour
 			m_EnemySpawnModifier = enemy_spawn_modifier;
 			m_ItemSpawnRequiredSafety = item_spawn_required_safety;
 			m_ItemSpawnEnemySearchRadius = item_spawn_enemy_search_radius;
+			m_Profitability = profitability;
+			m_Materialability = materialability;
+
 
 			m_RNG = new System.Random(seed.GetHashCode());
 
@@ -272,6 +277,7 @@ public class MinerCaveGeneration : MonoBehaviour
 			// Populate
 			placeEnemyTiles();
 			placeDungeonItem();
+			placeGoldAndMaterialDrops();
 		}
 
 		protected void digCaverns(int start_x, int start_y)
@@ -512,6 +518,34 @@ public class MinerCaveGeneration : MonoBehaviour
 
 			return spawn;
 		}
+
+		protected void placeGoldAndMaterialDrops()
+		{
+			List<int[]> possible_spawns = new List<int[]>();
+
+			for(int x = 1; x < m_Width - 1; ++x) {
+				for(int y = 1; y < m_Height - 1; ++y) {
+					if(!m_Map[x, y].IsSolid && m_Map[x, y].Type == Cell.TileSpawn.NONE && CountSolidAdjacents(x, y) >= 3) {
+						bool gold = (float)m_RNG.NextDouble() <= m_Profitability;
+						bool supply = (float)m_RNG.NextDouble() <= m_Materialability;
+
+						if(gold && supply) {
+							if((float)m_RNG.NextDouble() <= m_Materialability/(m_Materialability + m_Profitability)) {
+								gold = false;
+							} else {
+								supply = false;
+							}
+						}
+
+						if(gold) {
+							m_Map[x, y].Type = Cell.TileSpawn.GOLD;
+						} else if(supply) {
+							m_Map[x, y].Type = Cell.TileSpawn.SUPPLIES;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	[Header("Reference Map")]
@@ -526,6 +560,8 @@ public class MinerCaveGeneration : MonoBehaviour
 	[Range(0, 100)] public float EnemySpawnModifier = 60.0f;
 	[Range(0, 1)] public double ItemSpawnRequiredSafety = 0.8;
 	public int ItemSpawnEnemySearchRadius = 5;
+	[Range(0, 100)] public float Profitability = 2.5f;
+	[Range(0, 100)] public float Materialability = 8.0f;
 
 	[Header("Random Number Generator")]
 	public bool GenerateSeed = true;
@@ -564,7 +600,7 @@ public class MinerCaveGeneration : MonoBehaviour
 	{
 		this.initializeRandomNumberGenerator();
 
-		m_ReferenceMap = new ReferenceMap(Seed, Width, Height, 0.01f*MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount, MaximumSafetyLimit, EnemyPopulation + m_RNG.Next(EnemyPopulationVariance), 0.01f*EnemySpawnModifier, ItemSpawnRequiredSafety, ItemSpawnEnemySearchRadius);
+		m_ReferenceMap = new ReferenceMap(Seed, Width, Height, 0.01f*MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount, MaximumSafetyLimit, EnemyPopulation + m_RNG.Next(EnemyPopulationVariance), 0.01f*EnemySpawnModifier, ItemSpawnRequiredSafety, ItemSpawnEnemySearchRadius, 0.01f*Profitability, 0.01f*Materialability);
 	}
 
 	protected void initializeRandomNumberGenerator()
