@@ -187,8 +187,44 @@ public class MinerCaveGeneration : MonoBehaviour
 			if(m_Map != null) {
 				for(int x = 0; x < m_Width; ++x) {
 					for(int y = 0; y < m_Height; ++y) {
-						Gizmos.color = (m_Map[x, y].IsSolid ? Color.black : Color.white);
+						Gizmos.color = Color.magenta;
 						Vector3 position = new Vector3(-m_Width/2.0f + 0.5f + x, 0.0f, -m_Height/2.0f + 0.5f + y);
+
+						//ONE, START, EXIT, ENEMY, ITEM, GOLD, SUPPLIES
+						switch(m_Map[x, y].Type) {
+							case Cell.TileSpawn.NONE:
+								if(m_Map[x, y].IsSolid) {
+									Gizmos.color = Color.black;
+								} else {
+									Gizmos.color = new Color((float)m_Map[x, y].SafetyNormalized, 0.0f, 1.0f - (float)m_Map[x, y].SafetyNormalized);
+								}
+								break;
+
+							case Cell.TileSpawn.START:
+								Gizmos.color = Color.green;
+								break;
+
+							case Cell.TileSpawn.EXIT:
+								Gizmos.color = Color.red;
+								break;
+
+							case Cell.TileSpawn.ENEMY:
+								Gizmos.color = new Color(1.0f, 0.325f, 0.0f, 0.0f);
+								break;
+
+							case Cell.TileSpawn.ITEM:
+								Gizmos.color = new Color((float)(Mathf.Sin(Time.time) + 1.0)/2.0f, 0.0f, (float)(Mathf.Cos(Time.time) + 1.0)/2.0f);
+								break;
+
+							case Cell.TileSpawn.GOLD:
+								Gizmos.color = Color.yellow;
+								break;
+
+							case Cell.TileSpawn.SUPPLIES:
+								Gizmos.color = Color.cyan;
+								break;
+						}
+
 						Gizmos.DrawCube(anchor + position, Vector3.one);
 					}
 				}
