@@ -52,18 +52,18 @@ public class MinerCaveGeneration : MonoBehaviour
 			public double SafetyNormalized = 1.0;
 		}
 
-		protected int m_Width = 100;
-		protected int m_Height = 80;
-		protected float m_MinerSpawnRate = 0.15f;
-		protected int m_MinerTimeoutLimit = 400;
-		protected int m_SmoothingPassCount = 2;
-		protected int m_MaximumSafetyLimit = 50;
-		protected int m_EnemyPopulation = 20;
-		protected float m_EnemySpawnModifier = 0.6f;
-		protected double m_ItemSpawnRequiredSafety = 0.8;
-		protected int m_ItemSpawnEnemySearchRadius = 3;
-		protected float m_Profitability = 0.25f;
-		protected float m_Materialability = 0.5f;
+		protected int m_Width;
+		protected int m_Height;
+		protected float m_MinerSpawnRate;
+		protected int m_MinerTimeoutLimit;
+		protected int m_SmoothingPassCount;
+		protected int m_MaximumSafetyLimit;
+		protected int m_EnemyPopulation;
+		protected float m_EnemySpawnModifier;
+		protected double m_ItemSpawnRequiredSafety;
+		protected int m_ItemSpawnEnemySearchRadius;
+		protected float m_Profitability;
+		protected float m_Materialability;
 
 		protected System.Random m_RNG;
 		protected Cell[,] m_Map;
