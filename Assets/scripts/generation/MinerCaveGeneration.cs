@@ -45,12 +45,33 @@ public class MinerCaveGeneration : MonoBehaviour
 		{
 			public enum TileSpawn { NONE, START, EXIT, ENEMY, ITEM, GOLD, SUPPLIES };
 
-			public bool IsSolid = true;
-			public bool IsVisible = false;
-			public Cell.TileSpawn Type = Cell.TileSpawn.NONE;
-			public int Safety = System.Int32.MaxValue;
-			public double SafetyNormalized = 1.0;
+			public bool IsSolid;
+			public bool IsVisible;
+			public Cell.TileSpawn Type;
+			public int Safety;
+			public double SafetyNormalized;
+
+			public Cell()
+			{
+				this.IsSolid = true;
+				this.IsVisible = false;
+				this.Type = Cell.TileSpawn.NONE;
+				this.Safety = System.Int32.MaxValue;
+				this.SafetyNormalized = 1.0;
+			}
+
+			public Cell(Cell source)
+			{
+				this.IsSolid = source.IsSolid;
+				this.IsVisible = source.IsVisible;
+				this.Type = source.Type;
+				this.Safety = source.Safety;
+				this.SafetyNormalized = source.SafetyNormalized;
+			}
 		}
+
+		public int Width { get { return m_Width; } }
+		public int Height { get { return m_Height; } }
 
 		protected int m_Width;
 		protected int m_Height;
@@ -156,6 +177,40 @@ public class MinerCaveGeneration : MonoBehaviour
 			this.generateMap();
 		}
 
+		public Cell GetCell(int x, int y)
+		{
+			return new Cell(m_Map[x, y]);
+		}
+
+		public int[] FindBorders()
+		{
+			int[] borders = new int[4] { m_Width, m_Height, -1, -1 };
+
+			for(int x = 0; x < m_Width; ++x) {
+				for(int y = 0; y < m_Height; ++y) {
+					if(!m_Map[x, y].IsSolid) {
+						if(x - 1 < borders[0]) {
+							borders[0] = x - 1;
+						}
+
+						if(x + 1 > borders[2]) {
+							borders[2] = x + 1;
+						}
+
+						if(y - 1 < borders[1]) {
+							borders[1] = y - 1;
+						}
+
+						if(y + 1 > borders[3]) {
+							borders[3] = y + 1;
+						}
+					}
+				}
+			}
+
+			return borders;
+		}
+
 		public List<int[]> GetNeighbors(int x, int y)
 		{
 			return ReferenceMap.GetNeighbors(m_Map, x, y);
@@ -195,9 +250,11 @@ public class MinerCaveGeneration : MonoBehaviour
 			return safety_total/cell_count;
 		}
 
-		public void DrawGizmos(Vector3 anchor, bool draw_visibility, bool draw_safety)
+		public void DrawGizmos(Vector3 anchor, bool draw_visibility, bool draw_safety, bool show_map_borders)
 		{
 			if(m_Map != null) {
+				int[] borders = FindBorders();
+
 				for(int x = 0; x < m_Width; ++x) {
 					for(int y = 0; y < m_Height; ++y) {
 						Gizmos.color = Color.magenta;
@@ -207,7 +264,11 @@ public class MinerCaveGeneration : MonoBehaviour
 						switch(m_Map[x, y].Type) {
 							case Cell.TileSpawn.NONE:
 								if(m_Map[x, y].IsSolid) {
-									Gizmos.color = Color.black;
+									if(show_map_borders && (x == borders[0] || x == borders[2] || y == borders[1] || y == borders[3])) {
+										Gizmos.color = Color.grey;
+									} else {
+										Gizmos.color = Color.black;
+									}
 								} else if(draw_visibility && m_Map[x, y].IsVisible) {
 									Gizmos.color = Color.yellow;
 								} else if(draw_safety) {
@@ -550,6 +611,10 @@ public class MinerCaveGeneration : MonoBehaviour
 		}
 	}
 
+	[Header("Marching Cells")]
+	[Range(1, 32)] public int RoomHeight = 8;
+	[Range(1, 16)] public int MapCellSubdivision = 1;
+
 	[Header("Reference Map")]
 	public int Width = 200;
 	public int Height = 275;
@@ -574,6 +639,7 @@ public class MinerCaveGeneration : MonoBehaviour
 	public bool DrawReference = true;
 	public bool ReferenceDrawVisibility = false;
 	public bool ReferenceDrawSafety = false;
+	public bool ReferenceDrawBorders = false;
 
 	protected System.Random m_RNG;
 	protected ReferenceMap m_ReferenceMap;
@@ -601,7 +667,7 @@ public class MinerCaveGeneration : MonoBehaviour
 	{
 		if(DrawGizmos) {
 			if(DrawReference && m_ReferenceMap != null) {
-				m_ReferenceMap.DrawGizmos(this.transform.position, ReferenceDrawVisibility, ReferenceDrawSafety);
+				m_ReferenceMap.DrawGizmos(this.transform.position, ReferenceDrawVisibility, ReferenceDrawSafety, ReferenceDrawBorders);
 			}
 		}
 	}
@@ -611,6 +677,8 @@ public class MinerCaveGeneration : MonoBehaviour
 		this.initializeRandomNumberGenerator();
 
 		m_ReferenceMap = new ReferenceMap(Seed, Width, Height, 0.01f*MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount, MaximumSafetyLimit, EnemyPopulation + m_RNG.Next(EnemyPopulationVariance), 0.01f*EnemySpawnModifier, ItemSpawnRequiredSafety, ItemSpawnEnemySearchRadius, 0.01f*Profitability, 0.01f*Materialability);
+
+		this.buildWallMap();
 	}
 
 	protected void initializeRandomNumberGenerator()
@@ -631,8 +699,10 @@ public class MinerCaveGeneration : MonoBehaviour
 		m_RNG = new System.Random(Seed.GetHashCode());
 	}
 
-	protected void initializeMap()
+	protected void buildWallMap()
 	{
-		// Initialize a clear map.
+		int[] borders = m_ReferenceMap.FindBorders();
+
+		Debug.Log(borders[0] + ", " + borders[1] + ", " + borders[2] + ", " + borders[3]);
 	}
 }
