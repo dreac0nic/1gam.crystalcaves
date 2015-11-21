@@ -258,6 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b199bc306ba2b341b5fffa015025693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoomHeight: 8
+  MapCellSubdivision: 1
   Width: 200
   Height: 275
   MinerSpawnRate: 7.5
@@ -272,11 +274,12 @@ MonoBehaviour:
   Profitability: .800000012
   Materialability: 1.20000005
   GenerateSeed: 1
-  Seed: 
+  Seed: 512518932
   DrawGizmos: 1
   DrawReference: 1
   ReferenceDrawVisibility: 0
   ReferenceDrawSafety: 1
+  ReferenceDrawBorders: 1
 --- !u!4 &1322351644
 Transform:
   m_ObjectHideFlags: 0
