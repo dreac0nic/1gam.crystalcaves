@@ -561,7 +561,7 @@ public class MinerCaveGeneration : MonoBehaviour
 							if(enemy_spawns.Count < enemy_spawn_cap) {
 								enemy_spawns.Insert(index, new int[2] {x, y});
 								enemy_spawns_count.Insert(index, enemy_count);
-							} else {
+							} else if(index < enemy_spawns_count.Count) {
 								enemy_spawns[index] = new int[2] {x, y};
 								enemy_spawns_count[index] = enemy_count;
 							}
