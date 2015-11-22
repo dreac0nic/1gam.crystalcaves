@@ -640,13 +640,17 @@ public class MinerCaveGeneration : MonoBehaviour
 	public bool ReferenceDrawVisibility = false;
 	public bool ReferenceDrawSafety = false;
 	public bool ReferenceDrawBorders = false;
+	public bool DrawWallMap = false;
 
 	protected System.Random m_RNG;
 	protected ReferenceMap m_ReferenceMap;
+	protected bool[,,] m_WallMap;
+
+	protected SimpleMarchingCubes m_MarchingCubes;
 
 	public void Awake()
 	{
-
+		m_MarchingCubes = GetComponent<SimpleMarchingCubes>();
 	}
 
 	public void Start()
@@ -656,11 +660,13 @@ public class MinerCaveGeneration : MonoBehaviour
 
 	public void Update()
 	{
+		/*
 		if(Input.GetKeyDown("space")) {
 			GenerateMap();
 		} else if(Input.GetKeyDown("left ctrl") && m_ReferenceMap != null) {
 			m_ReferenceMap.RenormalizeSafety(MaximumSafetyLimit);
 		}
+		//*/
 	}
 
 	public void OnDrawGizmos()
@@ -669,16 +675,100 @@ public class MinerCaveGeneration : MonoBehaviour
 			if(DrawReference && m_ReferenceMap != null) {
 				m_ReferenceMap.DrawGizmos(this.transform.position, ReferenceDrawVisibility, ReferenceDrawSafety, ReferenceDrawBorders);
 			}
+
+			if(DrawWallMap && m_WallMap != null) {
+				Gizmos.color = Color.black;
+				for(int x = 0; x < m_WallMap.GetLength(0); ++x) {
+					for(int y = 0; y < m_WallMap.GetLength(1); ++y) {
+						for(int z = 0; z < m_WallMap.GetLength(2); ++z) {
+							if(m_WallMap[x, y, z]) {
+								Vector3 cube_position = new Vector3(-m_WallMap.GetLength(0)/2.0f + 0.5f + x, -m_WallMap.GetLength(1)/2.0f + 0.5f + y, -m_WallMap.GetLength(2)/2.0f + 0.5f + z);
+								Gizmos.DrawCube(this.transform.position + cube_position, Vector3.one);
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 
 	public void GenerateMap()
 	{
-		this.initializeRandomNumberGenerator();
+		int log_pass = 0;
+		int number_of_passes = 150;
+		double[] totals = new double[4];
+		List<double[]> time_logs = new List<double[]>();
+		StringBuilder buffer = new StringBuilder();
+		System.DateTime run_start = System.DateTime.UtcNow;
 
-		m_ReferenceMap = new ReferenceMap(Seed, Width, Height, 0.01f*MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount, MaximumSafetyLimit, EnemyPopulation + m_RNG.Next(EnemyPopulationVariance), 0.01f*EnemySpawnModifier, ItemSpawnRequiredSafety, ItemSpawnEnemySearchRadius, 0.01f*Profitability, 0.01f*Materialability);
+		for(int pass = 0; pass < number_of_passes; ++pass) {
+			double[] times = new double[5];
+			System.DateTime start_time = System.DateTime.UtcNow;
+			times[0] = (start_time - new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc)).TotalSeconds;
 
-		this.buildWallMap();
+			this.initializeRandomNumberGenerator();
+			times[1] = (System.DateTime.UtcNow - start_time).TotalSeconds;
+
+			m_ReferenceMap = new ReferenceMap(Seed, Width, Height, 0.01f*MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount, MaximumSafetyLimit, EnemyPopulation + m_RNG.Next(EnemyPopulationVariance), 0.01f*EnemySpawnModifier, ItemSpawnRequiredSafety, ItemSpawnEnemySearchRadius, 0.01f*Profitability, 0.01f*Materialability);
+			times[2] = (System.DateTime.UtcNow - start_time).TotalSeconds - times[1];
+
+			this.buildWallMap();
+			times[3] = (System.DateTime.UtcNow - start_time).TotalSeconds - times[1] - times[2];
+
+			if(m_MarchingCubes != null && m_WallMap != null) {
+				m_MarchingCubes.GenerateMesh(m_WallMap, 1.0f);
+				times[4] = (System.DateTime.UtcNow - start_time).TotalSeconds - times[1] - times[2] - times[3];
+			}
+
+			time_logs.Add(times);
+		}
+
+
+		foreach(double[] time_log in time_logs) {
+			totals[0] += time_log[1];
+			totals[1] += time_log[2];
+			totals[2] += time_log[3];
+			totals[3] += time_log[4];
+		}
+
+		for(int index = 0; index < 4; ++index) {
+			totals[index] /= number_of_passes;
+		}
+
+		buffer.Append(number_of_passes);
+		buffer.Append(" pass");
+		buffer.Append(number_of_passes > 1 ? "es " : " ");
+		buffer.Append("took ");
+		buffer.Append((System.DateTime.UtcNow - run_start).TotalMinutes);
+		buffer.Append(" minutes with segment averages of ");
+		buffer.Append(totals[0]);
+		buffer.Append("s, ");
+		buffer.Append(totals[1]);
+		buffer.Append("s, ");
+		buffer.Append(totals[2]);
+		buffer.Append("s, and ");
+		buffer.Append(totals[3]);
+		buffer.Append("s.\n");
+
+		foreach(double[] time_log in time_logs) {
+			System.DateTime epoch = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+			epoch = epoch.AddSeconds(time_log[0]);
+			buffer.Append("Pass #");
+			buffer.Append(++log_pass);
+			buffer.Append(" started at ");
+			buffer.Append(epoch.ToString());
+			buffer.Append(" with segment times of ");
+			buffer.Append(time_log[1]);
+			buffer.Append("s, ");
+			buffer.Append(time_log[2]);
+			buffer.Append("s, ");
+			buffer.Append(time_log[3]);
+			buffer.Append("s, and ");
+			buffer.Append(time_log[4]);
+			buffer.Append("s.\n");
+		}
+
+		Debug.Log(buffer.ToString());
 	}
 
 	protected void initializeRandomNumberGenerator()
@@ -701,8 +791,28 @@ public class MinerCaveGeneration : MonoBehaviour
 
 	protected void buildWallMap()
 	{
+		int width, depth;
+		bool[,,] wall_map;
 		int[] borders = m_ReferenceMap.FindBorders();
 
-		Debug.Log(borders[0] + ", " + borders[1] + ", " + borders[2] + ", " + borders[3]);
+		width = borders[2] - borders[0] + 1;
+		depth = borders[3] - borders[1] + 1;
+		wall_map = new bool[width, RoomHeight, depth];
+
+		for(int x = 0; x < width; ++x) {
+			for(int z = 0; z < depth; ++z) {
+				bool cell_value = this.m_ReferenceMap.GetCell(borders[0] + x, borders[1] + z).IsSolid;
+
+				for(int y = 0; y < RoomHeight; ++y) {
+					if(y > 0 && y < RoomHeight - 1) {
+						wall_map[x, y, z] = cell_value;
+					} else {
+						wall_map[x, y, z] = true;
+					}
+				}
+			}
+		}
+
+		m_WallMap = wall_map;
 	}
 }

@@ -276,10 +276,12 @@ MonoBehaviour:
   GenerateSeed: 1
   Seed: 512518932
   DrawGizmos: 1
-  DrawReference: 1
+  DrawReference: 0
   ReferenceDrawVisibility: 0
   ReferenceDrawSafety: 1
   ReferenceDrawBorders: 1
+  DrawWallMap: 0
+  WallMapOffset: {x: 215, y: 0, z: 0}
 --- !u!4 &1322351644
 Transform:
   m_ObjectHideFlags: 0
