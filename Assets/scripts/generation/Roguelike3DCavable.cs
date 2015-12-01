@@ -97,7 +97,7 @@ public class Roguelike3DCavable : MonoBehaviour
 		cursor = new int[3] {m_RNG.Next(1, ResolutionWidth - 2), 1, m_RNG.Next(1, ResolutionDepth)};
 
 		// Generate mesh using marching cubes.
-		this.GetComponent<SimpleMarchingCubes>().GenerateMesh(m_Map, CellSize);
+		this.GetComponent<SimpleMarchingCubes>().GenerateMesh(m_Map);
 	}
 
 	protected void drawMapGizmo(int x, int y, int z)

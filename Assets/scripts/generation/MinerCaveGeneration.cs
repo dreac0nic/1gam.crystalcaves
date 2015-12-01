@@ -611,9 +611,12 @@ public class MinerCaveGeneration : MonoBehaviour
 		}
 	}
 
-	[Header("Marching Cells")]
+	[Header("Wall Map")]
 	[Range(1, 32)] public int RoomHeight = 8;
 	[Range(1, 16)] public int MapCellSubdivision = 1;
+	public float CellSize = 1.0f;
+	[Range(1, 100)] public int CellChunkSize = 10;
+	public Material DefaultMaterial;
 
 	[Header("Reference Map")]
 	public int Width = 200;
@@ -635,7 +638,13 @@ public class MinerCaveGeneration : MonoBehaviour
 	public string Seed;
 
 	[Header("Debug Controls")]
+	public bool GenerateMesh = true;
+
+	[Header("Gizmo Controls")]
 	public bool DrawGizmos = false;
+	public int HighlightedLayer = 0;
+	public bool OnlyDrawHighlightedLayer = false;
+	public bool CapDrawAtHighlightedLayer = false;
 	public bool DrawReference = true;
 	public bool ReferenceDrawVisibility = false;
 	public bool ReferenceDrawSafety = false;
@@ -645,12 +654,14 @@ public class MinerCaveGeneration : MonoBehaviour
 	protected System.Random m_RNG;
 	protected ReferenceMap m_ReferenceMap;
 	protected bool[,,] m_WallMap;
+	protected List<GameObject> m_MapChunks;
 
 	protected SimpleMarchingCubes m_MarchingCubes;
 
 	public void Awake()
 	{
 		m_MarchingCubes = GetComponent<SimpleMarchingCubes>();
+		m_MapChunks = new List<GameObject>();
 	}
 
 	public void Start()
@@ -660,7 +671,7 @@ public class MinerCaveGeneration : MonoBehaviour
 
 	public void Update()
 	{
-		/*
+		//*
 		if(Input.GetKeyDown("space")) {
 			GenerateMap();
 		} else if(Input.GetKeyDown("left ctrl") && m_ReferenceMap != null) {
@@ -680,8 +691,17 @@ public class MinerCaveGeneration : MonoBehaviour
 				Gizmos.color = Color.black;
 				for(int x = 0; x < m_WallMap.GetLength(0); ++x) {
 					for(int y = 0; y < m_WallMap.GetLength(1); ++y) {
+						if(OnlyDrawHighlightedLayer && y < HighlightedLayer) {
+							continue;
+						} else if((OnlyDrawHighlightedLayer || CapDrawAtHighlightedLayer) && y > HighlightedLayer) {
+							break;
+						}
+
 						for(int z = 0; z < m_WallMap.GetLength(2); ++z) {
 							if(m_WallMap[x, y, z]) {
+								if(!OnlyDrawHighlightedLayer) {
+									Gizmos.color = new Color(0.0f, 0.2f + 0.4f*y/m_WallMap.GetLength(1), 0.0f, 1.0f);
+								}
 								Vector3 cube_position = new Vector3(-m_WallMap.GetLength(0)/2.0f + 0.5f + x, -m_WallMap.GetLength(1)/2.0f + 0.5f + y, -m_WallMap.GetLength(2)/2.0f + 0.5f + z);
 								Gizmos.DrawCube(this.transform.position + cube_position, Vector3.one);
 							}
@@ -694,14 +714,77 @@ public class MinerCaveGeneration : MonoBehaviour
 
 	public void GenerateMap()
 	{
+		if(m_MapChunks.Count > 0) {
+			foreach(GameObject chunk in m_MapChunks) {
+				Destroy(chunk);
+			}
+
+			m_MapChunks.Clear();
+		}
+
 		this.initializeRandomNumberGenerator();
 
 		m_ReferenceMap = new ReferenceMap(Seed, Width, Height, 0.01f*MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount, MaximumSafetyLimit, EnemyPopulation + m_RNG.Next(EnemyPopulationVariance), 0.01f*EnemySpawnModifier, ItemSpawnRequiredSafety, ItemSpawnEnemySearchRadius, 0.01f*Profitability, 0.01f*Materialability);
 
 		this.buildWallMap();
 
-		if(m_MarchingCubes != null && m_WallMap != null) {
-			m_MarchingCubes.GenerateMesh(m_WallMap, 1.0f);
+		if(GenerateMesh && m_MarchingCubes != null && m_WallMap != null) {
+			int chunk_count_width = (int)System.Math.Ceiling((double)m_WallMap.GetLength(0)/CellChunkSize);
+			int chunk_count_height = (int)System.Math.Ceiling((double)m_WallMap.GetLength(1)/CellChunkSize);
+			int chunk_count_depth = (int)System.Math.Ceiling((double)m_WallMap.GetLength(2)/CellChunkSize);
+
+			if(CellChunkSize > 1) {
+				for(int chunk_x = 0; chunk_x < chunk_count_width; ++chunk_x) {
+					for(int chunk_y = 0; chunk_y < chunk_count_height; ++chunk_y) {
+						for(int chunk_z = 0; chunk_z < chunk_count_depth; ++chunk_z) {
+							bool occupied_tile = false;
+							bool[,,] partial_wallmap = new bool[CellChunkSize, CellChunkSize, CellChunkSize];
+							GameObject map_chunk;
+
+							// Create partial chunk and generate a small mesh from it.
+							for(int x = 0; x < CellChunkSize; ++x) {
+								for(int y = 0; y < CellChunkSize; ++y) {
+									for(int z = 0; z < CellChunkSize; ++z) {
+										int real_x = CellChunkSize*chunk_x - chunk_x + x;
+										int real_y = CellChunkSize*chunk_y - chunk_y + y;
+										int real_z = CellChunkSize*chunk_z - chunk_z + z;
+
+										if(real_x < m_WallMap.GetLength(0) && real_y < m_WallMap.GetLength(1) && real_z < m_WallMap.GetLength(2)) {
+											if(!m_WallMap[real_x, real_y, real_z]) {
+												occupied_tile = true;
+											}
+
+											partial_wallmap[x, y, z] = m_WallMap[real_x, real_y, real_z];
+										} else {
+											partial_wallmap[x, y, z] = true;
+										}
+									}
+								}
+							}
+
+							if(occupied_tile) {
+								map_chunk = new GameObject("chunk_" + chunk_x + "." + chunk_y + "." + chunk_z);
+
+								map_chunk.AddComponent<MeshFilter>();
+								map_chunk.AddComponent<MeshRenderer>();
+								map_chunk.GetComponent<MeshRenderer>().material = DefaultMaterial;
+								map_chunk.AddComponent<MeshCollider>();
+								map_chunk.AddComponent<SimpleMarchingCubes>();
+								map_chunk.GetComponent<SimpleMarchingCubes>().CellSize = this.CellSize;
+								map_chunk.GetComponent<SimpleMarchingCubes>().DrawGizmos = false;
+
+								map_chunk.transform.position = new Vector3(CellSize*(CellChunkSize - 1)*(-chunk_count_width/2 + chunk_x), CellSize*(CellChunkSize - 1)*(-chunk_count_height/2 + chunk_y), CellSize*(CellChunkSize - 1)*(-chunk_count_depth/2 + chunk_z));
+								map_chunk.transform.SetParent(this.transform);
+								m_MapChunks.Add(map_chunk);
+
+								map_chunk.GetComponent<SimpleMarchingCubes>().GenerateMesh(partial_wallmap);
+							}
+						}
+					}
+				}
+			} else {
+				m_MarchingCubes.GenerateMesh(m_WallMap);
+			}
 		}
 	}
 
@@ -725,20 +808,21 @@ public class MinerCaveGeneration : MonoBehaviour
 
 	protected void buildWallMap()
 	{
-		int width, depth;
+		int width, height, depth;
 		bool[,,] wall_map;
 		int[] borders = m_ReferenceMap.FindBorders();
 
-		width = borders[2] - borders[0] + 1;
-		depth = borders[3] - borders[1] + 1;
-		wall_map = new bool[width, RoomHeight, depth];
+		width = MapCellSubdivision*(borders[2] - borders[0] + 1);
+		height = MapCellSubdivision*RoomHeight;
+		depth = MapCellSubdivision*(borders[3] - borders[1] + 1);
+		wall_map = new bool[width, height, depth];
 
 		for(int x = 0; x < width; ++x) {
 			for(int z = 0; z < depth; ++z) {
-				bool cell_value = this.m_ReferenceMap.GetCell(borders[0] + x, borders[1] + z).IsSolid;
+				bool cell_value = this.m_ReferenceMap.GetCell(borders[0] + (int)(x/MapCellSubdivision), borders[1] + (int)(z/MapCellSubdivision)).IsSolid;
 
-				for(int y = 0; y < RoomHeight; ++y) {
-					if(y > 0 && y < RoomHeight - 1) {
+				for(int y = 0; y < height; ++y) {
+					if(y > 0 && y < height - MapCellSubdivision) {
 						wall_map[x, y, z] = cell_value;
 					} else {
 						wall_map[x, y, z] = true;

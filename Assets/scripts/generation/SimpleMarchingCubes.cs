@@ -444,6 +444,8 @@ public class SimpleMarchingCubes : MonoBehaviour
 		new List<int>() {12, 13, 16}
 	};
 
+	public float CellSize = 1.0f;
+
 	[Header("DEBUG CONTROLS")]
 	public bool DrawGizmos = true;
 	public bool DrawWithinRange = false;
@@ -496,9 +498,9 @@ public class SimpleMarchingCubes : MonoBehaviour
 		return selected_cube;
 	}
 
-	public void GenerateMesh(bool[,,] map, float cell_size)
+	public void GenerateMesh(bool[,,] map)
 	{
-		m_CellGrid = generateCellMap(map, cell_size);
+		m_CellGrid = generateCellMap(map, CellSize);
 
 		meshCellGrid();
 	}

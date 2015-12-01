@@ -206,7 +206,7 @@ public class Roguelike3DRoomable : MonoBehaviour
 		}
 
 		// Generate mesh using marching cubes.
-		GetComponent<SimpleMarchingCubes>().GenerateMesh(m_Map, CellSize);
+		GetComponent<SimpleMarchingCubes>().GenerateMesh(m_Map);
 	}
 
 	protected void drawMapGizmo(int x, int y, int z)

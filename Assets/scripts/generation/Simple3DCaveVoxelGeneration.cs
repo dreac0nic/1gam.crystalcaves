@@ -121,7 +121,7 @@ public class Simple3DCaveVoxelGeneration : MonoBehaviour
 		smoothMap(SmoothingPasses);
 
 		if(m_SimpleMarchingCubes) {
-			m_SimpleMarchingCubes.GenerateMesh(m_Map, CellSize);
+			m_SimpleMarchingCubes.GenerateMesh(m_Map);
 		}
 	}
 
