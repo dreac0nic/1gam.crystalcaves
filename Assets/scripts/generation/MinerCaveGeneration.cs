@@ -733,6 +733,12 @@ public class MinerCaveGeneration : MonoBehaviour
 			int chunk_count_height = (int)System.Math.Ceiling((double)m_WallMap.GetLength(1)/CellChunkSize);
 			int chunk_count_depth = (int)System.Math.Ceiling((double)m_WallMap.GetLength(2)/CellChunkSize);
 
+			//*
+			chunk_count_width += (int)System.Math.Ceiling((double)chunk_count_width/CellChunkSize);
+			chunk_count_height += (int)System.Math.Ceiling((double)chunk_count_width/CellChunkSize);
+			chunk_count_depth += (int)System.Math.Ceiling((double)chunk_count_depth/CellChunkSize);
+			//*
+
 			if(CellChunkSize > 1) {
 				for(int chunk_x = 0; chunk_x < chunk_count_width; ++chunk_x) {
 					for(int chunk_y = 0; chunk_y < chunk_count_height; ++chunk_y) {
