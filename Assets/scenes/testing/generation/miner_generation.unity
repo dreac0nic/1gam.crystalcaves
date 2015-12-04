@@ -329,10 +329,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b199bc306ba2b341b5fffa015025693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomHeight: 6
-  MapCellSubdivision: 4
-  CellSize: .25
+  RoomHeight: 5
+  MapCellSubdivision: 1
+  CellSize: 2
   CellChunkSize: 10
+  FuzzPasses: 1
+  ChanceOfFuzzing: 20
   DefaultMaterial: {fileID: 2100000, guid: 0de7bfd3527bcc04faf0304a7392b03f, type: 2}
   Width: 200
   Height: 275

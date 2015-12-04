@@ -616,6 +616,8 @@ public class MinerCaveGeneration : MonoBehaviour
 	[Range(1, 16)] public int MapCellSubdivision = 1;
 	public float CellSize = 1.0f;
 	[Range(1, 100)] public int CellChunkSize = 10;
+	public int FuzzPasses = 3;
+	[Range(0, 100)] public float ChanceOfFuzzing = 20.0f;
 	public Material DefaultMaterial;
 
 	[Header("Reference Map")]
@@ -727,6 +729,7 @@ public class MinerCaveGeneration : MonoBehaviour
 		m_ReferenceMap = new ReferenceMap(Seed, Width, Height, 0.01f*MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount, MaximumSafetyLimit, EnemyPopulation + m_RNG.Next(EnemyPopulationVariance), 0.01f*EnemySpawnModifier, ItemSpawnRequiredSafety, ItemSpawnEnemySearchRadius, 0.01f*Profitability, 0.01f*Materialability);
 
 		this.buildWallMap();
+		this.fuzzWallMap();
 
 		if(GenerateMesh && m_MarchingCubes != null && m_WallMap != null) {
 			int chunk_count_width = (int)System.Math.Ceiling((double)m_WallMap.GetLength(0)/CellChunkSize);
@@ -838,5 +841,39 @@ public class MinerCaveGeneration : MonoBehaviour
 		}
 
 		m_WallMap = wall_map;
+	}
+
+	protected void fuzzWallMap()
+	{
+		for(int pass = 0; pass < FuzzPasses; ++pass) {
+			for(int x = 1; x < m_WallMap.GetLength(0) - 1; ++x) {
+				for(int y = 1; y < m_WallMap.GetLength(1) - 1; ++y) {
+					for(int z = 1; z < m_WallMap.GetLength(2) - 1; ++z) {
+						int neighbor_count = countWallMapNeighbors(x, y, z);
+
+						if(m_WallMap[x, y, z] && neighbor_count < 25 && (float)m_RNG.NextDouble() <= 0.01f*ChanceOfFuzzing) {
+							m_WallMap[x, y, z] = false;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	protected int countWallMapNeighbors(int x, int y, int z)
+	{
+		int neighbor_count = 0;
+
+		for(int adj_x = x - 1; adj_x <= x + 1; ++adj_x) {
+			for(int adj_y = y - 1; adj_y <= y + 1; ++adj_y) {
+				for(int adj_z = z - 1; adj_z <= z + 1; ++adj_z) {
+					if((adj_x != x || adj_y != y || adj_z != z) && (adj_x < 1 || adj_y < 1 || adj_z < 1 || adj_x >= m_WallMap.GetLength(0) - 1 || adj_y >= m_WallMap.GetLength(1) - 1 || adj_z >= m_WallMap.GetLength(2) - 1 || m_WallMap[adj_x, adj_y, adj_z])) {
+						++neighbor_count;
+					}
+				}
+			}
+		}
+
+		return neighbor_count;
 	}
 }
