@@ -729,8 +729,8 @@ public class MinerCaveGeneration : MonoBehaviour
 		m_ReferenceMap = new ReferenceMap(Seed, Width, Height, 0.01f*MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount, MaximumSafetyLimit, EnemyPopulation + m_RNG.Next(EnemyPopulationVariance), 0.01f*EnemySpawnModifier, ItemSpawnRequiredSafety, ItemSpawnEnemySearchRadius, 0.01f*Profitability, 0.01f*Materialability);
 
 		this.buildWallMap();
-		this.smoothWallMap();
 		this.fuzzWallMap();
+		this.smoothWallMap();
 
 		if(GenerateMesh && m_MarchingCubes != null && m_WallMap != null) {
 			int chunk_count_width = (int)System.Math.Ceiling((double)m_WallMap.GetLength(0)/CellChunkSize);

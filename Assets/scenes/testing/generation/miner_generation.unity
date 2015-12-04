@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomHeight: 5
-  MapCellSubdivision: 1
+  MapCellSubdivision: 2
   CellSize: 2
   CellChunkSize: 10
   FuzzPasses: 1
