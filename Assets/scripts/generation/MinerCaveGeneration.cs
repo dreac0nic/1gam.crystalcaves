@@ -729,6 +729,7 @@ public class MinerCaveGeneration : MonoBehaviour
 		m_ReferenceMap = new ReferenceMap(Seed, Width, Height, 0.01f*MinerSpawnRate, MinerTimeoutLimit, SmoothingPassCount, MaximumSafetyLimit, EnemyPopulation + m_RNG.Next(EnemyPopulationVariance), 0.01f*EnemySpawnModifier, ItemSpawnRequiredSafety, ItemSpawnEnemySearchRadius, 0.01f*Profitability, 0.01f*Materialability);
 
 		this.buildWallMap();
+		this.smoothWallMap();
 		this.fuzzWallMap();
 
 		if(GenerateMesh && m_MarchingCubes != null && m_WallMap != null) {
@@ -852,6 +853,25 @@ public class MinerCaveGeneration : MonoBehaviour
 						int neighbor_count = countWallMapNeighbors(x, y, z);
 
 						if(m_WallMap[x, y, z] && neighbor_count < 25 && (float)m_RNG.NextDouble() <= 0.01f*ChanceOfFuzzing) {
+							m_WallMap[x, y, z] = false;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	protected void smoothWallMap()
+	{
+		for(int pass = 0; pass < 3; ++pass) {
+			for(int x = 0; x < m_WallMap.GetLength(0); ++x) {
+				for(int y = 0; y < m_WallMap.GetLength(1); ++y) {
+					for(int z = 0; z < m_WallMap.GetLength(2); ++z) {
+						int neighbor_count = countWallMapNeighbors(x, y, z);
+
+						if(neighbor_count > 18) {
+							m_WallMap[x, y, z] = true;
+						} else if(neighbor_count < 8) {
 							m_WallMap[x, y, z] = false;
 						}
 					}
