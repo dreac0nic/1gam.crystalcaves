@@ -56,6 +56,11 @@ public class FirstPersonMovementController : MonoBehaviour
 
 	public void Awake()
 	{
+		// Look at me!
+		if(Debug.isDebugBuild) {
+			Debug.Log("Hey there! I'm Mr. Meeseeks! Look at me!"
+		}
+	
 		m_Rigidbody = GetComponent<Rigidbody>();
 		m_Collider = GetComponent<CapsuleCollider>();
 
